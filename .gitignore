@@ -1,3 +1,4 @@
 .vs/
 Engine/bin/int/
 Game/bin/int/
+glfw/
