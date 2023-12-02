@@ -1,8 +1,25 @@
 #pragma once
 
-namespace Engine
+#include <cstdint>
+#include <string>
+#include <iostream>
+#include "Window.h"
+
+namespace eng
 {
 
-	void Test();
+	// Engine class that stores the main window.
+	class Engine
+	{
+	public:
+		Engine(std::uint32_t width, std::uint32_t height, const std::string& title);
+		Engine() = default;
+
+		// This has the main loop.
+		void Run();
+
+	private:
+		Window m_Window;
+	};
 
 }
