@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Window.h"
+#include "Renderer.h"
 
 namespace eng
 {

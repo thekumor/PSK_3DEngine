@@ -20,6 +20,10 @@ namespace eng
 
 	void Engine::Run()
 	{
+		std::cout << "OpenGL: " << glGetString(GL_VERSION) << std::endl;
+
+		Renderer* renderer = Renderer::Get();
+
 		while (!m_Window.ShouldClose())
 		{
 			m_Window.HandleEvents();
