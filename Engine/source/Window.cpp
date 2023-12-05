@@ -9,9 +9,10 @@ namespace eng
 		m_Window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
 		if (!m_Window)
+		{
 			std::cerr << "Failed to create a GLFW window." << std::endl;
-		else
-			m_IsValid = true;
+			SetValid(false);
+		}
 	}
 
 	void Window::HandleEvents()

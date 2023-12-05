@@ -4,13 +4,14 @@
 #include <string>
 #include <iostream>
 #include <GLFW/glfw3.h>
+#include "BaseClass.h"
 
 namespace eng
 {
 
 	// Can be shown and drawn onto.
 	// Handles input and window-specific events.
-	class Window
+	class Window : public BaseClass
 	{
 	public:
 		Window(std::uint32_t width, std::uint32_t height, const std::string& title);
@@ -18,9 +19,6 @@ namespace eng
 
 		// Should the window be closed?
 		inline bool ShouldClose() const { return glfwWindowShouldClose(m_Window); }
-
-		// Has this window been properly initialized?
-		inline bool IsValid() const { return m_IsValid; }
 
 		// Processes all the events, this includes input events.
 		void HandleEvents();
@@ -32,7 +30,6 @@ namespace eng
 		void SwapBuffers();
 
 	private:
-		bool m_IsValid = false;
 		std::uint32_t m_Width = 0, m_Height = 0;
 		std::string m_Title = "";
 		GLFWwindow* m_Window = nullptr;
