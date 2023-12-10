@@ -1,8 +1,8 @@
 #include "Engine.h"
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
-#define WINDOW_TITLE "Test"
+#define WINDOW_WIDTH 1360
+#define WINDOW_HEIGHT 768
+#define WINDOW_TITLE "3D Engine"
 
 int main()
 {
