@@ -15,6 +15,7 @@ namespace eng
 		void SetValid(bool valid);
 
 	private:
+		// You can invalidate a class with this variable.
 		bool m_Valid = true;
 	};
 

@@ -30,6 +30,7 @@ namespace eng
 			0.5f, -0.5f
 		};
 
+		// We are just drawing a triangle :)
 		while (!m_Window.ShouldClose())
 		{
 			m_Window.HandleEvents();

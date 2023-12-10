@@ -24,7 +24,10 @@ namespace eng
 		void Run();
 
 	private:
+		// Application's main window.
 		Window m_Window;
+
+		// Source of engine's events.
 		EventSource m_EventSource;
 	};
 

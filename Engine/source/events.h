@@ -5,12 +5,13 @@
 #include <string>
 #include <unordered_map>
 #include <any>
+#include <cstdint>
 
 namespace eng
 {
 
 	// A type for event, an alternative for strings.
-	enum class EventType
+	enum class EventType : std::int32_t
 	{
 		Invalid = -1,
 		Update,
@@ -39,12 +40,13 @@ namespace eng
 	struct Event
 	{
 		Event(EventType type, const Hook& hook);
+		Event() = default;
 
 		// Type associated with event.
-		EventType Type = Invalid;
+		EventType Type = EventType::Invalid;
 
 		// All the hooks that are pinned into event.
-		std::vector<const Hook&> Hooks = {};
+		std::vector<Hook> Hooks = {};
 	};
 
 	// Base class for event related classes.

@@ -30,8 +30,13 @@ namespace eng
 		void SwapBuffers();
 
 	private:
+		// Width and height.
 		std::uint32_t m_Width = 0, m_Height = 0;
+
+		// Title displayed on top of the window.
 		std::string m_Title = "";
+
+		// Window pointer.
 		GLFWwindow* m_Window = nullptr;
 	};
 
