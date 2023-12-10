@@ -1,42 +1,42 @@
-#pragma once
+﻿#pragma once
 
 #include <cstdint>
 #include <string>
 #include <iostream>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "BaseClass.h"
 
 namespace eng
 {
 
-	// Can be shown and drawn onto.
-	// Handles input and window-specific events.
+	// Można na nim rysować elementy.
 	class Window : public BaseClass
 	{
 	public:
 		Window(std::uint32_t width, std::uint32_t height, const std::string& title);
 		Window() = default;
 
-		// Should the window be closed?
+		// Czy okno powinno być zamknięte?
 		inline bool ShouldClose() const { return glfwWindowShouldClose(m_Window); }
 
-		// Processes all the events, this includes input events.
+		// Przetwarza eventy np. przyciśnięcia klawiszy.
 		void HandleEvents();
 
-		// Makes the window be set as context current.
+		// Ustanawia to okno jako aktualne dla silnika.
 		void SetCurrent();
 
-		// Swaps it's internal buffers so that the image is displayed.
+		// Podmienia bufory ekranu.
 		void SwapBuffers();
 
 	private:
-		// Width and height.
+		// Szerokość i wysokość.
 		std::uint32_t m_Width = 0, m_Height = 0;
 
-		// Title displayed on top of the window.
+		// Tytuł okna.
 		std::string m_Title = "";
 
-		// Window pointer.
+		// Wskaźnik okna.
 		GLFWwindow* m_Window = nullptr;
 	};
 

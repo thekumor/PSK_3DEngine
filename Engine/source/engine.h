@@ -1,8 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include <cstdint>
 #include <string>
 #include <iostream>
+#include <glad/glad.h>
+#include <glfw/glfw3.h>
 #include "Window.h"
 #include "Renderer.h"
 #include "events.h"
@@ -13,21 +15,22 @@
 namespace eng
 {
 
-	// Engine class that stores the main window.
+	// Klasa silnika która zawiera główne okno.
 	class Engine : public BaseClass
 	{
 	public:
 		Engine(std::uint32_t width, std::uint32_t height, const std::string& title);
 		Engine() = default;
+		~Engine();
 
-		// This has the main loop.
+		// Zawiera pętlę główną.
 		void Run();
 
 	private:
-		// Application's main window.
+		// Okienko aplikacji.
 		Window m_Window;
 
-		// Source of engine's events.
+		// Źródło zdarzeń.
 		EventSource m_EventSource;
 	};
 

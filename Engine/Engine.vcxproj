@@ -114,12 +114,12 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/;$(SolutionDir)vendor/glad-opengl3.3/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;User32.lib;Gdi32.lib;Shell32.lib;opengl32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;User32.lib;Gdi32.lib;Shell32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/lib-vc2022/</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -133,20 +133,22 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/;$(SolutionDir)vendor/glad-opengl3.3/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;User32.lib;Gdi32.lib;Shell32.lib;opengl32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;User32.lib;Gdi32.lib;Shell32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/lib-vc2022/</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\vendor\glad-opengl3.3\src\glad.c" />
     <ClCompile Include="source\BaseClass.cpp" />
     <ClCompile Include="source\events.cpp" />
+    <ClCompile Include="source\internal\buffers.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\Demo.cpp" />
     <ClCompile Include="source\Engine.cpp" />
@@ -156,6 +158,7 @@
   <ItemGroup>
     <ClInclude Include="source\BaseClass.h" />
     <ClInclude Include="source\events.h" />
+    <ClInclude Include="source\internal\buffers.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\Demo.h" />
     <ClInclude Include="source\Engine.h" />

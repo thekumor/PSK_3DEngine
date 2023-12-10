@@ -17,11 +17,6 @@ namespace eng
 
 	void Renderer::DrawTriangle(const glm::mat3x2& vertices, const glm::fvec4& color)
 	{
-		glBegin(GL_TRIANGLES);
-		glVertex2f(vertices[0][0], vertices[0][1]);
-		glVertex2f(vertices[1][0], vertices[1][1]);
-		glVertex2f(vertices[2][0], vertices[2][1]);
-		glEnd();
 	}
 
 }

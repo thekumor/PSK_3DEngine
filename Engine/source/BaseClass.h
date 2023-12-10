@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 namespace eng
 {
@@ -8,14 +8,14 @@ namespace eng
 	public:
 		BaseClass() = default;
 
-		// Checks if the class is valid.
+		// Sprawdza czy klasa jest prawidłowa.
 		inline bool IsValid() { return m_Valid;}
 
-		// Sets the class as valid or not.
+		// Ustawia czy klasa jest prawidłowa.
 		void SetValid(bool valid);
 
 	private:
-		// You can invalidate a class with this variable.
+		// Za pomocą tej zmiennej można ustawić prawidłowość klasy.
 		bool m_Valid = true;
 	};
 

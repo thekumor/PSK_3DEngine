@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <vector>
 #include <functional>
@@ -10,60 +10,61 @@
 namespace eng
 {
 
-	// A type for event, an alternative for strings.
+	// Enumerator zdarzeń.
 	enum class EventType : std::int32_t
 	{
 		Invalid = -1,
 		Update,
 	};
 
-	// This is data that is provided when event occurs.
+	// Dane dla zdarzenia.
 	struct EventData
 	{
 		EventData(const std::any& data);
 		EventData() = default;
 
-		// Actual data.
+		// Dane właściwe.
 		std::any Data = {};
 	};
 
-	// This literally 'hooks' into an event.
-	// It has a callback, so any time an event occurs,
-	// the callback will be run.
+	// 'Haczyk' dla zdarzeń. Posiada funkcję zwrotną,
+	// która jest uruchamiana gdy wydarzenie jest
+	// uruchamiane.
 	struct Hook
 	{
 		Hook(const std::string& name, const std::function<void(const EventData&)>& callback);
 		Hook() = default;
 
-		// Identifier
+		// Identyfikator dla haczyka.
 		std::string Name = "";
 
-		// Function that is run when event happens.
+		// Funkcja zwrotna.
 		std::function<void(const EventData&)> Callback = {};
 	};
 
-	// This is how events are layed out.
+	// Zdarzenie, posiada haczyki.
 	struct Event
 	{
 		Event(EventType type, const Hook& hook);
 		Event() = default;
 
-		// Type associated with event.
+		// Typ zdarzenia.
 		EventType Type = EventType::Invalid;
 
-		// All the hooks that are pinned into event.
+		// Wszystkie haczyki.
 		std::vector<Hook> Hooks = {};
 	};
 
-	// Base class for event related classes.
+	// Klasa bazowa dla klas zdarzeniowych.
 	class EventBase
 	{
 	public:
 		EventBase() = default;
 	};
 
-	// Any time an event occurs, this class will be informed
-	// about it along with being provided with event's data.
+	// Za każdym razem, gdy uruchamiane jest
+	// wydarzenie, ta klasa (musi być przypięta pod źródło)
+	// reaguje i uruchamia funkcje zwrotne haczyków.
 	class EventReceiver : public EventBase
 	{
 	public:
@@ -71,27 +72,28 @@ namespace eng
 
 		EventReceiver() = default;
 
-		// Adds a new hook that will be run when event occurs.
+		// Dodaje nowy haczyk.
 		void AddHook(EventType type, const Hook& hook);
 	private:
-		// All the events this class listens to.
+		// Wszystkie zdarzenia na które nasłuchuje ten odbiornik.
 		std::unordered_map<EventType, Event> m_Events = {};
 	};
 
-	// You can run events with this class.
-	// You have to provide it with receivers.
+	// Z pomocą tej klasy można uruchamiać zdarzenia.
+	// Posiada odbiorniki, które z kolei posiadają
+	// haczyki, które uruchamiają kod.
 	class EventSource : public EventBase
 	{
 	public:
 		EventSource() = default;
 
-		// Adds a receiver so that it listens to this source.
+		// Dodaje odbiornik który od teraz będzie nasłuchiwać tego źródła.
 		EventReceiver& AddReceiver(const EventReceiver& rec);
 
-		// Fires an event with given data.
+		// Uruchamia zdarzenie z podanymi wartościami.
 		void CallEvent(EventType type, const EventData& data);
 	private:
-		// All the receivers that are listening to this source.
+		// Wszystkie odbiorniki które nasłuchują tego źródła.
 		std::vector<EventReceiver> m_Receivers = {};
 	};
 

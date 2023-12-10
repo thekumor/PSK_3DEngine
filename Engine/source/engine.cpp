@@ -9,13 +9,25 @@ namespace eng
 			std::cerr << "Failed to initialize GLFW" << std::endl;
 		else
 		{
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 			m_Window = Window(width, height, title);
 
 			if (m_Window.IsValid())
+			{
 				m_Window.SetCurrent();
-			else
-				glfwTerminate();
+
+				if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+					std::cerr << "Failed to initialize GLAD" << std::endl;
+			}
 		}
+	}
+
+	Engine::~Engine()
+	{
+		glfwTerminate();
 	}
 
 	void Engine::Run()

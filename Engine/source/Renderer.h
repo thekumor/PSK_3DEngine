@@ -1,26 +1,26 @@
-#pragma once
+﻿#pragma once
 
 #include <glm/glm.hpp>
+#include <glad/glad.h>
 #include <glfw/glfw3.h>
 
 namespace eng
 {
 
-	// Used to render objects. Singleton.
+	// Używane do wyświetlania obiektów. Singleton.
 	class Renderer
 	{
 	public:
 		Renderer(const Renderer&) = delete;
 		Renderer& operator=(Renderer&) = delete;
 
-		// Gets the singleton instance.
+		// Zwraca instancję klasy.
 		static Renderer* Get();
-
-		// Clears the screen.
+		
+		// Czyści ekran.
 		void Clear(const glm::fvec4& color);
 
-		// Draws a triangle.
-		// TODO: Use color.
+		// Rysuje trójkąt.
 		void DrawTriangle(const glm::mat3x2& vertices, const glm::fvec4& color);
 	private:
 		Renderer() = default;

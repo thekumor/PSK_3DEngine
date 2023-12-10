@@ -36,6 +36,12 @@
     <ClCompile Include="source\events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\vendor\glad-opengl3.3\src\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\internal\buffers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine.h">
@@ -54,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\internal\buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

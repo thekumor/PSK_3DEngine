@@ -8,13 +8,13 @@ namespace eng
 	namespace showcase
 	{
 
-		// Class that can run a demo showcase.
+		// Demo technologiczne.
 		class Demo
 		{
 		public:
 			Demo() = default;
 
-			// Creates elements and runs the demo.
+			// Tworzy elementy demo i uruchamia je.
 			void Run();
 		};
 
