@@ -22,6 +22,20 @@ namespace eng
 	{
 		std::cout << "OpenGL: " << glGetString(GL_VERSION) << std::endl;
 
+		// --------------------------------------
+		// Event Test
+		// --------------------------------------
+		EventReceiver r;
+		r.AddHook(EventType::Update, Hook("Test", [&](const EventData& data)
+			{
+				std::int32_t val = std::any_cast<std::int32_t>(data.Data);
+				std::cout << "Lambda! Value: " << val << std::endl;
+			}));
+
+		m_EventSource.AddReceiver(r);
+		m_EventSource.CallEvent(EventType::Update, EventData(65));
+		// --------------------------------------
+
 		Renderer* renderer = Renderer::Get();
 
 		glm::mat3x2 vertices = {

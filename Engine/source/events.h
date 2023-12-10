@@ -20,6 +20,9 @@ namespace eng
 	// This is data that is provided when event occurs.
 	struct EventData
 	{
+		EventData(const std::any& data);
+		EventData() = default;
+
 		// Actual data.
 		std::any Data = {};
 	};
@@ -29,6 +32,9 @@ namespace eng
 	// the callback will be run.
 	struct Hook
 	{
+		Hook(const std::string& name, const std::function<void(const EventData&)>& callback);
+		Hook() = default;
+
 		// Identifier
 		std::string Name = "";
 
@@ -78,6 +84,9 @@ namespace eng
 	{
 	public:
 		EventSource() = default;
+
+		// Adds a receiver so that it listens to this source.
+		EventReceiver& AddReceiver(const EventReceiver& rec);
 
 		// Fires an event with given data.
 		void CallEvent(EventType type, const EventData& data);

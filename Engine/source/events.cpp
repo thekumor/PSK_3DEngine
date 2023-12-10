@@ -14,9 +14,14 @@ namespace eng
 	}
 
 	Event::Event(EventType type, const Hook& hook)
+		: Type(type)
 	{
-		Type = type;
 		Hooks.emplace_back(hook);
+	}
+
+	EventReceiver& EventSource::AddReceiver(const EventReceiver& rec)
+	{
+		return m_Receivers.emplace_back(rec);
 	}
 
 	void EventSource::CallEvent(EventType type, const EventData& data)
@@ -29,6 +34,16 @@ namespace eng
 				for (auto& h : finder->second.Hooks)
 					h.Callback(data);
 		}
+	}
+
+	Hook::Hook(const std::string& name, const std::function<void(const EventData&)>& callback)
+		: Name(name), Callback(callback)
+	{
+	}
+
+	EventData::EventData(const std::any& data)
+		: Data(data)
+	{
 	}
 
 }
