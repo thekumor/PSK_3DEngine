@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Window.h"
 #include "Renderer.h"
+#include "events.h"
 #include "BaseClass.h"
 
 #define ENG_CLEAR_COLOR glm::fvec4(0.1f, 0.1f, 0.1f, 1.0f)
@@ -24,6 +25,7 @@ namespace eng
 
 	private:
 		Window m_Window;
+		EventSource m_EventSource;
 	};
 
 }
