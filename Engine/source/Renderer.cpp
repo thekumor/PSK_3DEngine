@@ -17,6 +17,7 @@ namespace eng
 
 	void Renderer::DrawTriangle(const glm::mat3x2& vertices, const glm::fvec4& color)
 	{
+
 	}
 
 }

@@ -149,6 +149,8 @@
     <ClCompile Include="source\BaseClass.cpp" />
     <ClCompile Include="source\events.cpp" />
     <ClCompile Include="source\internal\buffers.cpp" />
+    <ClCompile Include="source\objects.cpp" />
+    <ClCompile Include="source\objects.h" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\Demo.cpp" />
     <ClCompile Include="source\Engine.cpp" />
