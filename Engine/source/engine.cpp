@@ -36,17 +36,18 @@ namespace eng
 
 		Renderer* renderer = Renderer::Get();
 
-		glm::mat3x2 vertices = {
+		glm::mat2x3 vertices = {
 			-0.5f, -0.5f,
 			0.0f, 0.5f,
 			0.5f, -0.5f
 		};
 
+		Triangle triangle(vertices, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
 		while (!m_Window.ShouldClose())
 		{
 			m_Window.HandleEvents();
 			renderer->Clear(ENG_CLEAR_COLOR);
-			renderer->DrawTriangle(vertices, glm::fvec4(0.2f, 0.2f, 0.5f, 1.0f));
 			m_Window.SwapBuffers();
 		}
 	}

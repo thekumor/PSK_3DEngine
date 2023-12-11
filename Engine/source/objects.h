@@ -23,7 +23,7 @@ namespace eng
 		Triangle() = default;
 
 		// Zwraca bufor werteksów trójk¹ta.
-		const inter::VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
+		inline const inter::VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
 
 	private:
 		// Bufor werteksów trójk¹ta.

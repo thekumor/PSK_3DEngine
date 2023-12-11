@@ -7,6 +7,7 @@
 #include <glfw/glfw3.h>
 #include "Window.h"
 #include "Renderer.h"
+#include "objects.h"
 #include "events.h"
 #include "BaseClass.h"
 
