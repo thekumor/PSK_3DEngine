@@ -8,4 +8,9 @@ namespace eng
 	{
 	}
 
+	void Triangle::Draw(Renderer* renderer)
+	{
+		renderer->Draw(m_VertexBuffer, m_Color);
+	}
+
 }

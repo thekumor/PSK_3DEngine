@@ -13,7 +13,6 @@ namespace eng
 	{
 	public:
 		Shader(GLenum type, const std::string& filePath);
-		Shader(GLenum type, const std::string& code);
 		Shader() = default;
 		~Shader();
 

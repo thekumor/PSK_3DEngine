@@ -19,7 +19,7 @@ namespace eng
 			{
 				m_Window.SetCurrent();
 
-				if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+				if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
 					std::cerr << "Failed to initialize GLAD" << std::endl;
 			}
 		}
@@ -36,6 +36,8 @@ namespace eng
 
 		Renderer* renderer = Renderer::Get();
 
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 3, nullptr);
+
 		glm::mat2x3 vertices = {
 			-0.5f, -0.5f,
 			0.0f, 0.5f,
@@ -48,6 +50,7 @@ namespace eng
 		{
 			m_Window.HandleEvents();
 			renderer->Clear(ENG_CLEAR_COLOR);
+			triangle.Draw(renderer);
 			m_Window.SwapBuffers();
 		}
 	}

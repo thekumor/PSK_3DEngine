@@ -4,6 +4,7 @@
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
 #include "internal/buffers.h"
+#include "Renderer.h"
 
 namespace eng
 {
@@ -24,6 +25,8 @@ namespace eng
 
 		// Zwraca bufor werteksów trójk¹ta.
 		inline const inter::VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
+
+		void Draw(Renderer* renderer);
 
 	private:
 		// Bufor werteksów trójk¹ta.

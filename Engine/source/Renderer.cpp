@@ -15,9 +15,10 @@ namespace eng
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::DrawTriangle(const glm::mat3x2& vertices, const glm::fvec4& color)
+	void Renderer::Draw(const inter::VertexBuffer& buf, const glm::vec4& color)
 	{
-
+		glBindBuffer(GL_ARRAY_BUFFER, buf.GetId());
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 	}
 
 }

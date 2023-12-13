@@ -149,6 +149,7 @@
     <ClCompile Include="source\BaseClass.cpp" />
     <ClCompile Include="source\events.cpp" />
     <ClCompile Include="source\internal\buffers.cpp" />
+    <ClCompile Include="source\internal\Shader.cpp" />
     <ClCompile Include="source\objects.cpp" />
     <ClCompile Include="source\objects.h" />
     <ClCompile Include="source\Renderer.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="source\BaseClass.h" />
     <ClInclude Include="source\events.h" />
     <ClInclude Include="source\internal\buffers.h" />
+    <ClInclude Include="source\internal\Shader.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\Demo.h" />
     <ClInclude Include="source\Engine.h" />

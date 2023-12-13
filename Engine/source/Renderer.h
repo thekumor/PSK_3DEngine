@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
+#include "internal/buffers.h"
 
 namespace eng
 {
@@ -20,8 +21,8 @@ namespace eng
 		// Czyści ekran.
 		void Clear(const glm::fvec4& color);
 
-		// Rysuje trójkąt.
-		void DrawTriangle(const glm::mat3x2& vertices, const glm::fvec4& color);
+		// Rysuje z bufora.
+		void Draw(const inter::VertexBuffer& buf, const glm::vec4& color);
 	private:
 		Renderer() = default;
 	};
