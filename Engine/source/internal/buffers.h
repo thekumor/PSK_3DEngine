@@ -3,12 +3,13 @@
 #include <glad/glad.h>
 #include <cstdint>
 #include <glm/glm.hpp>
+#include "../BaseClass.h"
 
 namespace eng::inter // engine::internal
 {
 
 	// Klasa bazowa dla buforów OpenGL.
-	class BufferBase
+	class BufferBase : public BaseClass
 	{
 	public:
 		BufferBase(GLenum type);

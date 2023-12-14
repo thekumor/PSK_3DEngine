@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "BaseClass.h"
 
 namespace eng
 {
@@ -9,7 +10,7 @@ namespace eng
 	{
 
 		// Demo technologiczne.
-		class Demo
+		class Demo : public BaseClass
 		{
 		public:
 			Demo() = default;

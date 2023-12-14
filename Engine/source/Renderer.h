@@ -4,12 +4,13 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include "internal/buffers.h"
+#include "BaseClass.h"
 
 namespace eng
 {
 
 	// Używane do wyświetlania obiektów. Singleton.
-	class Renderer
+	class Renderer : public BaseClass
 	{
 	public:
 		Renderer(const Renderer&) = delete;

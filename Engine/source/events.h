@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <any>
 #include <cstdint>
+#include "BaseClass.h"
 
 namespace eng
 {
@@ -56,7 +57,7 @@ namespace eng
 	};
 
 	// Klasa bazowa dla klas zdarzeniowych.
-	class EventBase
+	class EventBase : public BaseClass
 	{
 	public:
 		EventBase() = default;

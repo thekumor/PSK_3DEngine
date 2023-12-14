@@ -4,12 +4,13 @@
 #include <cstdint>
 #include <string>
 #include <optional>
+#include "../BaseClass.h"
 
 namespace eng
 {
 
 	// Shader który steruje rysowaniem obiektów.
-	class Shader
+	class Shader : public BaseClass
 	{
 	public:
 		Shader(GLenum type, const std::string& filePath);
