@@ -11,7 +11,7 @@ namespace eng
 		{
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
 			m_Window = Window(width, height, title);
 
@@ -36,21 +36,27 @@ namespace eng
 
 		Renderer* renderer = Renderer::Get();
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 3, nullptr);
-
 		glm::mat2x3 vertices = {
 			-0.5f, -0.5f,
 			0.0f, 0.5f,
 			0.5f, -0.5f
 		};
 
+		glm::mat2x3 vertices1 = {
+			-0.9f, -0.9f,
+			-0.8f, -0.7f,
+			-0.7f, -0.9f
+		};
+
 		Triangle triangle(vertices, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		Triangle triangle1(vertices1, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
 		while (!m_Window.ShouldClose())
 		{
 			m_Window.HandleEvents();
 			renderer->Clear(ENG_CLEAR_COLOR);
 			triangle.Draw(renderer);
+			triangle1.Draw(renderer);
 			m_Window.SwapBuffers();
 		}
 	}

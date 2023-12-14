@@ -3,8 +3,10 @@
 #include <cstdint>
 #include <string>
 #include <iostream>
+
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
+
 #include <Engine/Window.h>
 #include <Engine/Renderer.h>
 #include <Engine/objects.h>

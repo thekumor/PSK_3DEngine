@@ -8,7 +8,9 @@ namespace eng::inter
 	{
 		glGenBuffers(1, &m_Id);
 		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * 3, &vertices, GL_STATIC_DRAW);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+		glEnableVertexAttribArray(0);
 	}
 
 	VertexBuffer::~VertexBuffer()
@@ -20,7 +22,7 @@ namespace eng::inter
 	{
 		glGenBuffers(1, &m_Id);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexes), &indexes, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(std::uint32_t) * 4, &indexes, GL_STATIC_DRAW);
 	}
 
 	BufferBase::BufferBase(GLenum type)

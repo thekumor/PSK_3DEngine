@@ -18,6 +18,8 @@ namespace eng
 	void Renderer::Draw(const inter::VertexBuffer& buf, const glm::vec4& color)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, buf.GetId());
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+		glEnableVertexAttribArray(0);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 	}
 

@@ -1,8 +1,10 @@
 #pragma once
 
 #include <cstdint>
+
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+
 #include <Engine/BaseClass.h>
 
 namespace eng::inter // engine::internal
