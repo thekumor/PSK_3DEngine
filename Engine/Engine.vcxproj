@@ -155,7 +155,7 @@
     <ClCompile Include="source\Engine\BaseClass.cpp" />
     <ClCompile Include="source\Engine\events.cpp" />
     <ClCompile Include="source\Engine\internal\buffers.cpp" />
-    <ClCompile Include="source\Engine\internal\Shader.cpp" />
+    <ClCompile Include="source\Engine\Shader.cpp" />
     <ClCompile Include="source\Engine\objects.cpp" />
     <ClCompile Include="source\Engine\objects.h" />
     <ClCompile Include="source\Engine\Renderer.cpp" />
@@ -168,7 +168,7 @@
     <ClInclude Include="source\Engine\BaseClass.h" />
     <ClInclude Include="source\Engine\events.h" />
     <ClInclude Include="source\Engine\internal\buffers.h" />
-    <ClInclude Include="source\Engine\internal\Shader.h" />
+    <ClInclude Include="source\Engine\Shader.h" />
     <ClInclude Include="source\Engine\Renderer.h" />
     <ClInclude Include="source\Engine\Demo.h" />
     <ClInclude Include="source\Engine\Engine.h" />

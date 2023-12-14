@@ -48,7 +48,7 @@
     <ClCompile Include="source\Engine\objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Engine\internal\Shader.cpp">
+    <ClCompile Include="source\Engine\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClInclude Include="source\Engine\internal\buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Engine\internal\Shader.h">
+    <ClInclude Include="source\Engine\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

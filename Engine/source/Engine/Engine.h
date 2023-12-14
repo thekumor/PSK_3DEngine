@@ -7,6 +7,7 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 
+#include <Engine/Shader.h>
 #include <Engine/Window.h>
 #include <Engine/Renderer.h>
 #include <Engine/objects.h>

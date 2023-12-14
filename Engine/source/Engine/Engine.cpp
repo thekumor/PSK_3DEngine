@@ -51,6 +51,9 @@ namespace eng
 		Triangle triangle(vertices, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		Triangle triangle1(vertices1, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
+		Program program("shaders/test");
+		program.Bind();
+
 		while (!m_Window.ShouldClose())
 		{
 			m_Window.HandleEvents();
