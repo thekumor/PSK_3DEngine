@@ -15,66 +15,66 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Engine.cpp">
+    <ClCompile Include="source\Engine\Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\main.cpp">
+    <ClCompile Include="source\Engine\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Demo.cpp">
+    <ClCompile Include="source\Engine\Demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Window.cpp">
+    <ClCompile Include="source\Engine\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Renderer.cpp">
+    <ClCompile Include="source\Engine\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\BaseClass.cpp">
+    <ClCompile Include="source\Engine\BaseClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\events.cpp">
+    <ClCompile Include="source\Engine\events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\vendor\glad-opengl3.3\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\internal\buffers.cpp">
+    <ClCompile Include="source\Engine\internal\buffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\objects.h">
+    <ClCompile Include="source\Engine\objects.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\objects.cpp">
+    <ClCompile Include="source\Engine\objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\internal\Shader.cpp">
+    <ClCompile Include="source\Engine\internal\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Engine.h">
+    <ClInclude Include="source\Engine\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Demo.h">
+    <ClInclude Include="source\Engine\Demo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Window.h">
+    <ClInclude Include="source\Engine\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Renderer.h">
+    <ClInclude Include="source\Engine\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\BaseClass.h">
+    <ClInclude Include="source\Engine\BaseClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\events.h">
+    <ClInclude Include="source\Engine\events.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\internal\buffers.h">
+    <ClInclude Include="source\Engine\internal\buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\internal\Shader.h">
+    <ClInclude Include="source\Engine\internal\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

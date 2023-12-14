@@ -114,7 +114,10 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/;$(SolutionDir)vendor/glad-opengl3.3/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/;$(SolutionDir)vendor/glad-opengl3.3/include/;$(SolutionDir)Engine/source/</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>engprh.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +136,10 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/;$(SolutionDir)vendor/glad-opengl3.3/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor/glfw-3.3.8.bin.WIN64/include/;$(SolutionDir)vendor/glm/;$(SolutionDir)vendor/glad-opengl3.3/include/;$(SolutionDir)Engine/source/</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>engprh.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,27 +152,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\vendor\glad-opengl3.3\src\glad.c" />
-    <ClCompile Include="source\BaseClass.cpp" />
-    <ClCompile Include="source\events.cpp" />
-    <ClCompile Include="source\internal\buffers.cpp" />
-    <ClCompile Include="source\internal\Shader.cpp" />
-    <ClCompile Include="source\objects.cpp" />
-    <ClCompile Include="source\objects.h" />
-    <ClCompile Include="source\Renderer.cpp" />
-    <ClCompile Include="source\Demo.cpp" />
-    <ClCompile Include="source\Engine.cpp" />
-    <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\Window.cpp" />
+    <ClCompile Include="source\Engine\BaseClass.cpp" />
+    <ClCompile Include="source\Engine\events.cpp" />
+    <ClCompile Include="source\Engine\internal\buffers.cpp" />
+    <ClCompile Include="source\Engine\internal\Shader.cpp" />
+    <ClCompile Include="source\Engine\objects.cpp" />
+    <ClCompile Include="source\Engine\objects.h" />
+    <ClCompile Include="source\Engine\Renderer.cpp" />
+    <ClCompile Include="source\Engine\Demo.cpp" />
+    <ClCompile Include="source\Engine\Engine.cpp" />
+    <ClCompile Include="source\Engine\main.cpp" />
+    <ClCompile Include="source\Engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\BaseClass.h" />
-    <ClInclude Include="source\events.h" />
-    <ClInclude Include="source\internal\buffers.h" />
-    <ClInclude Include="source\internal\Shader.h" />
-    <ClInclude Include="source\Renderer.h" />
-    <ClInclude Include="source\Demo.h" />
-    <ClInclude Include="source\Engine.h" />
-    <ClInclude Include="source\Window.h" />
+    <ClInclude Include="source\Engine\BaseClass.h" />
+    <ClInclude Include="source\Engine\events.h" />
+    <ClInclude Include="source\Engine\internal\buffers.h" />
+    <ClInclude Include="source\Engine\internal\Shader.h" />
+    <ClInclude Include="source\Engine\Renderer.h" />
+    <ClInclude Include="source\Engine\Demo.h" />
+    <ClInclude Include="source\Engine\Engine.h" />
+    <ClInclude Include="source\Engine\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
