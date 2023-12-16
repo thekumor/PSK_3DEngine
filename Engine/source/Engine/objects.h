@@ -34,7 +34,10 @@ namespace eng
 		// Tablica werteksów.
 		inter::VertexArray m_VertexArray;
 
-		// Bufor werteksów trójkąta.
+		// Bufor indeksów.
+		inter::IndexBuffer m_IndexBuffer;
+
+		// Bufor werteksów.
 		inter::VertexBuffer m_VertexBuffer;
 
 		// Kolor trójkąta.

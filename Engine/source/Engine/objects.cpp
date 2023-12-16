@@ -4,7 +4,7 @@ namespace eng
 {
 
 	Triangle::Triangle(const glm::mat2x3& vertices, const glm::vec4& color)
-		: m_VertexBuffer(vertices), m_Color(color)
+		: m_IndexBuffer(glm::uvec4(0, 1, 2, 0)), m_VertexBuffer(vertices), m_Color(color)
 	{
 	}
 
