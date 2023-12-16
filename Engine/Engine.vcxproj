@@ -162,6 +162,7 @@
     <ClCompile Include="source\Engine\Demo.cpp" />
     <ClCompile Include="source\Engine\Engine.cpp" />
     <ClCompile Include="source\Engine\main.cpp" />
+    <ClCompile Include="source\Engine\utility.cpp" />
     <ClCompile Include="source\Engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +173,11 @@
     <ClInclude Include="source\Engine\Renderer.h" />
     <ClInclude Include="source\Engine\Demo.h" />
     <ClInclude Include="source\Engine\Engine.h" />
+    <ClInclude Include="source\Engine\utility.h" />
     <ClInclude Include="source\Engine\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

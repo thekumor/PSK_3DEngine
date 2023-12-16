@@ -13,6 +13,7 @@
 #include <Engine/objects.h>
 #include <Engine/events.h>
 #include <Engine/BaseClass.h>
+#include <Engine/utility.h>
 
 #define ENG_CLEAR_COLOR glm::fvec4(0.1f, 0.1f, 0.1f, 1.0f)
 

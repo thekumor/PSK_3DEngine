@@ -51,6 +51,9 @@
     <ClCompile Include="source\Engine\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Engine\utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\Engine.h">
@@ -77,5 +80,11 @@
     <ClInclude Include="source\Engine\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Engine\utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>
