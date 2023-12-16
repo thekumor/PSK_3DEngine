@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
@@ -17,23 +17,27 @@ namespace eng
 		BaseObject() = default;
 	};
 
-	// Trójk¹t.
+	// TrÃ³jkÄ…t.
 	class Triangle : public BaseObject
 	{
 	public:
 		Triangle(const glm::mat2x3& vertices, const glm::vec4& color);
 		Triangle() = default;
 
-		// Zwraca bufor werteksów trójk¹ta.
+		// Zwraca bufor werteksÃ³w trÃ³jkÄ…ta.
 		inline const inter::VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
 
+		// Rysuje trÃ³jkÄ…t.
 		void Draw(Renderer* renderer);
 
 	private:
-		// Bufor werteksów trójk¹ta.
+		// Tablica werteksÃ³w.
+		inter::VertexArray m_VertexArray;
+
+		// Bufor werteksÃ³w trÃ³jkÄ…ta.
 		inter::VertexBuffer m_VertexBuffer;
 
-		// Kolor trójk¹ta.
+		// Kolor trÃ³jkÄ…ta.
 		glm::vec4 m_Color = {};
 	};
 

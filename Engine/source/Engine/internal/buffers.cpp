@@ -4,7 +4,7 @@ namespace eng::inter
 {
 	
 	VertexBuffer::VertexBuffer(const glm::mat2x3& vertices)
-		: BufferBase(GL_ARRAY_BUFFER), m_Vertices(vertices)
+		: BufferBase(BufferType::Vertex), m_Vertices(vertices)
 	{
 		glGenBuffers(1, &m_Id);
 		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
@@ -18,21 +18,43 @@ namespace eng::inter
 	}
 
 	IndexBuffer::IndexBuffer(const glm::uvec4& indexes)
-		: BufferBase(GL_ELEMENT_ARRAY_BUFFER), m_Indexes(indexes)
+		: BufferBase(BufferType::Index), m_Indexes(indexes)
 	{
 		glGenBuffers(1, &m_Id);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(std::uint32_t) * 4, &indexes, GL_STATIC_DRAW);
 	}
 
-	BufferBase::BufferBase(GLenum type)
+	BufferBase::BufferBase(BufferType type)
 		: m_Type(type)
 	{
 	}
 
 	void BufferBase::Bind() const
 	{
-		glBindBuffer(m_Type, m_Id);
+		glBindBuffer(static_cast<GLenum>(m_Type), m_Id);
+	}
+
+	void BufferBase::Unbind() const
+	{
+		glBindBuffer(static_cast<GLenum>(m_Type), 0);
+	}
+
+	VertexArray::VertexArray()
+		: BufferBase(BufferType::VArray)
+	{
+		glGenVertexArrays(1, &m_Id);
+		glBindVertexArray(m_Id);
+	}
+
+	void VertexArray::Unbind() const
+	{
+		glBindVertexArray(0);
+	}
+
+	void VertexArray::Bind() const
+	{
+		glBindVertexArray(m_Id);
 	}
 
 }

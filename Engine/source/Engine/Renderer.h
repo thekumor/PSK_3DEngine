@@ -24,7 +24,7 @@ namespace eng
 		void Clear(const glm::fvec4& color);
 
 		// Rysuje z bufora.
-		void Draw(const inter::VertexBuffer& buf, const glm::vec4& color);
+		void Draw(std::uint32_t vao);
 	private:
 		Renderer() = default;
 	};

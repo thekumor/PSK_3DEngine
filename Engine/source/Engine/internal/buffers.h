@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <cstdint>
 
@@ -10,31 +10,43 @@
 namespace eng::inter // engine::internal
 {
 
-	// Klasa bazowa dla bufor�w OpenGL.
+	enum class BufferType : std::uint32_t
+	{
+		Invalid = 0,
+		Vertex = GL_ARRAY_BUFFER,
+		Index = GL_ELEMENT_ARRAY_BUFFER,
+		VArray = GL_VERTEX_ARRAY
+	};
+
+	// Klasa bazowa dla buforów OpenGL.
 	class BufferBase : public BaseClass
 	{
 	public:
-		BufferBase(GLenum type);
+		BufferBase(BufferType type);
 		BufferBase() = default;
 		virtual ~BufferBase() {};
 
 		// Zwraca typ bufora.
-		inline std::uint32_t GetType() const { return m_Type; }
+		inline BufferType GetType() const { return m_Type; }
 
 		// Zwraca identyfikator bufora.
 		inline std::uint32_t GetId() const { return m_Id; }
 
+		// Używa bufora.
 		void Bind() const;
 
+		// Przestaje używać bufora.
+		void Unbind() const;
+
 	protected:
-		// Typ bufora, np. bufor werteks�w, indeks�w.
-		std::uint32_t m_Type = 0;
+		// Typ bufora, np. bufor werteksów, indeksów.
+		BufferType m_Type = BufferType::Invalid;
 
 		// Identyfikator bufora.
 		std::uint32_t m_Id = 0;
 	};
 
-	// Bufor werteks�w.
+	// Bufor werteksów.
 	class VertexBuffer : public BufferBase
 	{
 	public:
@@ -50,7 +62,7 @@ namespace eng::inter // engine::internal
 		glm::mat2x3 m_Vertices = {};
 	};
 
-	// Bufor indeks�w.
+	// Bufor indeksów.
 	class IndexBuffer : public BufferBase
 	{
 	public:
@@ -63,6 +75,19 @@ namespace eng::inter // engine::internal
 	private:
 		// Indeksy bufora.
 		glm::uvec4 m_Indexes = {};
+	};
+
+	// Tablica werteksów.
+	class VertexArray : public BufferBase
+	{
+	public:
+		VertexArray();
+
+		// Używa tablicy.
+		void Bind() const;
+
+		// Przestaje używać tablicy.
+		void Unbind() const;
 	};
 
 }
