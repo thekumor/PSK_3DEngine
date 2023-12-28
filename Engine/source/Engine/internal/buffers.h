@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <cstdint>
+#include <array>
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -50,7 +51,7 @@ namespace eng::inter // engine::internal
 	class VertexBuffer : public BufferBase
 	{
 	public:
-		VertexBuffer(const glm::mat2x3& vertices);
+		VertexBuffer(const glm::mat3x2& vertices, const glm::fvec4& color);
 		VertexBuffer() = default;
 		~VertexBuffer();
 
@@ -59,7 +60,13 @@ namespace eng::inter // engine::internal
 
 	private:
 		// Werteksy bufora.
-		glm::mat2x3 m_Vertices = {};
+		glm::mat3x2 m_Vertices = {};
+
+		// Kolor bufora.
+		glm::fvec4 m_Color = {};
+
+		// Dane dla bufora w OpenGL.
+		std::array<float, 18> m_VertexData = {};
 	};
 
 	// Bufor indeksów.

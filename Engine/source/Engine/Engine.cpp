@@ -9,8 +9,9 @@ namespace eng
 			std::cerr << "Failed to initialize GLFW" << std::endl;
 		else
 		{
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 			m_Window = Window(width, height, title);
@@ -40,23 +41,29 @@ namespace eng
 
 		Renderer* renderer = Renderer::Get();
 
-		glm::mat2x3 vertices = {
+		glm::mat3x2 vertices = {
 			-0.5f, -0.5f,
 			0.0f, 0.5f,
 			0.5f, -0.5f
 		};
+		glm::fvec4 color = {
+			1.0f, 0.0f, 0.0f, 1.0f
+		};
 
-		glm::mat2x3 vertices1 = {
+		glm::mat3x2 vertices1 = {
 			-0.9f, -0.9f,
 			-0.8f, -0.7f,
 			-0.7f, -0.9f
+		};
+		glm::fvec4 color1 = {
+			0.0f, 1.0f, 0.0f, 1.0f
 		};
 
 		Program program("shaders/test");
 		program.Bind();
 
-		Triangle triangle(vertices, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-		Triangle triangle1(vertices1, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		Triangle triangle(vertices, color);
+		Triangle triangle1(vertices1, color1);
 
 		while (!m_Window.ShouldClose())
 		{

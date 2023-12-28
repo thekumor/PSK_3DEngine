@@ -21,7 +21,7 @@ namespace eng
 	class Triangle : public BaseObject
 	{
 	public:
-		Triangle(const glm::mat2x3& vertices, const glm::vec4& color);
+		Triangle(const glm::mat3x2& vertices, const glm::fvec4& color);
 		Triangle() = default;
 
 		// Zwraca bufor werteksów trójkąta.
@@ -39,9 +39,6 @@ namespace eng
 
 		// Bufor werteksów.
 		inter::VertexBuffer m_VertexBuffer;
-
-		// Kolor trójkąta.
-		glm::vec4 m_Color = {};
 	};
 
 }

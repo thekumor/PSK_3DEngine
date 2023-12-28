@@ -22,7 +22,7 @@ namespace eng
 				std::int32_t length = 0;
 				glGetShaderiv(m_Id, GL_INFO_LOG_LENGTH, &length);
 
-				char* msg = (char*)alloca(sizeof(char) * length);
+				char* msg = reinterpret_cast<char*>(alloca(sizeof(char) * length));
 				glGetShaderInfoLog(m_Id, length, &length, msg);
 				std::cout << "Failed to compile shader! Type: " << (type == ShaderType::Vertex ? "vertex" : "fragment") << std::endl;
 				std::cout << "Message: " << msg << std::endl;

@@ -3,8 +3,8 @@
 namespace eng
 {
 
-	Triangle::Triangle(const glm::mat2x3& vertices, const glm::vec4& color)
-		: m_IndexBuffer(glm::uvec4(0, 1, 2, 0)), m_VertexBuffer(vertices), m_Color(color)
+	Triangle::Triangle(const glm::mat3x2& vertices, const glm::fvec4& color)
+		: m_IndexBuffer(glm::uvec4(0, 1, 2, 0)), m_VertexBuffer(vertices, color)
 	{
 	}
 
