@@ -63,8 +63,13 @@ namespace eng
 		Program() = default;
 		~Program();
 
+		std::uint32_t GetId() const { return m_Id; }
+
 		// Binduje program do użycia.
 		void Bind() const;
+
+		// Odbindowywuje program.
+		void Unbind() const;
 
 	private:
 		// Identyfikator programu.

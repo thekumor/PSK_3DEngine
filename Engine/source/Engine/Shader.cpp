@@ -84,8 +84,8 @@ namespace eng
 	}
 
 	Program::Program(const std::string& folderPath)
-		: m_VertexShader(ShaderType::Vertex, folderPath + "/" + "vertex.txt"),
-		m_FragmentShader(ShaderType::Fragment, folderPath + "/" + "fragment.txt"),
+		: m_VertexShader(ShaderType::Vertex, folderPath + "/" + "vertex.glsl"),
+		m_FragmentShader(ShaderType::Fragment, folderPath + "/" + "fragment.glsl"),
 		m_FolderPath(folderPath)
 	{
 		m_Id = glCreateProgram();
@@ -110,6 +110,11 @@ namespace eng
 	void Program::Bind() const
 	{
 		glUseProgram(m_Id);
+	}
+
+	void Program::Unbind() const
+	{
+		glUseProgram(0);
 	}
 
 }

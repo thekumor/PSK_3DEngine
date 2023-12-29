@@ -60,13 +60,30 @@ namespace eng
 		};
 
 		Program program("shaders/test");
+		Uniform brightness("uBrightness", program);
+		brightness.SetFloat(1.0f);
 		program.Bind();
 
 		Triangle triangle(vertices, color);
 		Triangle triangle1(vertices1, color1);
 
+		float time = 1.0f;
+		float factor = -0.007f;
 		while (!m_Window.ShouldClose())
 		{
+			time += factor;
+			if (time > 1.0f)
+			{
+				factor = -factor;
+				time = 1.0f;
+			}
+			else if (time < 0.0f)
+			{
+				factor = -factor;
+				time = 0.0f;
+			}
+			brightness.SetFloat(1.0f * time);
+
 			m_Window.HandleEvents();
 			renderer->Clear(ENG_CLEAR_COLOR);
 			triangle.Draw(renderer);

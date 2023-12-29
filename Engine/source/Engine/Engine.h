@@ -13,7 +13,9 @@
 #include <Engine/objects.h>
 #include <Engine/events.h>
 #include <Engine/BaseClass.h>
+#include <Engine/Uniform.h>
 #include <Engine/utility.h>
+#include <Engine/Camera.h>
 
 #define ENG_CLEAR_COLOR glm::fvec4(0.1f, 0.1f, 0.1f, 1.0f)
 
@@ -37,6 +39,9 @@ namespace eng
 
 		// Źródło zdarzeń.
 		EventSource m_EventSource;
+
+		// Kamera silnika.
+		Camera m_Camera;
 	};
 
 }
