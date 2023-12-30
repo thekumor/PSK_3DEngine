@@ -1,8 +1,13 @@
 ﻿#pragma once
 
+#include <iostream>
+
 #include <glm/glm.hpp>
+#include <glfw/glfw3.h>
 
 #include <Engine/BaseClass.h>
+#include <Engine/events.h>
+#include <Engine/globals.h>
 
 namespace eng
 {
@@ -33,6 +38,9 @@ namespace eng
 		void Rotate(const glm::fvec3& factor);
 
 	private:
+		// Odbiornik zdarzeń.
+		EventReceiver m_Receiver;
+
 		// Pozycja kamery.
 		glm::fvec3 m_Position = {};
 

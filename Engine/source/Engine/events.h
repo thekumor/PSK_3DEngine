@@ -17,6 +17,7 @@ namespace eng
 	{
 		Invalid = 0,
 		Update,
+		KeyPress
 	};
 
 	// Dane dla zdarzenia.
@@ -90,13 +91,13 @@ namespace eng
 		EventSource() = default;
 
 		// Dodaje odbiornik który od teraz będzie nasłuchiwać tego źródła.
-		EventReceiver& AddReceiver(const EventReceiver& rec);
+		EventReceiver* AddReceiver(EventReceiver* rec);
 
 		// Uruchamia zdarzenie z podanymi wartościami.
 		void CallEvent(EventType type, const EventData& data);
 	private:
 		// Wszystkie odbiorniki które nasłuchują tego źródła.
-		std::vector<EventReceiver> m_Receivers = {};
+		std::vector<EventReceiver*> m_Receivers = {};
 	};
 
 }

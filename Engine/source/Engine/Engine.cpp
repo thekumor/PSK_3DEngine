@@ -4,6 +4,7 @@ namespace eng
 {
 
 	Engine::Engine(std::uint32_t width, std::uint32_t height, const std::string& title)
+		: m_Camera(glm::fvec3(0.0f, 0.0f, 0.0f), glm::fvec3(0.0f, 0.0f, 0.0f))
 	{
 		if (!glfwInit())
 			std::cerr << "Failed to initialize GLFW" << std::endl;
@@ -41,6 +42,7 @@ namespace eng
 
 		Renderer* renderer = Renderer::Get();
 
+		// Obiekty
 		glm::mat3x2 vertices = {
 			-0.5f, -0.5f,
 			0.0f, 0.5f,
@@ -58,34 +60,35 @@ namespace eng
 		glm::fvec4 color1 = {
 			0.0f, 1.0f, 0.0f, 1.0f
 		};
-
-		Program program("shaders/test");
-		Uniform brightness("uBrightness", program);
-		brightness.SetFloat(1.0f);
-		program.Bind();
-
 		Triangle triangle(vertices, color);
 		Triangle triangle1(vertices1, color1);
 
-		float time = 1.0f;
-		float factor = -0.007f;
+		g_EventSource.AddReceiver(&triangle.GetReceiver());
+		triangle.GetReceiver().AddHook(EventType::KeyPress, Hook(
+			"Nothing", [&](const EventData& data)
+			{
+				std::cout << "Hello, I receive: " << std::any_cast<std::int32_t>(data.Data) << std::endl;
+			}
+		));
+
+		// Shadery, uniformy.
+		Program program("shaders/test");
+		Uniform brightness("uBrightness", program);
+		const float brightnessValue = 0.5f;
+		brightness.SetFloat(brightnessValue);
+		Uniform camera("uCamera", program);
+		program.Bind();
+
+		// Pętla główna.
 		while (!m_Window.ShouldClose())
 		{
-			time += factor;
-			if (time > 1.0f)
-			{
-				factor = -factor;
-				time = 1.0f;
-			}
-			else if (time < 0.0f)
-			{
-				factor = -factor;
-				time = 0.0f;
-			}
-			brightness.SetFloat(1.0f * time);
-
+			// Logika
 			m_Window.HandleEvents();
-			renderer->Clear(ENG_CLEAR_COLOR);
+			const glm::fvec3& camPos = m_Camera.GetPosition();
+			camera.SetVec4f(glm::fvec4(camPos.x, camPos.y, camPos.z, 0.0));
+
+			// Rysowanie
+			renderer->Clear(ENG_CLEAR_COLOR * brightnessValue);
 			triangle.Draw(renderer);
 			triangle1.Draw(renderer);
 			m_Window.SwapBuffers();

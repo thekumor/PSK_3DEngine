@@ -1,4 +1,8 @@
 #include <Engine/Engine.h>
+#include <Engine/globals.h>
+
+// Zmienna globalna.
+eng::EventSource eng::g_EventSource = {};
 
 #define WINDOW_WIDTH 1360
 #define WINDOW_HEIGHT 768

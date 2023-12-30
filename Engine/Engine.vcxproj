@@ -171,6 +171,7 @@
     <ClInclude Include="source\Engine\BaseClass.h" />
     <ClInclude Include="source\Engine\Camera.h" />
     <ClInclude Include="source\Engine\events.h" />
+    <ClInclude Include="source\Engine\globals.h" />
     <ClInclude Include="source\Engine\internal\buffers.h" />
     <ClInclude Include="source\Engine\Shader.h" />
     <ClInclude Include="source\Engine\Renderer.h" />

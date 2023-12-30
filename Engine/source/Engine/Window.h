@@ -8,9 +8,13 @@
 #include <GLFW/glfw3.h>
 
 #include <Engine/BaseClass.h>
+#include <Engine/events.h>
+#include <engine/globals.h>
 
 namespace eng
 {
+
+	static void KeyCallback(GLFWwindow* window, std::int32_t key, std::int32_t scanCode, std::int32_t action, std::int32_t mods);
 
 	// Można na nim rysować elementy.
 	class Window : public BaseClass

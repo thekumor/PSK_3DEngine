@@ -19,4 +19,20 @@ namespace eng
 		//m_Prog.Unbind();
 	}
 
+	void Uniform::SetVec4f(const glm::fvec4& value)
+	{
+		m_Prog.Bind();
+
+		m_Value = value;
+		glUniform4f(m_Location, value.x, value.y, value.z, value.w);
+	}
+
+	void Uniform::SetVec4d(const glm::dvec4& value)
+	{
+		m_Prog.Bind();
+
+		m_Value = value;
+		glUniform4d(m_Location, value.x, value.y, value.z, value.w);
+	}
+
 }

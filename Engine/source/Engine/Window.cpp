@@ -13,6 +13,8 @@ namespace eng
 			std::cerr << "Failed to create a GLFW window." << std::endl;
 			SetValid(false);
 		}
+		else
+			glfwSetKeyCallback(m_Window, KeyCallback);
 	}
 
 	void Window::HandleEvents()
@@ -28,6 +30,12 @@ namespace eng
 	void Window::SwapBuffers()
 	{
 		glfwSwapBuffers(m_Window);
+	}
+
+	void KeyCallback(GLFWwindow* window, std::int32_t key, std::int32_t scanCode, std::int32_t action, std::int32_t mods)
+	{
+		const EventData eventData(key);
+		g_EventSource.CallEvent(EventType::KeyPress, eventData);
 	}
 
 }

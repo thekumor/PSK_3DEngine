@@ -19,7 +19,7 @@ namespace eng
 		Hooks.emplace_back(hook);
 	}
 
-	EventReceiver& EventSource::AddReceiver(const EventReceiver& rec)
+	EventReceiver* EventSource::AddReceiver(EventReceiver* rec)
 	{
 		return m_Receivers.emplace_back(rec);
 	}
@@ -28,9 +28,9 @@ namespace eng
 	{
 		for (auto& r : m_Receivers)
 		{
-			auto finder = r.m_Events.find(type);
+			auto finder = r->m_Events.find(type);
 
-			if (finder != r.m_Events.end())
+			if (finder != r->m_Events.end())
 				for (auto& h : finder->second.Hooks)
 					h.Callback(data);
 		}

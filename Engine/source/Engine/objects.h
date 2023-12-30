@@ -6,6 +6,7 @@
 
 #include <Engine/internal/buffers.h>
 #include <Engine/Renderer.h>
+#include <Engine/events.h>
 
 namespace eng
 {
@@ -15,6 +16,12 @@ namespace eng
 	{
 	public:
 		BaseObject() = default;
+
+		// Odbiornik zdarzeń.
+		EventReceiver& GetReceiver() { return m_Receiver; }
+
+	private:
+		EventReceiver m_Receiver;
 	};
 
 	// Trójkąt.

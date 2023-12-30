@@ -23,6 +23,12 @@ namespace eng
 		// Ustawia wartość uniformu jako float.
 		void SetFloat(float value);
 
+		// Ustawia wartość uniformu jako 4-floatowy wektor.
+		void SetVec4f(const glm::fvec4& value);
+
+		// Ustawia wartość uniformu jako 4-doublowy wektor.
+		void SetVec4d(const glm::dvec4& value);
+
 	private:
 		// Shadery które posiadają ten uniform.
 		// UWAGA: to jest kopia, nie oryginał.
