@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 
 #include <Engine/BaseClass.h>
@@ -14,7 +15,17 @@
 namespace eng
 {
 
+	// Funkcja zwrotna dla wejścia (klawiatura).
 	static void KeyCallback(GLFWwindow* window, std::int32_t key, std::int32_t scanCode, std::int32_t action, std::int32_t mods);
+
+	// Funkcja zwrotna dla wejścia (pozycja myszy).
+	static void MousePosCallback(GLFWwindow* window, double x, double y);
+
+	// Funkcja zwrotna dla wejścia (mysz).
+	static void MouseCallback(GLFWwindow* window, std::int32_t button, std::int32_t action, std::int32_t mods);
+
+	// Funkcja zwrotna dla wejścia (kółko myszy).
+	static void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 
 	// Można na nim rysować elementy.
 	class Window : public BaseClass

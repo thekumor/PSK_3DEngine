@@ -17,7 +17,9 @@ namespace eng
 	{
 		Invalid = 0,
 		Update,
-		KeyPress
+		KeyPress,
+		MousePress,
+		MouseWheel
 	};
 
 	// Dane dla zdarzenia.

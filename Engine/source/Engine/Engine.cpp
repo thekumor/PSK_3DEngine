@@ -85,7 +85,7 @@ namespace eng
 			// Logika
 			m_Window.HandleEvents();
 			const glm::fvec3& camPos = m_Camera.GetPosition();
-			camera.SetVec4f(glm::fvec4(camPos.x, camPos.y, camPos.z, 0.0));
+			camera.SetVec4f(glm::fvec4(camPos.x, camPos.y, 0.0, camPos.z));
 
 			// Rysowanie
 			renderer->Clear(ENG_CLEAR_COLOR * brightnessValue);

@@ -37,6 +37,15 @@ namespace eng
 					} break;
 				}
 			}));
+
+		m_Receiver.AddHook(EventType::MouseWheel, Hook("CameraBehavior", [&](const EventData& data)
+			{
+				const glm::dvec2& scroll = std::any_cast<glm::dvec2>(data.Data);
+				double xOffset = scroll[0];
+				double yOffset = scroll[1];
+
+				Move(glm::fvec3(0.0f, 0.0f, -yOffset / 10));
+			}));
 	}
 
 	void Camera::Move(const glm::fvec3& factor)

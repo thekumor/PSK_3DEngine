@@ -14,7 +14,12 @@ namespace eng
 			SetValid(false);
 		}
 		else
+		{
 			glfwSetKeyCallback(m_Window, KeyCallback);
+			glfwSetMouseButtonCallback(m_Window, MouseCallback);
+			glfwSetScrollCallback(m_Window, ScrollCallback);
+			glfwSetCursorPosCallback(m_Window, MousePosCallback);
+		}
 	}
 
 	void Window::HandleEvents()
@@ -36,6 +41,22 @@ namespace eng
 	{
 		const EventData eventData(key);
 		g_EventSource.CallEvent(EventType::KeyPress, eventData);
+	}
+
+	void MousePosCallback(GLFWwindow* window, double x, double y)
+	{
+	}
+
+	void MouseCallback(GLFWwindow* window, std::int32_t button, std::int32_t action, std::int32_t mods)
+	{
+		const EventData eventData(button);
+		g_EventSource.CallEvent(EventType::MousePress, eventData);
+	}
+
+	void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
+	{
+		const EventData eventData(glm::dvec2(xOffset, yOffset));
+		g_EventSource.CallEvent(EventType::MouseWheel, eventData);
 	}
 
 }
