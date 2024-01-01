@@ -40,6 +40,9 @@ namespace eng
 		// Ustawia nową pozycję trójkąta.
 		void SetPosition(const glm::mat3x2& vertices);
 
+		// Ustawia nową rotację trójkąta.
+		void SetRotation(float angle);
+
 	private:
 		// Tablica werteksów.
 		inter::VertexArray m_VertexArray;

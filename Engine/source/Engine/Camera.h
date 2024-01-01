@@ -20,16 +20,22 @@ namespace eng
 		Camera() = default;
 
 		// Zwraca pozycję kamery.
-		inline glm::fvec3 GetPosition() const { return m_Position; }
+		inline const glm::fvec3& GetPosition() const { return m_Position; }
 
-		// Zwraca kąt nachylenia kamery.
-		inline glm::fvec3 GetAngles() const { return m_Angles; }
+		// Zwraca kąty nachylenia kamery.
+		inline const glm::fvec3& GetRotation() const { return m_Rotation; }
 
 		// Rusza kamerą.
 		void Move(const glm::fvec3& factor);
 
 		// Ustawia pozycję kamery.
 		void SetPosition(const glm::fvec3& position);
+
+		// Ustawia kąt nachylenia kamery.
+		void SetRotation(const glm::fvec3& rotation);
+
+		// Rotuje kamerę o podany kąt.
+		void Rotate(const glm::fvec3& factor);
 
 	private:
 		// Odbiornik zdarzeń.
@@ -39,7 +45,7 @@ namespace eng
 		glm::fvec3 m_Position = {};
 
 		// Kąt nachylenia kamery.
-		glm::fvec3 m_Angles = {};
+		glm::fvec3 m_Rotation = {};
 	};
 
 }

@@ -7,34 +7,22 @@ namespace eng::showcase
 	{
 		std::cout << "Demo is running!" << std::endl;
 
-		// Obiekty
-		glm::mat3x2 vertices = {
-			-0.5f, -0.5f,
-			0.0f, 0.5f,
-			0.5f, -0.5f
-		};
-		glm::fvec4 color = {
-			1.0f, 0.0f, 0.0f, 1.0f
-		};
-
-		glm::mat3x2 vertices1 = {
-			-0.9f, -0.9f,
-			-0.8f, -0.7f,
-			-0.7f, -0.9f
-		};
-		glm::fvec4 color1 = {
-			0.0f, 1.0f, 0.0f, 1.0f
-		};
-		std::shared_ptr<Triangle*> triangle = engine.CreateTriangle(new Triangle(vertices, color));
-		std::shared_ptr<Triangle*> triangle1 = engine.CreateTriangle(new Triangle(vertices1, color1));
-
-		g_EventSource.AddReceiver(&(*triangle)->GetReceiver());
-		(*triangle)->GetReceiver().AddHook(EventType::KeyPress, Hook(
-			"Nothing", [&](const EventData& data)
+		for (std::uint32_t i = 0; i < 9; i++) // y
+		{
+			for (std::uint32_t j = 0; j < 9; j++) // x
 			{
-				std::cout << "Hello, I receive: " << std::any_cast<std::int32_t>(data.Data) << std::endl;
+				glm::mat3x2 vertices = {
+					-0.95f + (j * 0.22f), -0.95f + (i * 0.22f),
+					-0.85f + (j * 0.22f), -0.75f + (i * 0.22f),
+					-0.75f + (j * 0.22f), -0.95f + (i * 0.22f)
+				};
+				glm::fvec4 color = {
+					j % 2 ? 1.0f : 0.0f, j % 3 ? 1.0f : 0.0f, j % 4 ? 1.0f : 0.0f, 1.0f
+				};
+
+				std::shared_ptr<Triangle*> triangle = engine.CreateTriangle(new Triangle(vertices, color));
 			}
-		));
+		}
 	}
 
 }

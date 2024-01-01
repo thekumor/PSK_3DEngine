@@ -38,10 +38,12 @@ namespace eng
 
 		Renderer* renderer = Renderer::Get();
 
-		// Shadery, uniformy.
+		// ---------------------------------------------
+		//		Domyślne shadery.
+		// ---------------------------------------------
 		Program program("shaders/test");
 		Uniform brightness("uBrightness", program);
-		const float brightnessValue = 0.5f;
+		const float brightnessValue = 0.9f;
 		brightness.SetFloat(brightnessValue);
 		Uniform cameraPos("uCameraPos", program);
 		Uniform cameraRot("uCameraRotation", program);
@@ -50,14 +52,18 @@ namespace eng
 		// Pętla główna.
 		while (!m_Window.ShouldClose())
 		{
-			// Logika
+			// ---------------------------------------------
+			//		Logika
+			// ---------------------------------------------
 			m_Window.HandleEvents();
 			const glm::fvec3& camPosVec = m_Camera.GetPosition();
-			const glm::fvec3& camRotVec = m_Camera.GetAngles();
+			const glm::fvec3& camRotVec = m_Camera.GetRotation();
 			cameraPos.SetVec4f(glm::fvec4(camPosVec.x, camPosVec.y, 0.0f, camPosVec.z));
 			cameraRot.SetVec4f(glm::fvec4(camRotVec.x, camRotVec.y, 0.0f, camRotVec.z));
 
-			// Rysowanie
+			// ---------------------------------------------
+			//		Rysowanie
+			// ---------------------------------------------
 			renderer->Clear(ENG_CLEAR_COLOR * brightnessValue);
 
 			for (auto& t : m_Triangles)

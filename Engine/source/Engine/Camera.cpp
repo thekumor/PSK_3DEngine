@@ -4,7 +4,7 @@ namespace eng
 {
 
 	Camera::Camera(const glm::fvec3& position, const glm::fvec3& angles)
-		: m_Position(position), m_Angles(angles)
+		: m_Position(position), m_Rotation(angles)
 	{
 		g_EventSource.AddReceiver(&m_Receiver);
 
@@ -35,6 +35,16 @@ namespace eng
 					{
 						Move(glm::fvec3(-defaultMoveFactor, 0.0f, 0.0f));
 					} break;
+
+					case GLFW_KEY_Q:
+					{
+						Rotate(glm::fvec3(0.0f, 0.5f, 0.0f));
+					} break;
+
+					case GLFW_KEY_E:
+					{
+						Rotate(glm::fvec3(0.5f, 0.0f, 0.0f));
+					} break;
 				}
 			}));
 
@@ -56,6 +66,15 @@ namespace eng
 	void Camera::SetPosition(const glm::fvec3& position)
 	{
 		m_Position = position;
+	}
+
+	void Camera::SetRotation(const glm::fvec3& rotation)
+	{
+		m_Rotation = rotation;
+	}
+
+	void Camera::Rotate(const glm::fvec3& factor)
+	{
 	}
 
 }
