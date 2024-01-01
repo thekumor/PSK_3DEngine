@@ -6,6 +6,26 @@ namespace eng::inter
 	VertexBuffer::VertexBuffer(const glm::mat3x2& vertices, const glm::fvec4& color)
 		: BufferBase(BufferType::Vertex), m_Vertices(vertices), m_Color(color)
 	{
+		glGenBuffers(1, &m_Id);
+		SetData(vertices, color);
+
+		// Werteksy
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+		glEnableVertexAttribArray(0);
+
+		// Kolor
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 6, reinterpret_cast<void*>(sizeof(float) * 2));
+		glEnableVertexAttribArray(1);
+	}
+
+	VertexBuffer::~VertexBuffer()
+	{
+		glBindBuffer(GL_VERTEX_ARRAY, m_Id);
+		glDeleteBuffers(1, &m_Id);
+	}
+
+	void VertexBuffer::SetData(const glm::mat3x2& vertices, const glm::fvec4& color)
+	{
 		// Łączenie danych w jeden liniowy bufor.
 		{
 			std::uint32_t vertexDataCounter = 0;
@@ -25,21 +45,16 @@ namespace eng::inter
 			}
 		}
 
-		glGenBuffers(1, &m_Id);
 		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, &m_VertexData, GL_STATIC_DRAW);
-
-		// Werteksy
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
-		glEnableVertexAttribArray(0);
-
-		// Kolor
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 6, reinterpret_cast<void*>(sizeof(float) * 2));
-		glEnableVertexAttribArray(1);
 	}
 
-	VertexBuffer::~VertexBuffer()
+	void VertexBuffer::SetDataArray(const std::array<float, 18>& vertexData)
 	{
+		m_VertexData = vertexData;
+
+		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, &m_VertexData, GL_STATIC_DRAW);
 	}
 
 	IndexBuffer::IndexBuffer(const glm::uvec4& indexes)
@@ -48,6 +63,12 @@ namespace eng::inter
 		glGenBuffers(1, &m_Id);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(std::uint32_t) * 4, &indexes, GL_STATIC_DRAW);
+	}
+
+	IndexBuffer::~IndexBuffer()
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
+		glDeleteBuffers(1, &m_Id);
 	}
 
 	BufferBase::BufferBase(BufferType type)
@@ -70,6 +91,11 @@ namespace eng::inter
 	{
 		glGenVertexArrays(1, &m_Id);
 		glBindVertexArray(m_Id);
+	}
+
+	VertexArray::~VertexArray()
+	{
+		glDeleteVertexArrays(1, &m_Id);
 	}
 
 	void VertexArray::Unbind() const

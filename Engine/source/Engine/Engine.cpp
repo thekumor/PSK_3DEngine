@@ -34,49 +34,17 @@ namespace eng
 
 	void Engine::Run()
 	{
-		// Debugowanie
-		glEnable(GL_DEBUG_OUTPUT);
-		glDebugMessageCallback(MessageCallback, 0);
-
 		std::cout << "OpenGL: " << glGetString(GL_VERSION) << std::endl;
 
 		Renderer* renderer = Renderer::Get();
-
-		// Obiekty
-		glm::mat3x2 vertices = {
-			-0.5f, -0.5f,
-			0.0f, 0.5f,
-			0.5f, -0.5f
-		};
-		glm::fvec4 color = {
-			1.0f, 0.0f, 0.0f, 1.0f
-		};
-
-		glm::mat3x2 vertices1 = {
-			-0.9f, -0.9f,
-			-0.8f, -0.7f,
-			-0.7f, -0.9f
-		};
-		glm::fvec4 color1 = {
-			0.0f, 1.0f, 0.0f, 1.0f
-		};
-		Triangle triangle(vertices, color);
-		Triangle triangle1(vertices1, color1);
-
-		g_EventSource.AddReceiver(&triangle.GetReceiver());
-		triangle.GetReceiver().AddHook(EventType::KeyPress, Hook(
-			"Nothing", [&](const EventData& data)
-			{
-				std::cout << "Hello, I receive: " << std::any_cast<std::int32_t>(data.Data) << std::endl;
-			}
-		));
 
 		// Shadery, uniformy.
 		Program program("shaders/test");
 		Uniform brightness("uBrightness", program);
 		const float brightnessValue = 0.5f;
 		brightness.SetFloat(brightnessValue);
-		Uniform camera("uCamera", program);
+		Uniform cameraPos("uCameraPos", program);
+		Uniform cameraRot("uCameraRotation", program);
 		program.Bind();
 
 		// Pętla główna.
@@ -84,15 +52,27 @@ namespace eng
 		{
 			// Logika
 			m_Window.HandleEvents();
-			const glm::fvec3& camPos = m_Camera.GetPosition();
-			camera.SetVec4f(glm::fvec4(camPos.x, camPos.y, 0.0, camPos.z));
+			const glm::fvec3& camPosVec = m_Camera.GetPosition();
+			const glm::fvec3& camRotVec = m_Camera.GetAngles();
+			cameraPos.SetVec4f(glm::fvec4(camPosVec.x, camPosVec.y, 0.0f, camPosVec.z));
+			cameraRot.SetVec4f(glm::fvec4(camRotVec.x, camRotVec.y, 0.0f, camRotVec.z));
 
 			// Rysowanie
 			renderer->Clear(ENG_CLEAR_COLOR * brightnessValue);
-			triangle.Draw(renderer);
-			triangle1.Draw(renderer);
+
+			for (auto& t : m_Triangles)
+				(*t)->Draw(renderer);
+
 			m_Window.SwapBuffers();
 		}
+	}
+
+	std::shared_ptr<Triangle*> Engine::CreateTriangle(Triangle* object)
+	{
+		std::shared_ptr<Triangle*> pointer = std::make_shared<Triangle*>(object);
+		m_Triangles.emplace_back(pointer);
+
+		return pointer;
 	}
 
 }

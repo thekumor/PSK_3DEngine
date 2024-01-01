@@ -31,12 +31,6 @@ namespace eng
 		// Ustawia pozycję kamery.
 		void SetPosition(const glm::fvec3& position);
 
-		// Ustawia kąt nachylenia.
-		void SetAngles(const glm::fvec3& angles);
-
-		// Pochyla kamerę.
-		void Rotate(const glm::fvec3& factor);
-
 	private:
 		// Odbiornik zdarzeń.
 		EventReceiver m_Receiver;

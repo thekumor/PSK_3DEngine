@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <string>
 #include <iostream>
+#include <memory>
+#include <vector>
 
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
@@ -33,6 +35,8 @@ namespace eng
 		// Zawiera pętlę główną.
 		void Run();
 
+		std::shared_ptr<Triangle*> CreateTriangle(Triangle* object);
+
 	private:
 		// Okienko aplikacji.
 		Window m_Window;
@@ -42,6 +46,9 @@ namespace eng
 
 		// Kamera silnika.
 		Camera m_Camera;
+
+		// Trójkąty silnika.
+		std::vector<std::shared_ptr<Triangle*>> m_Triangles = { };
 	};
 
 }

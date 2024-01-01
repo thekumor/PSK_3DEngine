@@ -37,6 +37,9 @@ namespace eng
 		// Rysuje trójkąt.
 		void Draw(Renderer* renderer);
 
+		// Ustawia nową pozycję trójkąta.
+		void SetPosition(const glm::mat3x2& vertices);
+
 	private:
 		// Tablica werteksów.
 		inter::VertexArray m_VertexArray;

@@ -41,8 +41,8 @@ namespace eng
 		m_Receiver.AddHook(EventType::MouseWheel, Hook("CameraBehavior", [&](const EventData& data)
 			{
 				const glm::dvec2& scroll = std::any_cast<glm::dvec2>(data.Data);
-				double xOffset = scroll[0];
-				double yOffset = scroll[1];
+				const double xOffset = scroll[0];
+				const double yOffset = scroll[1];
 
 				Move(glm::fvec3(0.0f, 0.0f, -yOffset / 10));
 			}));
@@ -56,16 +56,6 @@ namespace eng
 	void Camera::SetPosition(const glm::fvec3& position)
 	{
 		m_Position = position;
-	}
-
-	void Camera::SetAngles(const glm::fvec3& angles)
-	{
-		m_Angles = angles;
-	}
-
-	void Camera::Rotate(const glm::fvec3& factor)
-	{
-		m_Angles += factor;
 	}
 
 }

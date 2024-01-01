@@ -13,4 +13,9 @@ namespace eng
 		renderer->Draw(m_VertexArray.GetId());
 	}
 
+	void Triangle::SetPosition(const glm::mat3x2& vertices)
+	{
+		m_VertexBuffer.SetData(vertices, m_VertexBuffer.GetColor());
+	}
+
 }
