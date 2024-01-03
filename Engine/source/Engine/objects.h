@@ -34,6 +34,9 @@ namespace eng
 		// Zwraca bufor werteksów trójkąta.
 		inline const inter::VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
 
+		// Wylicza środek.
+		glm::fvec2 GetCenter() const;
+
 		// Rysuje trójkąt.
 		void Draw(Renderer* renderer);
 

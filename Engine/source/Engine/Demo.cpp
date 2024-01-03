@@ -7,6 +7,57 @@ namespace eng::showcase
 	{
 		std::cout << "Demo is running!" << std::endl;
 
+		Camera& camera = engine.GetCamera();
+
+		g_EventSource.AddReceiver(&camera.GetReceiver());
+
+		camera.GetReceiver().AddHook(EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
+			{
+				const float defaultMoveFactor = 0.05f;
+
+				switch (std::any_cast<std::int32_t>(data.Data))
+				{
+					case GLFW_KEY_W:
+					{
+						camera.Move(glm::fvec3(0.0f, -defaultMoveFactor, 0.0f));
+					} break;
+
+					case GLFW_KEY_S:
+					{
+						camera.Move(glm::fvec3(0.0f, defaultMoveFactor, 0.0f));
+					} break;
+
+					case GLFW_KEY_A:
+					{
+						camera.Move(glm::fvec3(defaultMoveFactor, 0.0f, 0.0f));
+					} break;
+
+					case GLFW_KEY_D:
+					{
+						camera.Move(glm::fvec3(-defaultMoveFactor, 0.0f, 0.0f));
+					} break;
+
+					case GLFW_KEY_Q:
+					{
+						camera.Rotate(glm::fvec3(0.0f, 0.5f, 0.0f));
+					} break;
+
+					case GLFW_KEY_E:
+					{
+						camera.Rotate(glm::fvec3(0.5f, 0.0f, 0.0f));
+					} break;
+				}
+			}));
+
+		camera.GetReceiver().AddHook(EventType::MouseWheel, Hook("CameraBehavior", [&](const EventData& data)
+			{
+				const glm::dvec2& scroll = std::any_cast<glm::dvec2>(data.Data);
+				const double xOffset = scroll[0];
+				const double yOffset = scroll[1];
+
+				camera.Move(glm::fvec3(0.0f, 0.0f, -yOffset / 10));
+			}));
+
 		for (std::uint32_t i = 0; i < 9; i++) // y
 		{
 			for (std::uint32_t j = 0; j < 9; j++) // x
@@ -21,6 +72,7 @@ namespace eng::showcase
 				};
 
 				std::shared_ptr<Triangle*> triangle = engine.CreateTriangle(new Triangle(vertices, color));
+				//(*triangle)->SetRotation(0.0f);
 			}
 		}
 	}

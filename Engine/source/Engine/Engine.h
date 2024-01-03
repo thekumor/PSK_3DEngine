@@ -32,6 +32,8 @@ namespace eng
 		Engine() = default;
 		~Engine();
 
+		inline Camera& GetCamera() { return m_Camera; }
+
 		// Zawiera pętlę główną.
 		void Run();
 

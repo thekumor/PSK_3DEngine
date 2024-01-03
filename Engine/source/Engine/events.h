@@ -102,4 +102,25 @@ namespace eng
 		std::vector<EventReceiver*> m_Receivers = {};
 	};
 
+	// Ta klasa umożliwia innej klasie odbieranie i nadawanie
+	// zdarzeń.
+	class EventInteractive : public EventBase
+	{
+	public:
+		EventInteractive() = default;
+
+		// Zwraca odbiornik zdarzeń dla tej klasy.
+		inline EventReceiver& GetReceiver() { return m_Receiver; }
+
+		// Zwraca nadajnik zdarzeń dla tej klasy.
+		inline EventSource& GetSource() { return m_Source; }
+
+	protected:
+		// Odbiornik zdarzeń dla tej klasy.
+		EventReceiver m_Receiver;
+
+		// Nadajnik zdarzeń dla tej klasy.
+		EventSource m_Source;
+	};
+
 }

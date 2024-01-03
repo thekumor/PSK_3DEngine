@@ -13,7 +13,7 @@ namespace eng
 {
 
 	// Kamera która steruje wyświetlaniem obrazu.
-	class Camera : public BaseClass
+	class Camera : public BaseClass, public EventInteractive
 	{
 	public:
 		Camera(const glm::fvec3& position, const glm::fvec3& angles);

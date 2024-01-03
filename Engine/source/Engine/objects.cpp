@@ -1,4 +1,4 @@
-#include "objects.h"
+﻿#include "objects.h"
 
 namespace eng
 {
@@ -6,6 +6,18 @@ namespace eng
 	Triangle::Triangle(const glm::mat3x2& vertices, const glm::fvec4& color)
 		: m_IndexBuffer(glm::uvec4(0, 1, 2, 0)), m_VertexBuffer(vertices, color)
 	{
+	}
+
+	glm::fvec2 Triangle::GetCenter() const
+	{
+		glm::mat3x2 vertices = m_VertexBuffer.GetVertices();
+
+		for (std::int32_t i = 0; i < 3; i++)
+		{
+
+		}
+
+		return glm::fvec2();
 	}
 
 	void Triangle::Draw(Renderer* renderer)
@@ -23,6 +35,7 @@ namespace eng
 		float sinus = glm::sin(angle);
 		float cosinus = glm::cos(angle);
 
+		// TODO: Zmienić pivot na środek trójkąta.
 		glm::fvec2 pivot(0.0f, 0.0f);
 
 		glm::mat3x2 vertices = m_VertexBuffer.GetVertices();
@@ -39,6 +52,8 @@ namespace eng
 
 			currentPoint.x = x + pivot.x;
 			currentPoint.y = y + pivot.y;
+
+			vertices[i] = { currentPoint.x, currentPoint.y };
 		}
 
 		m_VertexBuffer.SetData(vertices, m_VertexBuffer.GetColor());
