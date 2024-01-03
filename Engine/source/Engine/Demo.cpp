@@ -58,6 +58,8 @@ namespace eng::showcase
 				camera.Move(glm::fvec3(0.0f, 0.0f, -yOffset / 10));
 			}));
 
+		std::shared_ptr<Scene> scene = engine.CreateScene();
+
 		for (std::uint32_t i = 0; i < 9; i++) // y
 		{
 			for (std::uint32_t j = 0; j < 9; j++) // x
@@ -71,7 +73,7 @@ namespace eng::showcase
 					j % 2 ? 1.0f : 0.0f, j % 3 ? 1.0f : 0.0f, j % 4 ? 1.0f : 0.0f, 1.0f
 				};
 
-				std::shared_ptr<Triangle*> triangle = engine.CreateTriangle(new Triangle(vertices, color));
+				std::shared_ptr<Triangle*> triangle = scene->CreateTriangle(new Triangle(vertices, color));
 				//(*triangle)->SetRotation(0.0f);
 			}
 		}

@@ -32,6 +32,11 @@ namespace eng
 		glfwTerminate();
 	}
 
+	std::shared_ptr<Scene> Engine::CreateScene()
+	{
+		return m_Scenes.emplace_back(std::make_shared<Scene>(Scene()));
+	}
+
 	void Engine::Run()
 	{
 		std::cout << "OpenGL: " << glGetString(GL_VERSION) << std::endl;
@@ -66,14 +71,17 @@ namespace eng
 			// ---------------------------------------------
 			renderer->Clear(ENG_CLEAR_COLOR * brightnessValue);
 
-			for (auto& t : m_Triangles)
-				(*t)->Draw(renderer);
+			for (auto& scene : m_Scenes)
+			{
+				for (auto& t : scene->m_Triangles)
+					(*t)->Draw(renderer);
+			}
 
 			m_Window.SwapBuffers();
 		}
 	}
 
-	std::shared_ptr<Triangle*> Engine::CreateTriangle(Triangle* object)
+	std::shared_ptr<Triangle*> Scene::CreateTriangle(Triangle* object)
 	{
 		std::shared_ptr<Triangle*> pointer = std::make_shared<Triangle*>(object);
 		m_Triangles.emplace_back(pointer);

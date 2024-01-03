@@ -24,6 +24,22 @@
 namespace eng
 {
 
+	// Klasa zawiera obiekty.
+	class Scene : public BaseClass
+	{
+	public:
+		friend class Engine;
+
+		Scene() = default;
+
+		// Tworzy nowy trójkąt.
+		std::shared_ptr<Triangle*> CreateTriangle(Triangle* object);
+
+	private:
+		// Trójkąty sceny.
+		std::vector<std::shared_ptr<Triangle*>> m_Triangles = { };
+	};
+
 	// Klasa silnika która zawiera główne okno.
 	class Engine : public BaseClass
 	{
@@ -32,12 +48,14 @@ namespace eng
 		Engine() = default;
 		~Engine();
 
+		// Zwraca główną kamerę silnika.
 		inline Camera& GetCamera() { return m_Camera; }
+
+		// Tworzy nową scenę.
+		std::shared_ptr<Scene> CreateScene();
 
 		// Zawiera pętlę główną.
 		void Run();
-
-		std::shared_ptr<Triangle*> CreateTriangle(Triangle* object);
 
 	private:
 		// Okienko aplikacji.
@@ -49,8 +67,8 @@ namespace eng
 		// Kamera silnika.
 		Camera m_Camera;
 
-		// Trójkąty silnika.
-		std::vector<std::shared_ptr<Triangle*>> m_Triangles = { };
+		// Sceny silnika.
+		std::vector<std::shared_ptr<Scene>> m_Scenes = {};
 	};
 
 }
