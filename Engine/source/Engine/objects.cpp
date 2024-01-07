@@ -10,14 +10,12 @@ namespace eng
 
 	glm::fvec2 Triangle::GetCenter() const
 	{
-		glm::mat3x2 vertices = m_VertexBuffer.GetVertices();
+		const glm::mat3x2& vertices = m_VertexBuffer.GetVertices();
 
-		for (std::int32_t i = 0; i < 3; i++)
-		{
+		const float x = (vertices[0][0] + vertices[1][0] + vertices[2][0]) / 3;
+		const float y = (vertices[0][1] + vertices[1][1] + vertices[2][1]) / 3;
 
-		}
-
-		return glm::fvec2();
+		return glm::fvec2(x, y);
 	}
 
 	void Triangle::Draw(Renderer* renderer)

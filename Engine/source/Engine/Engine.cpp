@@ -48,7 +48,7 @@ namespace eng
 		// ---------------------------------------------
 		Program program("shaders/test");
 		Uniform brightness("uBrightness", program);
-		const float brightnessValue = 0.9f;
+		const float brightnessValue = 1.0f;
 		brightness.SetFloat(brightnessValue);
 		Uniform cameraPos("uCameraPos", program);
 		Uniform cameraRot("uCameraRotation", program);
