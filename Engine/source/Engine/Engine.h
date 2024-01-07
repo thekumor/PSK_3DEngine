@@ -51,11 +51,17 @@ namespace eng
 		// Zwraca główną kamerę silnika.
 		inline Camera& GetCamera() { return m_Camera; }
 
+		// Zwraca maksymalną ilość klatek.
+		inline std::uint32_t GetMaxFPS() { return m_Fps; }
+
 		// Tworzy nową scenę.
 		std::shared_ptr<Scene> CreateScene();
 
 		// Zawiera pętlę główną.
 		void Run();
+
+		// Ustawia ilość klatek.
+		void SetFPS(std::uint32_t fps);
 
 	private:
 		// Okienko aplikacji.
@@ -69,6 +75,9 @@ namespace eng
 
 		// Sceny silnika.
 		std::vector<std::shared_ptr<Scene>> m_Scenes = {};
+
+		// Maksymalna ilość klatek.
+		std::uint32_t m_Fps = 120;
 	};
 
 }

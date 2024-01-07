@@ -15,7 +15,7 @@ namespace eng::showcase
 {
 
 	// Demo technologiczne.
-	class Demo : public BaseClass
+	class Demo : public BaseClass, public EventInteractive
 	{
 	public:
 		Demo() = default;

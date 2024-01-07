@@ -54,6 +54,8 @@ namespace eng
 		Uniform cameraRot("uCameraRotation", program);
 		program.Bind();
 
+		double time = 0;
+
 		// Pętla główna.
 		while (!m_Window.ShouldClose())
 		{
@@ -65,6 +67,13 @@ namespace eng
 			const glm::fvec3& camRotVec = m_Camera.GetRotation();
 			cameraPos.SetVec4f(glm::fvec4(camPosVec.x, camPosVec.y, 0.0f, camPosVec.z));
 			cameraRot.SetVec4f(glm::fvec4(camRotVec.x, camRotVec.y, 0.0f, camRotVec.z));
+
+			double frameTime = 1.0 / m_Fps;
+
+			if (glfwGetTime() > time + frameTime)
+				time = glfwGetTime();
+			else
+				continue;
 
 			// ---------------------------------------------
 			//		Rysowanie
@@ -79,6 +88,12 @@ namespace eng
 
 			m_Window.SwapBuffers();
 		}
+	}
+
+	void Engine::SetFPS(std::uint32_t fps)
+	{
+		std::cout << "FPS set to: " << fps << std::endl;
+		m_Fps = fps;
 	}
 
 	std::shared_ptr<Triangle*> Scene::CreateTriangle(Triangle* object)

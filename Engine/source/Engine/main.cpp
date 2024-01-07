@@ -23,9 +23,9 @@ int main()
 	glDebugMessageCallback(MessageCallback, 0);
 
 	// Demo
+	showcase::Demo demo;
 	if (ENG_ENABLE_DEMO)
 	{
-		showcase::Demo demo;
 		demo.Run(engine);
 	}
 

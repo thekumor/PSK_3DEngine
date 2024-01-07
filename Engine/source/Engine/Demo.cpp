@@ -10,6 +10,7 @@ namespace eng::showcase
 		Camera& camera = engine.GetCamera();
 
 		g_EventSource.AddReceiver(&camera.GetReceiver());
+		g_EventSource.AddReceiver(&GetReceiver());
 
 		camera.GetReceiver().AddHook(EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
 			{
@@ -56,6 +57,37 @@ namespace eng::showcase
 				const double yOffset = scroll[1];
 
 				camera.Move(glm::fvec3(0.0f, 0.0f, -yOffset / 10));
+			}));
+
+		GetReceiver().AddHook(EventType::KeyPress, Hook("FPSChange", [&](const EventData& data)
+			{
+				switch (std::any_cast<std::int32_t>(data.Data))
+				{
+					case GLFW_KEY_1:
+					{
+						engine.SetFPS(5);
+					} break;
+
+					case GLFW_KEY_2:
+					{
+						engine.SetFPS(20);
+					} break;
+
+					case GLFW_KEY_3:
+					{
+						engine.SetFPS(60);
+					} break;
+
+					case GLFW_KEY_4:
+					{
+						engine.SetFPS(200);
+					} break;
+
+					case GLFW_KEY_5:
+					{
+						engine.SetFPS(500);
+					} break;
+				}
 			}));
 
 		std::shared_ptr<Scene> scene = engine.CreateScene();
