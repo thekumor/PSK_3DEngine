@@ -56,7 +56,7 @@ namespace eng::inter // engine::internal
 		~VertexBuffer();
 
 		// Zwraca werteksy bufora.
-		inline const glm::mat2x3& GetVertices() const { return m_Vertices; }
+		inline const glm::mat3x2& GetVertices() const { return m_Vertices; }
 
 		// Zwraca kolor bufora.
 		inline const glm::fvec4& GetColor() const { return m_Color; }

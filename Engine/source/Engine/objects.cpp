@@ -33,8 +33,7 @@ namespace eng
 		float sinus = glm::sin(angle);
 		float cosinus = glm::cos(angle);
 
-		// TODO: Zmienić pivot na środek trójkąta.
-		glm::fvec2 pivot(0.0f, 0.0f);
+		glm::fvec2 pivot = GetCenter();
 
 		glm::mat3x2 vertices = m_VertexBuffer.GetVertices();
 
@@ -42,18 +41,13 @@ namespace eng
 		{
 			glm::fvec2 currentPoint(vertices[i][0], vertices[i][1]);
 
-			currentPoint.x -= pivot.x;
-			currentPoint.y -= pivot.y;
-
-			float x = currentPoint.x * cosinus - currentPoint.y * sinus;
-			float y = currentPoint.x * sinus - currentPoint.y * cosinus;
-
-			currentPoint.x = x + pivot.x;
-			currentPoint.y = y + pivot.y;
+			float x = (currentPoint.x - pivot.x) * cosinus - (currentPoint.y - pivot.y) * sinus + pivot.x;
+			float y = (currentPoint.x - pivot.x) * sinus + (currentPoint.y - pivot.y) * cosinus + pivot.y;
 
 			vertices[i] = { currentPoint.x, currentPoint.y };
 		}
 
+		m_VertexArray.Bind();
 		m_VertexBuffer.SetData(vertices, m_VertexBuffer.GetColor());
 	}
 

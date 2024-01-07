@@ -106,7 +106,7 @@ namespace eng::showcase
 				};
 
 				std::shared_ptr<Triangle*> triangle = scene->CreateTriangle(new Triangle(vertices, color));
-				//(*triangle)->SetRotation(0.0f);
+				(*triangle)->SetRotation(-350.0f);
 			}
 		}
 	}

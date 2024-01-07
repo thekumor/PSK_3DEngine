@@ -45,6 +45,9 @@ namespace eng::inter
 			}
 		}
 
+		m_Vertices = vertices;
+		m_Color = color;
+
 		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, &m_VertexData, GL_STATIC_DRAW);
 	}
