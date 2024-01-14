@@ -11,6 +11,9 @@
 namespace eng::inter // engine::internal
 {
 
+	/// <summary>
+	/// Typ bufora.
+	/// </summary>
 	enum class BufferType : std::uint32_t
 	{
 		Invalid = 0,
@@ -19,7 +22,9 @@ namespace eng::inter // engine::internal
 		VArray = GL_VERTEX_ARRAY
 	};
 
-	// Klasa bazowa dla buforów OpenGL.
+	/// <summary>
+	/// Bazowa klasa dla buforów.
+	/// </summary>
 	class BufferBase : public BaseClass
 	{
 	public:
@@ -27,27 +32,43 @@ namespace eng::inter // engine::internal
 		BufferBase() = default;
 		virtual ~BufferBase() {};
 
-		// Zwraca typ bufora.
+		/// <summary>
+		/// Zwraca typ bufora.
+		/// </summary>
+		/// <returns>Typ bufora.</returns>
 		inline BufferType GetType() const { return m_Type; }
 
-		// Zwraca identyfikator bufora.
+		/// <summary>
+		/// Zwraca identyfikator bufora.
+		/// </summary>
+		/// <returns>Identyfikator bufora.</returns>
 		inline std::uint32_t GetId() const { return m_Id; }
 
-		// Używa bufora.
+		/// <summary>
+		/// Przywiązuje ten bufor.
+		/// </summary>
 		void Bind() const;
 
-		// Przestaje używać bufora.
+		/// <summary>
+		/// Odwiązuje ten bufor.
+		/// </summary>
 		void Unbind() const;
 
 	protected:
-		// Typ bufora, np. bufor werteksów, indeksów.
+		/// <summary>
+		/// Rodzaj bufora.
+		/// </summary>
 		BufferType m_Type = BufferType::Invalid;
 
-		// Identyfikator bufora.
+		/// <summary>
+		/// Unikatowy identyfikator bufora.
+		/// </summary>
 		std::uint32_t m_Id = 0;
 	};
 
-	// Bufor werteksów.
+	/// <summary>
+	/// Bufor werteksów.
+	/// </summary>
 	class VertexBuffer : public BufferBase
 	{
 	public:
@@ -56,33 +77,57 @@ namespace eng::inter // engine::internal
 		VertexBuffer() = default;
 		~VertexBuffer();
 
-		// Zwraca pozycje bufora.
+		/// <summary>
+		/// Zwraca pozycje werteksów.
+		/// </summary>
+		/// <returns>Pozycje werteksów.</returns>
 		inline const glm::mat3x2& GetPositions() const { return m_Positions; }
 
-		// Zwraca kolor bufora.
+		/// <summary>
+		/// Zwraca kolor bufora.
+		/// </summary>
+		/// <returns>Kolor bufora.</returns>
 		inline const glm::fvec4& GetColor() const { return m_Color; }
 
-		// Zwraca dane bufora ułożone liniowo.
+		/// <summary>
+		/// Zwraca dane bufora.
+		/// </summary>
+		/// <returns>Dane bufora.</returns>
 		inline const std::array<float, 18> GetData() const { return m_VertexData; }
 
-		// Ustawia dane bufora.
+		/// <summary>
+		/// Ustawia dane dla bufora.
+		/// </summary>
+		/// <param name="positions">Pozycje werteksów</param>
+		/// <param name="color">Kolory werteksów</param>
 		void SetData(const glm::mat3x2& positions, const glm::fvec4& color);
 
-		// Ustawia dane bufora ułożone liniowo.
+		/// <summary>
+		/// Ustawia dane dla bufora.
+		/// </summary>
+		/// <param name="vertexData">Dane bufora</param>
 		void SetDataArray(const std::array<float, 18>& vertexData);
 
 	private:
-		// Pozycje bufora.
+		/// <summary>
+		/// Pozycje werteksów.
+		/// </summary>
 		glm::mat3x2 m_Positions = {};
 
-		// Kolor bufora.
+		/// <summary>
+		/// Kolor werteksów.
+		/// </summary>
 		glm::fvec4 m_Color = {};
 
-		// Dane dla bufora w OpenGL.
+		/// <summary>
+		/// Dane bufora.
+		/// </summary>
 		std::array<float, 18> m_VertexData = {};
 	};
 
-	// Bufor indeksów.
+	/// <summary>
+	/// Bufor indeksów.
+	/// </summary>
 	class IndexBuffer : public BufferBase
 	{
 	public:
@@ -91,15 +136,22 @@ namespace eng::inter // engine::internal
 		IndexBuffer() = default;
 		~IndexBuffer();
 
-		// Zwraca indeksy bufora.
+		/// <summary>
+		/// Zwraca indeksy bufora.
+		/// </summary>
+		/// <returns>Indeksy bufora.</returns>
 		inline const glm::uvec4& GetIndexes() const { return m_Indexes; }
 
 	private:
-		// Indeksy bufora.
+		/// <summary>
+		/// Indeksy bufora.
+		/// </summary>
 		glm::uvec4 m_Indexes = {};
 	};
 
-	// Tablica werteksów.
+	/// <summary>
+	/// Tablica werteksów.
+	/// </summary>
 	class VertexArray : public BufferBase
 	{
 	public:
@@ -107,10 +159,14 @@ namespace eng::inter // engine::internal
 		VertexArray(const VertexArray& other);
 		~VertexArray();
 
-		// Używa tablicy.
+		/// <summary>
+		/// Przywiązuje tablicę.
+		/// </summary>
 		void Bind() const;
 
-		// Przestaje używać tablicy.
+		/// <summary>
+		/// Odwiązuje tablicę.
+		/// </summary>
 		void Unbind() const;
 	};
 

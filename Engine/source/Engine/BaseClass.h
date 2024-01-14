@@ -3,19 +3,30 @@
 namespace eng
 {
 
+	/// <summary>
+	/// Klasa bazowa dla innych klas.
+	/// </summary>
 	class BaseClass
 	{
 	public:
 		BaseClass() = default;
 
-		// Sprawdza czy klasa jest prawidłowa.
-		inline bool IsValid() { return m_Valid;}
+		/// <summary>
+		/// Sprawdza, czy klasa jest prawidłowa.
+		/// </summary>
+		/// <returns>Czy klasa jest prawidłowa.</returns>
+		inline bool IsValid() { return m_Valid; }
 
-		// Ustawia czy klasa jest prawidłowa.
+		/// <summary>
+		/// Ustawia prawidłowość klasy.
+		/// </summary>
+		/// <param name="valid">Czy klasa ma być prawidłowa.</param>
 		void SetValid(bool valid);
 
 	private:
-		// Za pomocą tej zmiennej można ustawić prawidłowość klasy.
+		/// <summary>
+		/// Ta zmienna decyduje czy klasa jest prawidłowa.
+		/// </summary>
 		bool m_Valid = true;
 	};
 

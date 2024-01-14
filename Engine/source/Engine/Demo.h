@@ -14,13 +14,18 @@
 namespace eng::showcase
 {
 
-	// Demo technologiczne.
+	/// <summary>
+	/// Technologiczne demo.
+	/// </summary>
 	class Demo : public BaseClass, public EventInteractive
 	{
 	public:
 		Demo() = default;
 
-		// Tworzy elementy demo i uruchamia je.
+		/// <summary>
+		/// Tworzy demo i je uruchamia.
+		/// </summary>
+		/// <param name="engine">Silnik dla dema</param>
 		void Run(Engine& engine);
 	};
 
