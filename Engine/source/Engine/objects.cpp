@@ -8,12 +8,17 @@ namespace eng
 	{
 	}
 
+	Triangle::Triangle(const Triangle& other)
+		: m_IndexBuffer(other.m_IndexBuffer), m_VertexBuffer(other.m_VertexBuffer)
+	{
+	}
+
 	glm::fvec2 Triangle::GetCenter() const
 	{
-		const glm::mat3x2& vertices = m_VertexBuffer.GetVertices();
+		const glm::mat3x2& positions = m_VertexBuffer.GetPositions();
 
-		const float x = (vertices[0][0] + vertices[1][0] + vertices[2][0]) / 3;
-		const float y = (vertices[0][1] + vertices[1][1] + vertices[2][1]) / 3;
+		const float x = (positions[0][0] + positions[1][0] + positions[2][0]) / 3;
+		const float y = (positions[0][1] + positions[1][1] + positions[2][1]) / 3;
 
 		return glm::fvec2(x, y);
 	}
@@ -23,32 +28,31 @@ namespace eng
 		renderer->Draw(m_VertexArray.GetId());
 	}
 
-	void Triangle::SetPosition(const glm::mat3x2& vertices)
+	void Triangle::Rotate(float radians)
 	{
-		m_VertexBuffer.SetData(vertices, m_VertexBuffer.GetColor());
-	}
+		float degrees = glm::degrees(radians);
 
-	void Triangle::SetRotation(float angle)
-	{
-		float sinus = glm::sin(angle);
-		float cosinus = glm::cos(angle);
+		float sinus = glm::sin(degrees);
+		float cosinus = glm::cos(degrees);
 
-		glm::fvec2 pivot = GetCenter();
-
-		glm::mat3x2 vertices = m_VertexBuffer.GetVertices();
+		glm::mat3x2 positions = m_VertexBuffer.GetPositions();
 
 		for (std::uint32_t i = 0; i < 3; i++)
 		{
-			glm::fvec2 currentPoint(vertices[i][0], vertices[i][1]);
+			glm::fvec2 position = positions[i];
 
-			float x = (currentPoint.x - pivot.x) * cosinus - (currentPoint.y - pivot.y) * sinus + pivot.x;
-			float y = (currentPoint.x - pivot.x) * sinus + (currentPoint.y - pivot.y) * cosinus + pivot.y;
+			float x = position.x;
+			float y = position.y;
 
-			vertices[i] = { currentPoint.x, currentPoint.y };
+			float xp = x * cosinus - y * sinus;
+			float yp = x * sinus + y * cosinus;
+
+			glm::fvec2 newPosition(xp, yp);
+
+			positions[i] = newPosition;
 		}
 
-		m_VertexArray.Bind();
-		m_VertexBuffer.SetData(vertices, m_VertexBuffer.GetColor());
+		m_VertexBuffer.SetData(positions, m_VertexBuffer.GetColor());
 	}
 
 }

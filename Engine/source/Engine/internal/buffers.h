@@ -52,11 +52,12 @@ namespace eng::inter // engine::internal
 	{
 	public:
 		VertexBuffer(const glm::mat3x2& vertices, const glm::fvec4& color);
+		VertexBuffer(const VertexBuffer& other);
 		VertexBuffer() = default;
 		~VertexBuffer();
 
-		// Zwraca werteksy bufora.
-		inline const glm::mat3x2& GetVertices() const { return m_Vertices; }
+		// Zwraca pozycje bufora.
+		inline const glm::mat3x2& GetPositions() const { return m_Positions; }
 
 		// Zwraca kolor bufora.
 		inline const glm::fvec4& GetColor() const { return m_Color; }
@@ -65,14 +66,14 @@ namespace eng::inter // engine::internal
 		inline const std::array<float, 18> GetData() const { return m_VertexData; }
 
 		// Ustawia dane bufora.
-		void SetData(const glm::mat3x2& vertices, const glm::fvec4& color);
+		void SetData(const glm::mat3x2& positions, const glm::fvec4& color);
 
 		// Ustawia dane bufora ułożone liniowo.
 		void SetDataArray(const std::array<float, 18>& vertexData);
 
 	private:
-		// Werteksy bufora.
-		glm::mat3x2 m_Vertices = {};
+		// Pozycje bufora.
+		glm::mat3x2 m_Positions = {};
 
 		// Kolor bufora.
 		glm::fvec4 m_Color = {};
@@ -86,6 +87,7 @@ namespace eng::inter // engine::internal
 	{
 	public:
 		IndexBuffer(const glm::uvec4& indexes);
+		IndexBuffer(const IndexBuffer& other);
 		IndexBuffer() = default;
 		~IndexBuffer();
 
@@ -102,6 +104,7 @@ namespace eng::inter // engine::internal
 	{
 	public:
 		VertexArray();
+		VertexArray(const VertexArray& other);
 		~VertexArray();
 
 		// Używa tablicy.

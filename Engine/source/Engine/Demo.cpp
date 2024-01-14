@@ -9,8 +9,8 @@ namespace eng::showcase
 
 		Camera& camera = engine.GetCamera();
 
-		g_EventSource.AddReceiver(&camera.GetReceiver());
-		g_EventSource.AddReceiver(&GetReceiver());
+		ENG_ADD_RECEIVER(camera);
+		ENG_ADD_RECEIVER_PTR(this);
 
 		camera.GetReceiver().AddHook(EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
 			{
@@ -89,26 +89,25 @@ namespace eng::showcase
 					} break;
 				}
 			}));
-
+		glm::mat3x2 vertices = {
+			-0.5f, -0.5f,
+			0.0f, 0.5f,
+			0.5f, -0.5f
+		};
+		glm::vec4 color = {
+			1.0f, 0.0f, 0.0f, 1.0f
+		};
 		std::shared_ptr<Scene> scene = engine.CreateScene();
+		std::shared_ptr<Triangle> triangle = scene->CreateTriangle(Triangle(vertices, color));
+		
+		ENG_ADD_RECEIVER_PTR(triangle);
 
-		for (std::uint32_t i = 0; i < 9; i++) // y
-		{
-			for (std::uint32_t j = 0; j < 9; j++) // x
+		triangle->GetReceiver().AddHook(EventType::Update, Hook("RotateTriangle", [=](const EventData& data)
 			{
-				glm::mat3x2 vertices = {
-					-0.95f + (j * 0.22f), -0.95f + (i * 0.22f),
-					-0.85f + (j * 0.22f), -0.75f + (i * 0.22f),
-					-0.75f + (j * 0.22f), -0.95f + (i * 0.22f)
-				};
-				glm::fvec4 color = {
-					j % 2 ? 1.0f : 0.0f, j % 3 ? 1.0f : 0.0f, j % 4 ? 1.0f : 0.0f, 1.0f
-				};
+				std::uint64_t timeStamp = std::any_cast<std::uint64_t>(data.Data);
 
-				std::shared_ptr<Triangle*> triangle = scene->CreateTriangle(new Triangle(vertices, color));
-				(*triangle)->SetRotation(-350.0f);
-			}
-		}
+				triangle->Rotate(0.01f * timeStamp);
+			}));
 	}
 
 }

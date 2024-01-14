@@ -55,6 +55,7 @@ namespace eng
 		program.Bind();
 
 		double time = 0;
+		std::uint64_t timeStamp = 0;
 
 		// Pętla główna.
 		while (!m_Window.ShouldClose())
@@ -75,6 +76,11 @@ namespace eng
 			else
 				continue;
 
+			eng::EventData updateData(timeStamp);
+			g_EventSource.CallEvent(EventType::Update, updateData);
+
+			timeStamp++;
+
 			// ---------------------------------------------
 			//		Rysowanie
 			// ---------------------------------------------
@@ -83,7 +89,7 @@ namespace eng
 			for (auto& scene : m_Scenes)
 			{
 				for (auto& t : scene->m_Triangles)
-					(*t)->Draw(renderer);
+					t->Draw(renderer);
 			}
 
 			m_Window.SwapBuffers();
@@ -96,9 +102,9 @@ namespace eng
 		m_Fps = fps;
 	}
 
-	std::shared_ptr<Triangle*> Scene::CreateTriangle(Triangle* object)
+	std::shared_ptr<Triangle> Scene::CreateTriangle(Triangle object)
 	{
-		std::shared_ptr<Triangle*> pointer = std::make_shared<Triangle*>(object);
+		std::shared_ptr<Triangle> pointer = std::make_shared<Triangle>(object);
 		m_Triangles.emplace_back(pointer);
 
 		return pointer;

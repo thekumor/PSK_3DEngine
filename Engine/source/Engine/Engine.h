@@ -33,11 +33,11 @@ namespace eng
 		Scene() = default;
 
 		// Tworzy nowy trójkąt.
-		std::shared_ptr<Triangle*> CreateTriangle(Triangle* object);
+		std::shared_ptr<Triangle> CreateTriangle(Triangle object);
 
 	private:
 		// Trójkąty sceny.
-		std::vector<std::shared_ptr<Triangle*>> m_Triangles = { };
+		std::vector<std::shared_ptr<Triangle>> m_Triangles = { };
 	};
 
 	// Klasa silnika która zawiera główne okno.

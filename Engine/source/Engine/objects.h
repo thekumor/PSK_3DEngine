@@ -29,6 +29,7 @@ namespace eng
 	{
 	public:
 		Triangle(const glm::mat3x2& vertices, const glm::fvec4& color);
+		Triangle(const Triangle& other);
 		Triangle() = default;
 
 		// Zwraca bufor werteksów trójkąta.
@@ -40,11 +41,8 @@ namespace eng
 		// Rysuje trójkąt.
 		void Draw(Renderer* renderer);
 
-		// Ustawia nową pozycję trójkąta.
-		void SetPosition(const glm::mat3x2& vertices);
-
-		// Ustawia nową rotację trójkąta.
-		void SetRotation(float angle);
+		// Rotuje.
+		void Rotate(float radians);
 
 	private:
 		// Tablica werteksów.
