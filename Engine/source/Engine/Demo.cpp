@@ -12,7 +12,7 @@ namespace eng::showcase
 		ENG_ADD_RECEIVER(camera);
 		ENG_ADD_RECEIVER_PTR(this);
 
-		camera.GetReceiver().AddHook(EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
+		ENG_ADD_HOOK(camera, EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
 			{
 				const float defaultMoveFactor = 0.05f;
 
@@ -50,7 +50,7 @@ namespace eng::showcase
 				}
 			}));
 
-		camera.GetReceiver().AddHook(EventType::MouseWheel, Hook("CameraBehavior", [&](const EventData& data)
+		ENG_ADD_HOOK(camera, EventType::MouseWheel, Hook("CameraBehavior", [&](const EventData& data)
 			{
 				const glm::dvec2& scroll = std::any_cast<glm::dvec2>(data.Data);
 				const double xOffset = scroll[0];
@@ -59,7 +59,7 @@ namespace eng::showcase
 				camera.Move(glm::fvec3(0.0f, 0.0f, -yOffset / 10));
 			}));
 
-		GetReceiver().AddHook(EventType::KeyPress, Hook("FPSChange", [&](const EventData& data)
+		ENG_ADD_HOOK_PTR(this, EventType::KeyPress, Hook("FPSChange", [&](const EventData& data)
 			{
 				switch (std::any_cast<std::int32_t>(data.Data))
 				{
@@ -102,11 +102,11 @@ namespace eng::showcase
 		
 		ENG_ADD_RECEIVER_PTR(triangle);
 
-		triangle->GetReceiver().AddHook(EventType::Update, Hook("RotateTriangle", [=](const EventData& data)
+		ENG_ADD_HOOK_PTR(triangle, EventType::Update, Hook("RotateTriangle", [=](const EventData& data)
 			{
 				std::uint64_t timeStamp = std::any_cast<std::uint64_t>(data.Data);
 
-				triangle->Rotate(0.01f * timeStamp);
+				triangle->Rotate(0.0000001f * timeStamp);
 			}));
 	}
 
