@@ -15,45 +15,85 @@
 namespace eng
 {
 
-	// Funkcja zwrotna dla wejścia (klawiatura).
+	/// <summary>
+	/// Funkcja zwrotna dla wejścia z klawiatury.
+	/// </summary>
+	/// <param name="window">Okno z którego pochodzi wejście</param>
+	/// <param name="key">Wciśnięty klawisz</param>
+	/// <param name="scanCode">???</param>
+	/// <param name="action">???</param>
+	/// <param name="mods">???</param>
 	static void KeyCallback(GLFWwindow* window, std::int32_t key, std::int32_t scanCode, std::int32_t action, std::int32_t mods);
 
-	// Funkcja zwrotna dla wejścia (pozycja myszy).
+	/// <summary>
+	/// Funkcja zwrotna dla wejścia z myszy (pozycja).
+	/// </summary>
+	/// <param name="window">Okno z którego pochodzi wejście</param>
+	/// <param name="x">Pozycja x myszy</param>
+	/// <param name="y">Pozycja y myszy</param>
 	static void MousePosCallback(GLFWwindow* window, double x, double y);
 
-	// Funkcja zwrotna dla wejścia (mysz).
+	/// <summary>
+	/// Funkcja zwrotna dla wejścia z myszy (przyciski).
+	/// </summary>
+	/// <param name="window">Okno z którego pochodzi wejście</param>
+	/// <param name="button">Przycisk myszy</param>
+	/// <param name="action">???</param>
+	/// <param name="mods">???</param>
 	static void MouseCallback(GLFWwindow* window, std::int32_t button, std::int32_t action, std::int32_t mods);
 
-	// Funkcja zwrotna dla wejścia (kółko myszy).
+	/// <summary>
+	/// Funkcja zwrotna dla wejścia z myszy (scroll).
+	/// </summary>
+	/// <param name="window">Okno z którego pochodzi wejście</param>
+	/// <param name="xOffset">Przesunięcie x pozycji</param>
+	/// <param name="yOffset">Przesunięcie y pozycji</param>
 	static void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 
-	// Można na nim rysować elementy.
+	/// <summary>
+	/// Okno. Na nim rysowane są elementy.
+	/// </summary>
 	class Window : public BaseClass
 	{
 	public:
 		Window(std::uint32_t width, std::uint32_t height, const std::string& title);
 		Window() = default;
 
-		// Czy okno powinno być zamknięte?
+		/// <summary>
+		/// Zwraca, czy okno powinno być zamknięte.
+		/// </summary>
+		/// <returns>Czy powinno być zamknięte?</returns>
 		inline bool ShouldClose() const { return glfwWindowShouldClose(m_Window); }
 
-		// Przetwarza eventy np. przyciśnięcia klawiszy.
+		/// <summary>
+		/// Przetwarza zdarzenia, np. wciśnięcia klawisza.
+		/// </summary>
 		void HandleEvents();
 
-		// Ustanawia to okno jako aktualne dla silnika.
+		/// <summary>
+		/// Ustanawia okno jako aktualne i główne dla silnika.
+		/// </summary>
 		void SetCurrent();
 
-		// Podmienia bufory ekranu.
+		/// <summary>
+		/// Podmienia bufory wyświetlania.
+		/// </summary>
 		void SwapBuffers();
 
 	private:
-		// Szerokość i wysokość.
+		/// <summary>
+		/// Szerokość i wysokość.
+		/// </summary>
 		std::uint32_t m_Width = 0, m_Height = 0;
 
-		// Tytuł okna.
+		/// <summary>
+		/// Tytuł okna.
+		/// </summary>
 		std::string m_Title = "";
 
-		// Wskaźnik okna.
+		/// <summary>
+		/// Wskaźnik do okna.
+		/// </summary>
 		GLFWwindow* m_Window = nullptr;
 	};
 

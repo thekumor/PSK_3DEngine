@@ -3,11 +3,13 @@
 #include <Engine/Demo.h>
 #include <Engine/utility.h>
 
-// Zmienna globalna.
+/// <summary>
+/// Globalne źródło zdarzeń.
+/// </summary>
 eng::EventSource eng::g_EventSource = {};
 
-#define WINDOW_WIDTH 1360
-#define WINDOW_HEIGHT 768
+#define WINDOW_WIDTH 900
+#define WINDOW_HEIGHT 700
 #define WINDOW_TITLE "3D Engine"
 
 #define ENG_ENABLE_DEMO 1

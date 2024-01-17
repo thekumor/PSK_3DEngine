@@ -24,7 +24,9 @@
 namespace eng
 {
 
-	// Klasa zawiera obiekty.
+	/// <summary>
+	/// Sceny zawierające obiekty.
+	/// </summary>
 	class Scene : public BaseClass
 	{
 	public:
@@ -32,15 +34,23 @@ namespace eng
 
 		Scene() = default;
 
-		// Tworzy nowy trójkąt.
+		/// <summary>
+		/// Tworzy nowy trójkąt na danej scenie.
+		/// </summary>
+		/// <param name="object">Obiekt trójkąta</param>
+		/// <returns>Wskaźnik na nowy trójkąt</returns>
 		std::shared_ptr<Triangle> CreateTriangle(Triangle object);
 
 	private:
-		// Trójkąty sceny.
+		/// <summary>
+		/// Trójkąty dla danej sceny.
+		/// </summary>
 		std::vector<std::shared_ptr<Triangle>> m_Triangles = { };
 	};
 
-	// Klasa silnika która zawiera główne okno.
+	/// <summary>
+	/// Klasa silnika która zawiera sceny, kamerę i okno.
+	/// </summary>
 	class Engine : public BaseClass
 	{
 	public:
@@ -48,35 +58,60 @@ namespace eng
 		Engine() = default;
 		~Engine();
 
-		// Zwraca główną kamerę silnika.
+		/// <summary>
+		/// Zwraca główną kamerę silnika.
+		/// </summary>
+		/// <returns>Główna kamera</returns>
 		inline Camera& GetCamera() { return m_Camera; }
 
-		// Zwraca maksymalną ilość klatek.
+		/// <summary>
+		/// Zwraca aktualny limit klatek.
+		/// </summary>
+		/// <returns>Limit klatek</returns>
 		inline std::uint32_t GetMaxFPS() { return m_Fps; }
 
-		// Tworzy nową scenę.
+
+		/// <summary>
+		/// Tworzy nową scenę.
+		/// </summary>
+		/// <returns>Wskaźnik na nową scenę</returns>
 		std::shared_ptr<Scene> CreateScene();
 
-		// Zawiera pętlę główną.
+		/// <summary>
+		/// Kod silnika i pętla główna.
+		/// </summary>
 		void Run();
-
-		// Ustawia ilość klatek.
+		
+		/// <summary>
+		/// Ustawia daną ilość klatek jako limit.
+		/// </summary>
+		/// <param name="fps">Limit klatek</param>
 		void SetFPS(std::uint32_t fps);
 
 	private:
-		// Okienko aplikacji.
+		/// <summary>
+		/// Okno aplikacji.
+		/// </summary>
 		Window m_Window;
-
-		// Źródło zdarzeń.
+		
+		/// <summary>
+		/// Źródło zdarzeń.
+		/// </summary>
 		EventSource m_EventSource;
 
-		// Kamera silnika.
+		/// <summary>
+		/// Główna kamera silnika.
+		/// </summary>
 		Camera m_Camera;
 
-		// Sceny silnika.
+		/// <summary>
+		/// Sceny silnika.
+		/// </summary>
 		std::vector<std::shared_ptr<Scene>> m_Scenes = {};
 
-		// Maksymalna ilość klatek.
+		/// <summary>
+		/// Maksymalna ilość klatek.
+		/// </summary>
 		std::uint32_t m_Fps = 120;
 	};
 

@@ -10,20 +10,31 @@
 namespace eng
 {
 
-	// Używane do wyświetlania obiektów. Singleton.
+	/// <summary>
+	/// Renderer który wyświetla obiekty.
+	/// </summary>
 	class Renderer : public BaseClass
 	{
 	public:
 		Renderer(const Renderer&) = delete;
 		Renderer& operator=(Renderer&) = delete;
 
-		// Zwraca instancję klasy.
+		/// <summary>
+		/// Zwraca renderer.
+		/// </summary>
+		/// <returns>Renderer</returns>
 		static Renderer* Get();
 		
-		// Czyści ekran.
+		/// <summary>
+		/// Czyści ekran.
+		/// </summary>
+		/// <param name="color">Kolor tła</param>
 		void Clear(const glm::fvec4& color);
 
-		// Rysuje z bufora.
+		/// <summary>
+		/// Rysuje z danej tablicy werteksów.
+		/// </summary>
+		/// <param name="vao">Tablica werteksów</param>
 		void Draw(std::uint32_t vao);
 	private:
 		Renderer() = default;

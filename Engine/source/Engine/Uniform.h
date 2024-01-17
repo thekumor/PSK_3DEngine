@@ -13,34 +13,53 @@
 namespace eng
 {
 
-	// Uniform - dodatkowa wartość dla shaderów.
+	/// <summary>
+	/// Wartość własna dla shaderów.
+	/// </summary>
 	class Uniform : public BaseClass
 	{
 	public:
 		Uniform(const std::string& name, const Program& prog);
 		Uniform() = default;
 
-		// Ustawia wartość uniformu jako float.
+		/// <summary>
+		/// Ustawia wartość uniformu w formacie float.
+		/// </summary>
+		/// <param name="value">Wartość uniformu</param>
 		void SetFloat(float value);
 
-		// Ustawia wartość uniformu jako 4-floatowy wektor.
+		/// <summary>
+		/// Ustawia wartość uniformu w formacie wektora 4-elementowego float.
+		/// </summary>
+		/// <param name="value">Wartość uniformu</param>
 		void SetVec4f(const glm::fvec4& value);
 
-		// Ustawia wartość uniformu jako 4-doublowy wektor.
+		/// <summary>
+		/// Ustawia wartość uniformu w formacie wektora 4-elementowego double.
+		/// </summary>
+		/// <param name="value">Wartość uniformu</param>
 		void SetVec4d(const glm::dvec4& value);
 
 	private:
-		// Shadery które posiadają ten uniform.
-		// UWAGA: to jest kopia, nie oryginał.
+		/// <summary>
+		/// Program do którego uniform jest przypięty.
+		/// UWAGA: To jest kopia!
+		/// </summary>
 		Program m_Prog;
 
-		// Lokalizacja uniformu w shaderze.
+		/// <summary>
+		/// Identyfikacja (lokalizacja) uniformu.
+		/// </summary>
 		std::uint32_t m_Location = 0;
 
-		// Nazwa uniformu.
+		/// <summary>
+		/// Nazwa dla uniformu.
+		/// </summary>
 		std::string m_Name = "";
 
-		// Wartość uniformu.
+		/// <summary>
+		/// Wartość uniformu.
+		/// </summary>
 		std::any m_Value = {};
 	};
 

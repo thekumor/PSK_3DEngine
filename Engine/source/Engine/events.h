@@ -12,7 +12,9 @@
 namespace eng
 {
 
-	// Enumerator zdarzeń.
+	/// <summary>
+	/// Różne typy zdarzeń.
+	/// </summary>
 	enum class EventType : std::uint32_t
 	{
 		Invalid = 0,
@@ -22,54 +24,73 @@ namespace eng
 		MouseWheel
 	};
 
-	// Dane dla zdarzenia.
+	/// <summary>
+	/// Dane dla danego zdarzenia.
+	/// </summary>
 	struct EventData
 	{
 		EventData(const std::any& data);
 		EventData() = default;
 
-		// Dane właściwe.
+		/// <summary>
+		/// Własne dane.
+		/// </summary>
 		std::any Data = {};
 	};
 
-	// 'Haczyk' dla zdarzeń. Posiada funkcję zwrotną,
-	// która jest uruchamiana gdy wydarzenie jest
-	// uruchamiane.
+	/// <summary>
+	/// Haczyk dla zdarzeń. Posiada funkcję
+	/// która jest uruchamiana w przypadku
+	/// wywołania tego haczyka.
+	/// </summary>
 	struct Hook
 	{
 		Hook(const std::string& name, const std::function<void(const EventData&)>& callback);
 		Hook() = default;
 
-		// Identyfikator dla haczyka.
+		/// <summary>
+		/// Identyfikator.
+		/// </summary>
 		std::string Name = "";
 
-		// Funkcja zwrotna.
+		/// <summary>
+		/// Funkcja zwrotna, callback.
+		/// </summary>
 		std::function<void(const EventData&)> Callback = {};
 	};
 
-	// Zdarzenie, posiada haczyki.
+	/// <summary>
+	/// Zdarzenie. Posiada ono swoje haczyki.
+	/// </summary>
 	struct Event
 	{
 		Event(EventType type, const Hook& hook);
 		Event() = default;
 
-		// Typ zdarzenia.
+		/// <summary>
+		/// Typ zdarzenia.
+		/// </summary>
 		EventType Type = EventType::Invalid;
 
-		// Wszystkie haczyki.
+		/// <summary>
+		/// Wszystkie haczyki tego zdarzenia.
+		/// </summary>
 		std::vector<Hook> Hooks = {};
 	};
 
-	// Klasa bazowa dla klas zdarzeniowych.
+	/// <summary>
+	/// Klasa bazowa dla klas zdarzeniowych.
+	/// </summary>
 	class EventBase : public BaseClass
 	{
 	public:
 		EventBase() = default;
 	};
 
-	// Za każdym razem, gdy uruchamiane jest
-	// wydarzenie, ta klasa (musi być przypięta pod źródło)
-	// reaguje i uruchamia funkcje zwrotne haczyków.
+	/// <summary>
+	/// Odbiornik zdarzeń. Uruchamia haczyki
+	/// jeżeli źródło zdarzeń go o to poprosi.
+	/// </summary>
 	class EventReceiver : public EventBase
 	{
 	public:
@@ -77,49 +98,77 @@ namespace eng
 
 		EventReceiver() = default;
 
-		// Dodaje nowy haczyk.
+		/// <summary>
+		/// Dodaje nowy haczyk.
+		/// </summary>
+		/// <param name="type">Typ zdarzenia</param>
+		/// <param name="hook">Haczyk pod zdarzenie</param>
 		void AddHook(EventType type, const Hook& hook);
 	private:
-		// Wszystkie zdarzenia na które nasłuchuje ten odbiornik.
+		/// <summary>
+		/// Wszystkie zdarzenia pod dany typ.
+		/// </summary>
 		std::unordered_map<EventType, Event> m_Events = {};
 	};
 
-	// Z pomocą tej klasy można uruchamiać zdarzenia.
-	// Posiada odbiorniki, które z kolei posiadają
-	// haczyki, które uruchamiają kod.
+	/// <summary>
+	/// Nakazuje odbiornikom wywołanie funkcji zwrotnych
+	/// w przypadku, gdy programista wywoła zdarzenie.
+	/// </summary>
 	class EventSource : public EventBase
 	{
 	public:
 		EventSource() = default;
 
-		// Dodaje odbiornik który od teraz będzie nasłuchiwać tego źródła.
+		/// <summary>
+		/// Odbiornik który od teraz będzie nasłuchiwać tego źródła.
+		/// </summary>
+		/// <param name="rec">Wskaźnik do odbiornika</param>
+		/// <returns>Ten sam odbiornik, ale w wektorze</returns>
 		EventReceiver* AddReceiver(EventReceiver* rec);
 
-		// Uruchamia zdarzenie z podanymi wartościami.
+		/// <summary>
+		/// Uruchamia zdarzenie.
+		/// </summary>
+		/// <param name="type">Typ zdarzenia</param>
+		/// <param name="data">Dane własne</param>
 		void CallEvent(EventType type, const EventData& data);
 	private:
-		// Wszystkie odbiorniki które nasłuchują tego źródła.
+		/// <summary>
+		/// Wszystkie odbiorniki, które nasłuchują tego źródła.
+		/// </summary>
 		std::vector<EventReceiver*> m_Receivers = {};
 	};
 
-	// Ta klasa umożliwia innej klasie odbieranie i nadawanie
-	// zdarzeń.
+	/// <summary>
+	/// Umożliwia odbieranie i nadawanie zdarzeń klasom pochodnym.
+	/// </summary>
 	class EventInteractive : public EventBase
 	{
 	public:
 		EventInteractive() = default;
 
-		// Zwraca odbiornik zdarzeń dla tej klasy.
+		/// <summary>
+		/// Zwraca odbiornik zdarzeń.
+		/// </summary>
+		/// <returns>Odbiornik zdarzeń</returns>
 		inline EventReceiver& GetReceiver() { return m_Receiver; }
 
-		// Zwraca nadajnik zdarzeń dla tej klasy.
+		/// <summary>
+		/// Zwraca źródło zdarzeń.
+		/// </summary>
+		/// <returns>Źródło zdarzeń</returns>
 		inline EventSource& GetSource() { return m_Source; }
 
 	protected:
-		// Odbiornik zdarzeń dla tej klasy.
+		/// <summary>
+		/// Odbiornik zdarzeń.
+		/// </summary>
 		EventReceiver m_Receiver;
 
-		// Nadajnik zdarzeń dla tej klasy.
+		/// <summary>
+		/// Źródło zdarzeń.
+		/// </summary>
 		EventSource m_Source;
 	};
 

@@ -11,20 +11,30 @@
 namespace eng
 {
 
-	// Klasa bazowa obiektu.
+	/// <summary>
+	/// Klasa bazowa obiektów.
+	/// </summary>
 	class BaseObject
 	{
 	public:
 		BaseObject() = default;
 
-		// Odbiornik zdarzeń.
+		/// <summary>
+		/// Zwraca odbiornik zdarzeń.
+		/// </summary>
+		/// <returns>Odbiornik zdarzeń</returns>
 		EventReceiver& GetReceiver() { return m_Receiver; }
 
 	private:
+		/// <summary>
+		/// Odbiornik zdarzeń.
+		/// </summary>
 		EventReceiver m_Receiver;
 	};
 
-	// Trójkąt.
+	/// <summary>
+	/// Trójkąt, z którego można składać prymitywy.
+	/// </summary>
 	class Triangle : public BaseObject
 	{
 	public:
@@ -32,26 +42,44 @@ namespace eng
 		Triangle(const Triangle& other);
 		Triangle() = default;
 
-		// Zwraca bufor werteksów trójkąta.
+		/// <summary>
+		/// Zwraca bufor werteksów.
+		/// </summary>
+		/// <returns>Bufor werteksów</returns>
 		inline const inter::VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
 
-		// Wylicza środek.
+		/// <summary>
+		/// Wylicza środek trójkąta.
+		/// </summary>
+		/// <returns>Środek trójkąta, punkt</returns>
 		glm::fvec2 GetCenter() const;
 
-		// Rysuje trójkąt.
+		/// <summary>
+		/// Rysuje ten trójkąt.
+		/// </summary>
+		/// <param name="renderer">Renderer który ma go narysować</param>
 		void Draw(Renderer* renderer);
 
-		// Rotuje.
+		/// <summary>
+		/// Rotuje ten trójkąt.
+		/// </summary>
+		/// <param name="radians">Radiany</param>
 		void Rotate(float radians);
 
 	private:
-		// Tablica werteksów.
+		/// <summary>
+		/// Tablica werteksów.
+		/// </summary>
 		inter::VertexArray m_VertexArray;
 
-		// Bufor indeksów.
+		/// <summary>
+		/// Bufor indeksów.
+		/// </summary>
 		inter::IndexBuffer m_IndexBuffer;
 
-		// Bufor werteksów.
+		/// <summary>
+		/// Bufor werteksów.
+		/// </summary>
 		inter::VertexBuffer m_VertexBuffer;
 	};
 

@@ -20,7 +20,9 @@ namespace eng
 		Fragment = 2
 	};
 
-	// Shader który steruje rysowaniem obiektów.
+	/// <summary>
+	/// Program który określa sposób rysowania obiektów.
+	/// </summary>
 	class Shader : public BaseClass
 	{
 	public:
@@ -28,33 +30,55 @@ namespace eng
 		Shader() = default;
 		~Shader();
 
-		// Ładuje kod z pliku.
+		/// <summary>
+		/// Ładuje kod z pliku.
+		/// </summary>
+		/// <param name="filePath">Ścieżka pliku</param>
+		/// <returns>Kod z pliku, jeśli istnieje</returns>
 		static std::optional<std::string> LoadFromFile(const std::string& filePath);
 
-		// Zwraca identyfikator shadera.
+		/// <summary>
+		/// Zwraca identyfikator shadera.
+		/// </summary>
+		/// <returns>Identyfikator shadera</returns>
 		inline std::uint32_t GetId() const { return m_Id; }
 
-		// Ustawia identyfikator programu tego shadera.
+		/// <summary>
+		/// Ustawia program rodzicielski dla tego shadera.
+		/// </summary>
+		/// <param name="id">Identyfikator programu rodzicielskiego</param>
 		void SetParentProgram(std::uint32_t id);
 
 	private:
-		// Typ, czyli albo shader werteksów albo fragmentów.
+		/// <summary>
+		/// Typ shadera.
+		/// </summary>
 		ShaderType m_Type = ShaderType::Invalid;
 
-		// Identyfikator shadera.
+		/// <summary>
+		/// Identyfikator shadera.
+		/// </summary>
 		std::uint32_t m_Id = 0;
 
-		// Identyfikator programu.
+		/// <summary>
+		/// Identyfikator programu rodzicielskiego.
+		/// </summary>
 		std::uint32_t m_ProgramId = 0;
 
-		// Kod shadera.
+		/// <summary>
+		/// Kod shadera.
+		/// </summary>
 		std::string m_Code = "";
 
-		// Ścieżka do pliku shadera (jeżeli pobrane z niego).
+		/// <summary>
+		/// Ścieżka pliku z którego pobrano kod (jeżeli to zrobiono).
+		/// </summary>
 		std::optional<std::string> m_FilePath = {};
 	};
 
-	// Zbiór dwóch shaderów (vertex + fragment).
+	/// <summary>
+	/// Program, czyli zbiór shaderów (w zasadzie vertex + fragment).
+	/// </summary>
 	class Program : public BaseClass
 	{
 	public:
@@ -63,25 +87,41 @@ namespace eng
 		Program() = default;
 		~Program();
 
+		/// <summary>
+		/// Zwraca Identyfikator programu.
+		/// </summary>
+		/// <returns>Identyfikator programu</returns>
 		std::uint32_t GetId() const { return m_Id; }
 
-		// Binduje program do użycia.
+		/// <summary>
+		/// Przypina program do użycia.
+		/// </summary>
 		void Bind() const;
 
-		// Odbindowywuje program.
+		/// <summary>
+		/// Odpina program.
+		/// </summary>
 		void Unbind() const;
 
 	private:
-		// Identyfikator programu.
+		/// <summary>
+		/// Identyfikator programu.
+		/// </summary>
 		std::uint32_t m_Id = 0;
 
-		// Shader od werteksów.
+		/// <summary>
+		/// Shader werteksów.
+		/// </summary>
 		Shader m_VertexShader;
 
-		// Shader od fragmentów.
+		/// <summary>
+		/// Shader fragmentów.
+		/// </summary>
 		Shader m_FragmentShader;
 
-		// Ścieżka do folderu shaderów (jeżeli pobrane z niego).
+		/// <summary>
+		/// Ścieżka folderu z którego pobrano kod shaderów (jeżeli to zrobiono).
+		/// </summary>
 		std::optional<std::string> m_FolderPath = {};
 	};
 

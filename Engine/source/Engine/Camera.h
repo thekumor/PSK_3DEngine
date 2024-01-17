@@ -12,39 +12,65 @@
 namespace eng
 {
 
-	// Kamera która steruje wyświetlaniem obrazu.
+	/// <summary>
+	/// Kamera. Steruje ona wyświetlaniem obrazu.
+	/// </summary>
 	class Camera : public BaseClass, public EventInteractive
 	{
 	public:
 		Camera(const glm::fvec3& position, const glm::fvec3& angles);
 		Camera() = default;
 
-		// Zwraca pozycję kamery.
+		/// <summary>
+		/// Zwraca pozycję kamery.
+		/// </summary>
+		/// <returns>Pozycja kamery</returns>
 		inline const glm::fvec3& GetPosition() const { return m_Position; }
 
-		// Zwraca kąty nachylenia kamery.
+		/// <summary>
+		/// Zwraca kąt nachylenia kamery.
+		/// </summary>
+		/// <returns>Kąt nachylenia kamery</returns>
 		inline const glm::fvec3& GetRotation() const { return m_Rotation; }
 
-		// Rusza kamerą.
+		/// <summary>
+		/// Rusza kamerą.
+		/// </summary>
+		/// <param name="factor">Kierunek ruchu</param>
 		void Move(const glm::fvec3& factor);
 
-		// Ustawia pozycję kamery.
+		/// <summary>
+		/// Ustawia kamerze pozycję.
+		/// </summary>
+		/// <param name="position">Nowa pozycja</param>
 		void SetPosition(const glm::fvec3& position);
 
-		// Ustawia kąt nachylenia kamery.
+		/// <summary>
+		/// Ustawia kamerze kąt nachylenia.
+		/// </summary>
+		/// <param name="rotation">Nowy kąt nachylenia</param>
 		void SetRotation(const glm::fvec3& rotation);
 
-		// Rotuje kamerę o podany kąt.
+		/// <summary>
+		/// Rotuje kamerę o dany kąt.
+		/// </summary>
+		/// <param name="factor">Kąt???</param>
 		void Rotate(const glm::fvec3& factor);
 
 	private:
-		// Odbiornik zdarzeń.
+		/// <summary>
+		/// Odbiornik zdarzeń.
+		/// </summary>
 		EventReceiver m_Receiver;
 
-		// Pozycja kamery.
+		/// <summary>
+		/// Pozycja kamery.
+		/// </summary>
 		glm::fvec3 m_Position = {};
 
-		// Kąt nachylenia kamery.
+		/// <summary>
+		/// Kąt nachylenia kamery.
+		/// </summary>
 		glm::fvec3 m_Rotation = {};
 	};
 
