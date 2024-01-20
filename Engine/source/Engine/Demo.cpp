@@ -14,7 +14,7 @@ namespace eng::showcase
 
 		ENG_ADD_HOOK(camera, EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
 			{
-				const float defaultMoveFactor = 0.05f;
+				const float defaultMoveFactor = 0.03f;
 
 				switch (std::any_cast<std::int32_t>(data.Data))
 				{

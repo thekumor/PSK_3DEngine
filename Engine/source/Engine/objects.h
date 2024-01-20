@@ -5,7 +5,6 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
-#include <stb/stb_image.h>
 
 #include <Engine/internal/buffers.h>
 #include <Engine/Renderer.h>

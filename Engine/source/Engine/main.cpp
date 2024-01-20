@@ -1,7 +1,4 @@
-﻿//#define STB_IMAGE_IMPLEMENTATION
-#include <stb/stb_image.h>
-
-#include <Engine/Engine.h>
+﻿#include <Engine/Engine.h>
 #include <Engine/globals.h>
 #include <Engine/Demo.h>
 #include <Engine/utility.h>
