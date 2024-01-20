@@ -72,7 +72,8 @@ namespace eng::inter // engine::internal
 	class VertexBuffer : public BufferBase
 	{
 	public:
-		VertexBuffer(const glm::mat3x2& vertices, const glm::fvec4& color);
+		VertexBuffer(const glm::mat3x4& positions, const glm::fvec4& color);
+		VertexBuffer(const glm::mat3x4& positions, const glm::fvec4& color, const glm::mat3x2& texCoords);
 		VertexBuffer(const VertexBuffer& other);
 		VertexBuffer() = default;
 		~VertexBuffer();
@@ -80,39 +81,45 @@ namespace eng::inter // engine::internal
 		/// <summary>
 		/// Zwraca pozycje werteksów.
 		/// </summary>
-		/// <returns>Pozycje werteksów.</returns>
-		inline const glm::mat3x2& GetPositions() const { return m_Positions; }
+		/// <returns>Pozycje werteksów</returns>
+		inline const glm::mat3x4& GetPositions() const { return m_Positions; }
 
 		/// <summary>
 		/// Zwraca kolor bufora.
 		/// </summary>
-		/// <returns>Kolor bufora.</returns>
+		/// <returns>Kolor bufora</returns>
 		inline const glm::fvec4& GetColor() const { return m_Color; }
+
+		/// <summary>
+		/// Zwraca pozycje tekstury.
+		/// </summary>
+		/// <returns>Pozycje tekstury</returns>
+		inline const glm::mat3x2& GetTexCoords() const { return m_TexCoords; }
 
 		/// <summary>
 		/// Zwraca dane bufora.
 		/// </summary>
 		/// <returns>Dane bufora.</returns>
-		inline const std::array<float, 18> GetData() const { return m_VertexData; }
+		inline const std::array<float, 3 * 4 + 3 * 4 + 3 * 2> GetData() const { return m_VertexData; }
 
 		/// <summary>
 		/// Ustawia dane dla bufora.
 		/// </summary>
 		/// <param name="positions">Pozycje werteksów</param>
 		/// <param name="color">Kolory werteksów</param>
-		void SetData(const glm::mat3x2& positions, const glm::fvec4& color);
+		void SetData(const glm::mat3x4& positions, const glm::fvec4& color, const glm::mat3x2& texCoords);
 
 		/// <summary>
 		/// Ustawia dane dla bufora.
 		/// </summary>
 		/// <param name="vertexData">Dane bufora</param>
-		void SetDataArray(const std::array<float, 18>& vertexData);
+		void SetDataArray(const std::array<float, 3 * 4 + 3 * 4 + 3 * 2>& vertexData);
 
 	private:
 		/// <summary>
 		/// Pozycje werteksów.
 		/// </summary>
-		glm::mat3x2 m_Positions = {};
+		glm::mat3x4 m_Positions = {};
 
 		/// <summary>
 		/// Kolor werteksów.
@@ -120,9 +127,14 @@ namespace eng::inter // engine::internal
 		glm::fvec4 m_Color = {};
 
 		/// <summary>
+		/// Pozycje tekstury.
+		/// </summary>
+		glm::mat3x2 m_TexCoords = {};
+
+		/// <summary>
 		/// Dane bufora.
 		/// </summary>
-		std::array<float, 18> m_VertexData = {};
+		std::array<float, 3 * 4 + 3 * 4 + 3 * 2> m_VertexData = {};
 	};
 
 	/// <summary>

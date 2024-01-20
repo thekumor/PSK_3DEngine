@@ -3,34 +3,60 @@
 namespace eng::inter
 {
 
-	VertexBuffer::VertexBuffer(const glm::mat3x2& vertices, const glm::fvec4& color)
-		: BufferBase(BufferType::Vertex), m_Positions(vertices), m_Color(color)
+	VertexBuffer::VertexBuffer(const glm::mat3x4& positions, const glm::fvec4& color)
+		: BufferBase(BufferType::Vertex), m_Positions(positions), m_Color(color)
 	{
 		glGenBuffers(1, &m_Id);
-		SetData(vertices, color);
+		SetData(positions, color, {});
 
-		// Werteksy
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+		// Pozycje
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 10, 0);
 		glEnableVertexAttribArray(0);
 
 		// Kolor
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 6, reinterpret_cast<void*>(sizeof(float) * 2));
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 10, reinterpret_cast<void*>(sizeof(float) * 4));
 		glEnableVertexAttribArray(1);
+
+		// Tekstury
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 10, reinterpret_cast<void*>(sizeof(float) * 8));
+		glEnableVertexAttribArray(2);
+	}
+
+	VertexBuffer::VertexBuffer(const glm::mat3x4& positions, const glm::fvec4& color, const glm::mat3x2& texCoords)
+	{
+		glGenBuffers(1, &m_Id);
+		SetData(positions, color, texCoords);
+
+		// Pozycje
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 10, 0);
+		glEnableVertexAttribArray(0);
+
+		// Kolor
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 10, reinterpret_cast<void*>(sizeof(float) * 4));
+		glEnableVertexAttribArray(1);
+
+		// Tekstury
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 10, reinterpret_cast<void*>(sizeof(float) * 8));
+		glEnableVertexAttribArray(2);
 	}
 
 	VertexBuffer::VertexBuffer(const VertexBuffer& other)
 		: BufferBase(BufferType::Vertex), m_Positions(other.m_Positions), m_Color(other.m_Color)
 	{
 		glGenBuffers(1, &m_Id);
-		SetData(other.m_Positions, other.m_Color);
+		SetData(other.m_Positions, other.m_Color, other.m_TexCoords);
 
-		// Werteksy
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+		// Pozycje
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 10, 0);
 		glEnableVertexAttribArray(0);
 
 		// Kolor
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 6, reinterpret_cast<void*>(sizeof(float) * 2));
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 10, reinterpret_cast<void*>(sizeof(float) * 4));
 		glEnableVertexAttribArray(1);
+
+		// Tekstury
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 10, reinterpret_cast<void*>(sizeof(float) * 8));
+		glEnableVertexAttribArray(2);
 	}
 
 	VertexBuffer::~VertexBuffer()
@@ -39,14 +65,14 @@ namespace eng::inter
 		glDeleteBuffers(1, &m_Id);
 	}
 
-	void VertexBuffer::SetData(const glm::mat3x2& positions, const glm::fvec4& color)
+	void VertexBuffer::SetData(const glm::mat3x4& positions, const glm::fvec4& color, const glm::mat3x2& texCoords)
 	{
 		// Łączenie danych w jeden liniowy bufor.
 		{
 			std::uint32_t vertexDataCounter = 0;
 			for (std::uint32_t i = 0; i < 3; i++)
 			{
-				for (std::uint32_t j = 0; j < 2; j++)
+				for (std::uint32_t j = 0; j < 4; j++)
 				{
 					m_VertexData[vertexDataCounter] = positions[i][j];
 					vertexDataCounter++;
@@ -57,6 +83,10 @@ namespace eng::inter
 				m_VertexData[vertexDataCounter + 2] = color.b;
 				m_VertexData[vertexDataCounter + 3] = color.a;
 				vertexDataCounter += 4;
+
+				m_VertexData[vertexDataCounter] = texCoords[i][0];
+				m_VertexData[vertexDataCounter + 1] = texCoords[i][1];
+				vertexDataCounter += 2;
 			}
 		}
 
@@ -64,15 +94,15 @@ namespace eng::inter
 		m_Color = color;
 
 		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, &m_VertexData, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_VertexData.size(), &m_VertexData, GL_STATIC_DRAW);
 	}
 
-	void VertexBuffer::SetDataArray(const std::array<float, 18>& vertexData)
+	void VertexBuffer::SetDataArray(const std::array<float, 3 * 4 + 4 * 3 + 3 * 2>& vertexData)
 	{
 		m_VertexData = vertexData;
 
 		glBindBuffer(GL_ARRAY_BUFFER, m_Id);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, &m_VertexData, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_VertexData.size(), &m_VertexData, GL_STATIC_DRAW);
 	}
 
 	IndexBuffer::IndexBuffer(const glm::uvec4& indexes)

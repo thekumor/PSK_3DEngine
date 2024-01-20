@@ -1,8 +1,11 @@
 ﻿#pragma once
 
+#include <string>
+
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
+#include <stb/stb_image.h>
 
 #include <Engine/internal/buffers.h>
 #include <Engine/Renderer.h>
@@ -32,13 +35,25 @@ namespace eng
 		EventReceiver m_Receiver;
 	};
 
+	class Texture : public BaseObject
+	{
+	public:
+		Texture(const std::string& filePath);
+		Texture() = default;
+
+	private:
+		std::string m_Path = "";
+		std::uint32_t m_Id = 0;
+	};
+
 	/// <summary>
 	/// Trójkąt, z którego można składać prymitywy.
 	/// </summary>
 	class Triangle : public BaseObject
 	{
 	public:
-		Triangle(const glm::mat3x2& vertices, const glm::fvec4& color);
+		Triangle(const glm::mat3x4& positions, const glm::fvec4& color);
+		Triangle(const glm::mat3x4& positions, const glm::fvec4& color, const glm::mat3x2& texCoords);
 		Triangle(const Triangle& other);
 		Triangle() = default;
 
@@ -52,7 +67,7 @@ namespace eng
 		/// Wylicza środek trójkąta.
 		/// </summary>
 		/// <returns>Środek trójkąta, punkt</returns>
-		glm::fvec2 GetCenter() const;
+		glm::fvec4 GetCenter() const;
 
 		/// <summary>
 		/// Rysuje ten trójkąt.
