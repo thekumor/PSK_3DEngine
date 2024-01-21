@@ -99,8 +99,8 @@ namespace eng::showcase
 		};
 		glm::mat3x2 texCoords = {
 			0.0f, 0.0f,
+			0.5f, 1.0f,
 			1.0f, 0.0f,
-			0.5f, 1.0f
 		};
 		Texture brick("textures/wall.jpg");
 		std::shared_ptr<Scene> scene = engine.CreateScene();

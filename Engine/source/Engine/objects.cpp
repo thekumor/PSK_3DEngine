@@ -73,6 +73,7 @@ namespace eng
 		unsigned char* data = stbi_load(filePath.c_str(), &width, &height, &nChannels, 0);
 
 		glGenTextures(1, &m_Id);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_Id);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
