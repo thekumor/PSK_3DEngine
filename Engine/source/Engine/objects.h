@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 #include <string>
+#include <vector>
+#include <memory>
 
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
@@ -95,6 +97,35 @@ namespace eng
 		/// Bufor werteksów.
 		/// </summary>
 		inter::VertexBuffer m_VertexBuffer;
+	};
+
+	class Cube : public BaseObject
+	{
+	public:
+		Cube(const glm::vec4& position, float length);
+		Cube() = default;
+
+		/// <summary>
+		/// Rysuje tą kostkę.
+		/// </summary>
+		/// <param name="renderer">Renderer który ma ją narysować</param>
+		void Draw(Renderer* renderer);
+
+	private:
+		/// <summary>
+		/// Pozycja
+		/// </summary>
+		glm::vec4 m_Position = {};
+
+		/// <summary>
+		/// Trójkąty należące.
+		/// </summary>
+		std::vector<std::shared_ptr<Triangle>> m_Triangles = {};
+
+		/// <summary>
+		/// Długość ściany.
+		/// </summary>
+		float length = 0.0f;
 	};
 
 }

@@ -90,6 +90,9 @@ namespace eng
 			{
 				for (auto& t : scene->m_Triangles)
 					t->Draw(renderer);
+
+				for (auto& c : scene->m_Cubes)
+					c->Draw(renderer);
 			}
 
 			m_Window.SwapBuffers();
@@ -106,6 +109,14 @@ namespace eng
 	{
 		std::shared_ptr<Triangle> pointer = std::make_shared<Triangle>(object);
 		m_Triangles.emplace_back(pointer);
+
+		return pointer;
+	}
+
+	std::shared_ptr<Cube> Scene::CreateCube(Cube object)
+	{
+		std::shared_ptr<Cube> pointer = std::make_shared<Cube>(object);
+		m_Cubes.emplace_back(pointer);
 
 		return pointer;
 	}

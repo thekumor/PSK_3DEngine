@@ -41,11 +41,23 @@ namespace eng
 		/// <returns>Wskaźnik na nowy trójkąt</returns>
 		std::shared_ptr<Triangle> CreateTriangle(Triangle object);
 
+		/// <summary>
+		/// Tworzy nową kostkę na danej scenie.
+		/// </summary>
+		/// <param name="object">Obiekt kostki</param>
+		/// <returns>Wskaźnik na nowa kostkę</returns>
+		std::shared_ptr<Cube> CreateCube(Cube object);
+
 	private:
 		/// <summary>
 		/// Trójkąty dla danej sceny.
 		/// </summary>
 		std::vector<std::shared_ptr<Triangle>> m_Triangles = { };
+
+		/// <summary>
+		/// Kostki dla danej sceny.
+		/// </summary>
+		std::vector<std::shared_ptr<Cube>> m_Cubes = { };
 	};
 
 	/// <summary>

@@ -85,4 +85,59 @@ namespace eng
 		stbi_image_free(data);
 	}
 
+	Cube::Cube(const glm::vec4& position, float length)
+	{
+		const glm::fvec4 color(1.0f, 0.0f, 0.0f, 1.0f);
+
+		// Przód
+		{
+			// 1
+			glm::mat3x4 pos1 = {};
+			pos1[0] = position;
+			pos1[1] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
+			pos1[2] = position + glm::fvec4(0.0f, length, 0.0f, 0.0f);
+
+			m_Triangles.push_back(std::make_shared<Triangle>(pos1, color));
+
+			// 2
+			glm::mat3x4 pos2 = {};
+			pos2[0] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
+			pos2[1] = position + glm::fvec4(length, length, 0.0f, 0.0f);
+			pos2[0] = position + glm::fvec4(0.0f, length , 0.0f, 0.0f);
+
+			m_Triangles.push_back(std::make_shared<Triangle>(pos2, color));
+		}
+
+		// Tył
+		{
+
+		}
+
+		// Góra
+		{
+
+		}
+		
+		// Dół
+		{
+
+		}
+
+		// Lewo
+		{
+
+		}
+
+		// Prawo
+		{
+
+		}
+	}
+
+	void Cube::Draw(Renderer* renderer)
+	{
+		for (auto& t : m_Triangles)
+			t->Draw(renderer);
+	}
+
 }

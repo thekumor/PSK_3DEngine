@@ -90,31 +90,34 @@ namespace eng::showcase
 					} break;
 				}
 			}));
-		glm::mat3x4 vertices = {
-			-0.5f, -0.5f, 1.0f, 1.0f,
-			0.0f, 0.5f, 1.0f, 1.0f,
-			0.5f, -0.5f, 1.0f, 1.0f
-		};
-		glm::vec4 color = {
-			1.0f, 0.0f, 0.0f, 1.0f
-		};
-		glm::mat3x2 texCoords = {
-			0.0f, 0.0f,
-			0.5f, 1.0f,
-			1.0f, 0.0f,
-		};
-		Texture brick("textures/wall.jpg");
+		//glm::mat3x4 vertices = {
+		//	-0.5f, -0.5f, 1.0f, 1.0f,
+		//	0.0f, 0.5f, 1.0f, 1.0f,
+		//	0.5f, -0.5f, 1.0f, 1.0f
+		//};
+		//glm::vec4 color = {
+		//	1.0f, 0.0f, 0.0f, 1.0f
+		//};
+		//glm::mat3x2 texCoords = {
+		//	0.0f, 0.0f,
+		//	0.5f, 1.0f,
+		//	1.0f, 0.0f,
+		//};
+		//Texture brick("textures/wall.jpg");
 		std::shared_ptr<Scene> scene = engine.CreateScene();
-		std::shared_ptr<Triangle> triangle = scene->CreateTriangle(Triangle(vertices, color, texCoords));
+		//std::shared_ptr<Triangle> triangle = scene->CreateTriangle(Triangle(vertices, color, texCoords));
 
-		ENG_ADD_RECEIVER_PTR(triangle);
+		//ENG_ADD_RECEIVER_PTR(triangle);
 
-		ENG_ADD_HOOK_PTR(triangle, EventType::Update, Hook("RotateTriangle", [=](const EventData& data)
-			{
-				std::uint64_t timeStamp = std::any_cast<std::uint64_t>(data.Data);
+		//ENG_ADD_HOOK_PTR(triangle, EventType::Update, Hook("RotateTriangle", [=](const EventData& data)
+		//	{
+		//		std::uint64_t timeStamp = std::any_cast<std::uint64_t>(data.Data);
 
-				//triangle->Rotate(0.0000001f * timeStamp);
-			}));
+		//		//triangle->Rotate(0.0000001f * timeStamp);
+		//	}));
+
+		glm::fvec4 pos(-0.25f, 0.0f, 1.0f, 1.0f);
+		std::shared_ptr<Cube> cube = scene->CreateCube(Cube(pos, 0.5f));
 	}
 
 }
