@@ -14,7 +14,8 @@ namespace eng::showcase
 
 		ENG_ADD_HOOK(camera, EventType::KeyPress, Hook("CameraBehavior", [&](const EventData& data)
 			{
-				const float defaultMoveFactor = 0.03f;
+				constexpr float defaultMoveFactor = 0.03f;
+				constexpr float defaultRotFactor = 0.001f;
 
 				switch (std::any_cast<std::int32_t>(data.Data))
 				{
@@ -40,12 +41,12 @@ namespace eng::showcase
 
 					case GLFW_KEY_Q:
 					{
-						camera.Rotate(0.001f);
+						camera.Rotate(defaultRotFactor);
 					} break;
 
 					case GLFW_KEY_E:
 					{
-						camera.Rotate(-0.001f);
+						camera.Rotate(-defaultRotFactor);
 					} break;
 				}
 			}));
