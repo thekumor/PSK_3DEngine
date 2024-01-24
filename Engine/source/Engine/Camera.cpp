@@ -3,8 +3,8 @@
 namespace eng
 {
 
-	Camera::Camera(const glm::fvec3& position, const glm::fvec3& angles)
-		: m_Position(position), m_Rotation(angles)
+	Camera::Camera(const glm::fvec3& position, float rotationRadians)
+		: m_Position(position), m_Rotation(rotationRadians)
 	{
 	}
 
@@ -18,13 +18,14 @@ namespace eng
 		m_Position = position;
 	}
 
-	void Camera::SetRotation(const glm::fvec3& rotation)
+	void Camera::SetRotation(float radians)
 	{
-		m_Rotation = rotation;
+		m_Rotation = radians;
 	}
 
-	void Camera::Rotate(const glm::fvec3& factor)
+	void Camera::Rotate(float radians)
 	{
+		m_Rotation += radians;
 	}
 
 }

@@ -18,7 +18,7 @@ namespace eng
 	class Camera : public BaseClass, public EventInteractive
 	{
 	public:
-		Camera(const glm::fvec3& position, const glm::fvec3& angles);
+		Camera(const glm::fvec3& position, float rotationRadians);
 		Camera() = default;
 
 		/// <summary>
@@ -31,7 +31,7 @@ namespace eng
 		/// Zwraca kąt nachylenia kamery.
 		/// </summary>
 		/// <returns>Kąt nachylenia kamery</returns>
-		inline const glm::fvec3& GetRotation() const { return m_Rotation; }
+		inline float GetRotation() const { return m_Rotation; }
 
 		/// <summary>
 		/// Rusza kamerą.
@@ -46,16 +46,16 @@ namespace eng
 		void SetPosition(const glm::fvec3& position);
 
 		/// <summary>
-		/// Ustawia kamerze kąt nachylenia.
+		/// Resetuje kamerę o dany kąt.
 		/// </summary>
-		/// <param name="rotation">Nowy kąt nachylenia</param>
-		void SetRotation(const glm::fvec3& rotation);
+		/// <param name="radians">Kąt w radianach</param>
+		void SetRotation(float radians);
 
 		/// <summary>
 		/// Rotuje kamerę o dany kąt.
 		/// </summary>
-		/// <param name="factor">Kąt???</param>
-		void Rotate(const glm::fvec3& factor);
+		/// <param name="radians">Kąt w radianach</param>
+		void Rotate(float radians);
 
 	private:
 		/// <summary>
@@ -69,9 +69,9 @@ namespace eng
 		glm::fvec3 m_Position = {};
 
 		/// <summary>
-		/// Kąt nachylenia kamery.
+		/// Rotacja kamery w radianach.
 		/// </summary>
-		glm::fvec3 m_Rotation = {};
+		float m_Rotation = 0.0f;
 	};
 
 }

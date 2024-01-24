@@ -9,6 +9,27 @@ out vec2 vertexTexCoord;
 
 uniform vec4 uCameraPos;
 uniform vec4 uCameraRotation;
+uniform float uCameraRotRadians;
+
+vec4 RotatePoint(vec4 point, float radians)
+{
+	float deg = degrees(radians);
+
+	float sinus = sin(deg);
+	float cosinus = cos(deg);
+
+	float x = point.x;
+	float y = point.y;
+	float z = point.z;
+	float w = point.w;
+
+	float xp = x * cosinus - y * sinus;
+	float yp = x * sinus + y * cosinus;
+
+	vec4 newPoint = vec4(xp, yp, z, w);
+
+	return newPoint;
+}
 
 void main()
 {
@@ -16,4 +37,5 @@ void main()
 	vertexTexCoord = texCoord;
 
 	gl_Position = position + uCameraPos;
+	gl_Position = RotatePoint(gl_Position, uCameraRotRadians);
 }

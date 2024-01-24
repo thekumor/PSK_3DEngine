@@ -4,7 +4,7 @@ namespace eng
 {
 
 	Engine::Engine(std::uint32_t width, std::uint32_t height, const std::string& title)
-		: m_Camera(glm::fvec3(0.0f, 0.0f, 0.0f), glm::fvec3(0.0f, 0.0f, 0.0f))
+		: m_Camera(glm::fvec3(0.0f, 0.0f, 0.0f), 0.0f)
 	{
 		if (!glfwInit())
 			std::cerr << "Failed to initialize GLFW" << std::endl;
@@ -51,7 +51,7 @@ namespace eng
 		const float brightnessValue = 1.0f;
 		brightness.SetFloat(brightnessValue);
 		Uniform cameraPos("uCameraPos", program);
-		Uniform cameraRot("uCameraRotation", program);
+		Uniform cameraRot("uCameraRotRadians", program);
 		program.Bind();
 
 		double time = 0;
@@ -65,9 +65,9 @@ namespace eng
 			// ---------------------------------------------
 			m_Window.HandleEvents();
 			const glm::fvec3& camPosVec = m_Camera.GetPosition();
-			const glm::fvec3& camRotVec = m_Camera.GetRotation();
+			float camRot = m_Camera.GetRotation();
 			cameraPos.SetVec4f(glm::fvec4(camPosVec.x, camPosVec.y, 0.0f, camPosVec.z));
-			cameraRot.SetVec4f(glm::fvec4(camRotVec.x, camRotVec.y, 0.0f, camRotVec.z));
+			cameraRot.SetFloat(camRot);
 
 			double frameTime = 1.0 / m_Fps;
 

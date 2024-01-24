@@ -40,12 +40,12 @@ namespace eng::showcase
 
 					case GLFW_KEY_Q:
 					{
-						camera.Rotate(glm::fvec3(0.0f, 0.5f, 0.0f));
+						camera.Rotate(0.001f);
 					} break;
 
 					case GLFW_KEY_E:
 					{
-						camera.Rotate(glm::fvec3(0.5f, 0.0f, 0.0f));
+						camera.Rotate(-0.001f);
 					} break;
 				}
 			}));
