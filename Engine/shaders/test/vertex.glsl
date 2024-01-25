@@ -45,7 +45,7 @@ vec4 Rotate3D(vec4 point, vec4 radians)
 		rotMatrix[1] = vec3(0.0, cos(deg), -sin(deg));
 		rotMatrix[2] = vec3(0.0, sin(deg), cos(deg));
 
-		result = rotMatrix * point_;
+		result = result + rotMatrix * point_;
 	}
 	if (radians.y != 0)
 	{
@@ -55,7 +55,7 @@ vec4 Rotate3D(vec4 point, vec4 radians)
 		rotMatrix[1] = vec3(0.0, 1.0, 0.0);
 		rotMatrix[2] = vec3(-sin(deg), 0.0, cos(deg));
 
-		result = rotMatrix * point_;
+		result = result + rotMatrix * point_;
 	}
 	if (radians.z != 0)
 	{
@@ -65,7 +65,7 @@ vec4 Rotate3D(vec4 point, vec4 radians)
 		rotMatrix[1] = vec3(sin(deg), cos(deg), 0.0);
 		rotMatrix[2] = vec3(0.0, 0.0, 1.0);
 
-		result = rotMatrix * point_;
+		result = result + rotMatrix * point_;
 	}
 
 	vec4 newPoint = vec4(result.x, result.y, point.z, result.z);
