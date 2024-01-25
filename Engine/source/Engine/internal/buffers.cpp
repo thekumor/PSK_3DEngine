@@ -158,7 +158,7 @@ namespace eng::inter
 
 	VertexArray::~VertexArray()
 	{
-		glDeleteVertexArrays(1, &m_Id);
+		//glDeleteVertexArrays(1, &m_Id);
 	}
 
 	void VertexArray::Unbind() const

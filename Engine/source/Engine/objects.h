@@ -140,9 +140,9 @@ namespace eng
 		glm::vec4 m_Position = {};
 
 		/// <summary>
-		/// Trójkąty należące.
+		/// Ściany
 		/// </summary>
-		std::vector<std::shared_ptr<Triangle>> m_Triangles = {};
+		std::vector<std::shared_ptr<Rectangle>> m_Rectangles = { };
 
 		/// <summary>
 		/// Długość ściany.

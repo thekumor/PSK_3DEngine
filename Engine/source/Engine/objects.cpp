@@ -89,24 +89,12 @@ namespace eng
 	{
 		const glm::fvec4 color(1.0f, 0.0f, 0.0f, 1.0f);
 
-		// Przód
-		{
-			// 1
-			glm::mat3x4 pos1 = {};
-			pos1[0] = position;
-			pos1[1] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
-			pos1[2] = position + glm::fvec4(0.0f, length, 0.0f, 0.0f);
+		glm::mat3x4 pos = {};
+		pos[0] = position;
+		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
+		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, 0.0f);
 
-			m_Triangles.push_back(std::make_shared<Triangle>(pos1, color));
-
-			// 2
-			glm::mat3x4 pos2 = {};
-			pos2[0] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
-			pos2[1] = position + glm::fvec4(length, length, 0.0f, 0.0f);
-			pos2[0] = position + glm::fvec4(0.0f, length , 0.0f, 0.0f);
-
-			m_Triangles.push_back(std::make_shared<Triangle>(pos2, color));
-		}
+		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 
 		// Tył
 		{
@@ -117,7 +105,7 @@ namespace eng
 		{
 
 		}
-		
+
 		// Dół
 		{
 
@@ -136,8 +124,8 @@ namespace eng
 
 	void Cube::Draw(Renderer* renderer)
 	{
-		for (auto& t : m_Triangles)
-			t->Draw(renderer);
+		for (auto& r : m_Rectangles)
+			r->Draw(renderer);
 	}
 
 	Rectangle::Rectangle(const glm::mat3x4& left, const glm::mat3x4& right, const glm::fvec4& color)
