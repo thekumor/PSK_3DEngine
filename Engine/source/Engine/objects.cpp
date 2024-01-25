@@ -106,7 +106,7 @@ namespace eng
 		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, length);
 		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, length);
 
-		color = glm::fvec4(0.0f, 1.0f, 0.0f, 1.0f);
+		//color = glm::fvec4(0.0f, 1.0f, 0.0f, 1.0f);
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 
 		// ---------------------------------------------
@@ -116,7 +116,7 @@ namespace eng
 		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
 		pos[2] = position + glm::fvec4(0.0f, 0.0f, 0.0f, length);
 
-		color = glm::fvec4(0.0f, 0.0f, 1.0f, 1.0f);
+		//color = glm::fvec4(0.0f, 0.0f, 1.0f, 1.0f);
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 
 		// ---------------------------------------------
@@ -126,7 +126,7 @@ namespace eng
 		pos[1] = position + glm::fvec4(length, length, 0.0f, 0.0f);
 		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, length);
 
-		color = glm::fvec4(0.0f, 1.0f, 1.0f, 1.0f);
+		//color = glm::fvec4(0.0f, 1.0f, 1.0f, 1.0f);
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 
 		// ---------------------------------------------
@@ -136,7 +136,7 @@ namespace eng
 		pos[1] = position + glm::fvec4(0.0f, 0.0f, 0.0f, length);
 		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, 0.0f);
 
-		color = glm::fvec4(0.0f, 1.0f, 1.0f, 1.0f);
+		//color = glm::fvec4(0.0f, 1.0f, 1.0f, 1.0f);
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 
 		// ---------------------------------------------
@@ -146,7 +146,7 @@ namespace eng
 		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, length);
 		pos[2] = position + glm::fvec4(length, length, 0.0f, 0.0f);
 
-		color = glm::fvec4(1.0f, 0.0f, 1.0f, 1.0f);
+		//color = glm::fvec4(1.0f, 0.0f, 1.0f, 1.0f);
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 	}
 
