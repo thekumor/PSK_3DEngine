@@ -126,16 +126,7 @@ namespace eng::showcase
 				}
 			}));
 		std::shared_ptr<Scene> scene = engine.CreateScene();
-
-		glm::mat3x4 pos = {
-			0.0f, 0.0f, 1.0f, 1.0f,
-			0.5f, 0.0f, 1.0f, 1.0f,
-			0.0f, 0.5f, 1.0f, 1.0f
-		};
-
-		Rectangle rect(pos, glm::fvec4(1.0f, 0.0f, 1.0f, 1.0f));
-
-		std::shared_ptr<Rectangle> r = scene->CreateRectangle(rect);
+		std::shared_ptr<Cube> cube = scene->CreateCube(Cube(glm::fvec4(0.25f, 0.25f, 1.0f, 1.0f), 0.7f));
 
 		Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 1.0f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
 		std::shared_ptr<Sphere> r3 = scene->CreateSphere(sphere);

@@ -89,6 +89,9 @@ namespace eng
 	{
 		const glm::fvec4 color(1.0f, 0.0f, 0.0f, 1.0f);
 
+		// ---------------------------------------------
+		//		Przód
+		// ---------------------------------------------
 		glm::mat3x4 pos = {};
 		pos[0] = position;
 		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
@@ -96,30 +99,14 @@ namespace eng
 
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 
-		// Tył
-		{
+		// ---------------------------------------------
+		//		Tył
+		// ---------------------------------------------
+		pos[0] = position + glm::fvec4(0.0f, 0.0f, 0.0f, position.w - length);
+		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, position.w - length);
+		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, position.w - length);
 
-		}
-
-		// Góra
-		{
-
-		}
-
-		// Dół
-		{
-
-		}
-
-		// Lewo
-		{
-
-		}
-
-		// Prawo
-		{
-
-		}
+		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 	}
 
 	void Cube::Draw(Renderer* renderer)
