@@ -98,6 +98,9 @@ namespace eng
 
 				for (auto& c : scene->m_Cubes)
 					c->Draw(renderer);
+
+				for (auto& s : scene->m_Spheres)
+					s->Draw(renderer);
 			}
 
 			m_Window.SwapBuffers();
