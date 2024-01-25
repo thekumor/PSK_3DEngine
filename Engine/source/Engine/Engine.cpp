@@ -91,6 +91,9 @@ namespace eng
 				for (auto& t : scene->m_Triangles)
 					t->Draw(renderer);
 
+				for (auto& r : scene->m_Rectangles)
+					r->Draw(renderer);
+
 				for (auto& c : scene->m_Cubes)
 					c->Draw(renderer);
 			}
@@ -109,6 +112,14 @@ namespace eng
 	{
 		std::shared_ptr<Triangle> pointer = std::make_shared<Triangle>(object);
 		m_Triangles.emplace_back(pointer);
+
+		return pointer;
+	}
+
+	std::shared_ptr<Rectangle> Scene::CreateRectangle(Rectangle object)
+	{
+		std::shared_ptr<Rectangle> pointer = std::make_shared<Rectangle>(object);
+		m_Rectangles.emplace_back(pointer);
 
 		return pointer;
 	}

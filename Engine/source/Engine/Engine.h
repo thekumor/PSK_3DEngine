@@ -42,6 +42,13 @@ namespace eng
 		std::shared_ptr<Triangle> CreateTriangle(Triangle object);
 
 		/// <summary>
+		/// Tworzy nowy prostokąt na danej scenie.
+		/// </summary>
+		/// <param name="object">Obiekt prostokąta</param>
+		/// <returns>Wskaźnik na nowy prostokąt</returns>
+		std::shared_ptr<Rectangle> CreateRectangle(Rectangle object);
+
+		/// <summary>
 		/// Tworzy nową kostkę na danej scenie.
 		/// </summary>
 		/// <param name="object">Obiekt kostki</param>
@@ -53,11 +60,17 @@ namespace eng
 		/// Trójkąty dla danej sceny.
 		/// </summary>
 		std::vector<std::shared_ptr<Triangle>> m_Triangles = { };
+		
+		/// <summary>
+		/// Prostokąty dla danej sceny.
+		/// </summary>
+		std::vector<std::shared_ptr<Rectangle>> m_Rectangles = { };
 
 		/// <summary>
 		/// Kostki dla danej sceny.
 		/// </summary>
 		std::vector<std::shared_ptr<Cube>> m_Cubes = { };
+
 	};
 
 	/// <summary>

@@ -140,4 +140,43 @@ namespace eng
 			t->Draw(renderer);
 	}
 
+	Rectangle::Rectangle(const glm::mat3x4& left, const glm::mat3x4& right, const glm::fvec4& color)
+		: m_LeftTriangle(left, color), m_RightTriangle(right, color)
+	{
+
+	}
+
+	Rectangle::Rectangle(const glm::mat3x4& left, const glm::fvec4& color)
+		: m_LeftTriangle(left, color)
+	{
+		glm::mat3x4 right = { };
+		right[0] = left[1];
+		right[1] = glm::fvec4(left[1].x, left[2].y, left[1].z, left[2].w);
+		right[2] = left[2];
+
+		m_RightTriangle = Triangle(right, color);
+	}
+
+	Rectangle::Rectangle(const Rectangle& other)
+		: m_LeftTriangle(other.m_LeftTriangle), m_RightTriangle(other.m_RightTriangle)
+	{
+	}
+
+	glm::fvec4 Rectangle::GetCenter() const
+	{
+		return (m_LeftTriangle.GetCenter() + m_RightTriangle.GetCenter()) / glm::fvec4(2.0f, 2.0f, 2.0f, 2.0f);
+	}
+
+	void Rectangle::Draw(Renderer* renderer)
+	{
+		m_LeftTriangle.Draw(renderer);
+		m_RightTriangle.Draw(renderer);
+	}
+
+	void Rectangle::Rotate(float radians)
+	{
+		m_LeftTriangle.Rotate(radians);
+		m_RightTriangle.Rotate(radians);
+	}
+
 }

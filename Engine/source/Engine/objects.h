@@ -99,6 +99,27 @@ namespace eng
 		inter::VertexBuffer m_VertexBuffer;
 	};
 
+	class Rectangle : public BaseObject
+	{
+	public:
+		Rectangle(const glm::mat3x4& left, const glm::mat3x4& right, const glm::fvec4& color);
+		Rectangle(const glm::mat3x4& left, const glm::fvec4& color);
+		Rectangle(const Rectangle& other);
+		Rectangle() = default;
+
+		glm::fvec4 GetCenter() const;
+
+		void Draw(Renderer* renderer);
+
+		void Rotate(float radians);
+
+		inline Triangle& GetLeftTriangle() { return m_LeftTriangle; }
+		inline Triangle& GetRightTriangle() { return m_RightTriangle; }
+
+	private:
+		Triangle m_LeftTriangle, m_RightTriangle;
+	};
+
 	class Cube : public BaseObject
 	{
 	public:
