@@ -134,4 +134,12 @@ namespace eng
 		return pointer;
 	}
 
+	std::shared_ptr<Sphere> Scene::CreateSphere(Sphere object)
+	{
+		std::shared_ptr<Sphere> pointer = std::make_shared<Sphere>(object);
+		m_Spheres.emplace_back(pointer);
+
+		return pointer;
+	}
+
 }

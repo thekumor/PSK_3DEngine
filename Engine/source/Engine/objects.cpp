@@ -179,4 +179,60 @@ namespace eng
 		m_RightTriangle.Rotate(radians);
 	}
 
+	Sphere::Sphere(const glm::vec4& position, float radius, const glm::fvec4& color)
+		: m_Position(position), m_Radius(radius), m_Color(color)
+	{
+		CreateMesh();
+	}
+
+	void Sphere::Draw(Renderer* renderer)
+	{
+		for (auto& triangle : m_Triangles)
+		{
+			triangle->Draw(renderer);
+		}
+	}
+
+	void Sphere::Rotate(float radians)
+	{
+		for (auto& triangle : m_Triangles)
+		{
+			triangle->Rotate(radians);
+		}
+	}
+
+	void Sphere::CreateMesh()
+	{
+		const int numSegments = 32;
+		const int numRings = 16;
+
+		for (int ring = 0; ring < numRings; ++ring)
+		{
+			for (int segment = 0; segment < numSegments; ++segment)
+			{
+				float theta1 = static_cast<float>(ring) * glm::pi<float>() / numRings;
+				float theta2 = static_cast<float>(ring + 1) * glm::pi<float>() / numRings;
+				float phi1 = static_cast<float>(segment) * 2.0f * glm::pi<float>() / numSegments;
+				float phi2 = static_cast<float>(segment + 1) * 2.0f * glm::pi<float>() / numSegments;
+
+				glm::fvec4 p1 = GetPoint(theta1, phi1);
+				glm::fvec4 p2 = GetPoint(theta1, phi2);
+				glm::fvec4 p3 = GetPoint(theta2, phi2);
+				glm::fvec4 p4 = GetPoint(theta2, phi1);
+
+				m_Triangles.push_back(std::make_shared<Triangle>(glm::mat3x4{ p1, p2, p3 }, m_Color));
+				m_Triangles.push_back(std::make_shared<Triangle>(glm::mat3x4{ p3, p4, p1 }, m_Color));
+			}
+		}
+	}
+
+	glm::fvec4 Sphere::GetPoint(float theta, float phi)
+	{
+		float x = m_Position.x + m_Radius * sin(theta) * cos(phi);
+		float y = m_Position.y + m_Radius * sin(theta) * sin(phi);
+		float z = m_Position.z + m_Radius * cos(theta);
+
+		return glm::fvec4(x, y, z, 1.0f);
+	}
+
 }

@@ -7,6 +7,7 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/constants.hpp>
 
 #include <Engine/internal/buffers.h>
 #include <Engine/Renderer.h>
@@ -147,6 +148,26 @@ namespace eng
 		/// Długość ściany.
 		/// </summary>
 		float length = 0.0f;
+	};
+
+	class Sphere : public BaseObject
+	{
+	public:
+		Sphere(const glm::vec4& position, float radius, const glm::fvec4& color);
+
+		Sphere() = default;
+
+		void Draw(Renderer* renderer);
+
+		void Rotate(float radians);
+
+	private:
+		void CreateMesh();
+		glm::fvec4 GetPoint(float theta, float phi);
+		glm::vec4 m_Position = {};
+		float m_Radius = 0.0f;
+		glm::fvec4 m_Color = {};
+		std::vector<std::shared_ptr<Triangle>> m_Triangles = {};
 	};
 
 }

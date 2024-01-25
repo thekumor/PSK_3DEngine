@@ -55,6 +55,8 @@ namespace eng
 		/// <returns>Wskaźnik na nowa kostkę</returns>
 		std::shared_ptr<Cube> CreateCube(Cube object);
 
+		std::shared_ptr<Sphere> CreateSphere(Sphere object);
+
 	private:
 		/// <summary>
 		/// Trójkąty dla danej sceny.
@@ -71,6 +73,7 @@ namespace eng
 		/// </summary>
 		std::vector<std::shared_ptr<Cube>> m_Cubes = { };
 
+		std::vector<std::shared_ptr<Sphere>> m_Spheres = { };
 	};
 
 	/// <summary>

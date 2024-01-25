@@ -136,6 +136,9 @@ namespace eng::showcase
 		Rectangle rect(pos, glm::fvec4(1.0f, 0.0f, 1.0f, 1.0f));
 
 		std::shared_ptr<Rectangle> r = scene->CreateRectangle(rect);
+
+		Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 1.0f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
+		std::shared_ptr<Sphere> r3 = scene->CreateSphere(sphere);
 	}
 
 }
