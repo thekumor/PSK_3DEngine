@@ -87,7 +87,7 @@ namespace eng
 
 	Cube::Cube(const glm::vec4& position, float length)
 	{
-		const glm::fvec4 color(1.0f, 0.0f, 0.0f, 1.0f);
+		glm::fvec4 color(1.0f, 0.0f, 0.0f, 1.0f);
 
 		// ---------------------------------------------
 		//		Przód
@@ -102,10 +102,51 @@ namespace eng
 		// ---------------------------------------------
 		//		Tył
 		// ---------------------------------------------
-		pos[0] = position + glm::fvec4(0.0f, 0.0f, 0.0f, position.w - length);
-		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, position.w - length);
-		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, position.w - length);
+		pos[0] = position + glm::fvec4(0.0f, 0.0f, 0.0f, length);
+		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, length);
+		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, length);
 
+		color = glm::fvec4(0.0f, 1.0f, 0.0f, 1.0f);
+		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
+
+		// ---------------------------------------------
+		//		Dół
+		// ---------------------------------------------
+		pos[0] = position;
+		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
+		pos[2] = position + glm::fvec4(0.0f, 0.0f, 0.0f, length);
+
+		color = glm::fvec4(0.0f, 0.0f, 1.0f, 1.0f);
+		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
+
+		// ---------------------------------------------
+		//		Góra
+		// ---------------------------------------------
+		pos[0] = position + glm::fvec4(0.0f, length, 0.0f, 0.0f);
+		pos[1] = position + glm::fvec4(length, length, 0.0f, 0.0f);
+		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, length);
+
+		color = glm::fvec4(0.0f, 1.0f, 1.0f, 1.0f);
+		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
+
+		// ---------------------------------------------
+		//		Lewo
+		// ---------------------------------------------
+		pos[0] = position;
+		pos[1] = position + glm::fvec4(0.0f, 0.0f, 0.0f, length);
+		pos[2] = position + glm::fvec4(0.0f, length, 0.0f, 0.0f);
+
+		color = glm::fvec4(0.0f, 1.0f, 1.0f, 1.0f);
+		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
+
+		// ---------------------------------------------
+		//		Prawo
+		// ---------------------------------------------
+		pos[0] = position + glm::fvec4(length, 0.0f, 0.0f, 0.0f);
+		pos[1] = position + glm::fvec4(length, 0.0f, 0.0f, length);
+		pos[2] = position + glm::fvec4(length, length, 0.0f, 0.0f);
+
+		color = glm::fvec4(1.0f, 0.0f, 1.0f, 1.0f);
 		m_Rectangles.push_back(std::make_shared<Rectangle>(Rectangle(pos, color)));
 	}
 
