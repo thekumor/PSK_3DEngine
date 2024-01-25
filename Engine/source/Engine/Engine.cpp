@@ -52,6 +52,7 @@ namespace eng
 		brightness.SetFloat(brightnessValue);
 		Uniform cameraPos("uCameraPos", program);
 		Uniform cameraRot("uCameraRotRadians", program);
+		Uniform cameraRot4("uCameraRotRadians4", program);
 		program.Bind();
 
 		double time = 0;
@@ -67,6 +68,7 @@ namespace eng
 			const glm::fvec3& camPosVec = m_Camera.GetPosition();
 			float camRot = m_Camera.GetRotation();
 			cameraPos.SetVec4f(glm::fvec4(camPosVec.x, camPosVec.y, 0.0f, camPosVec.z));
+			cameraRot4.SetVec4f(m_Camera.GetRotation4());
 			cameraRot.SetFloat(camRot);
 
 			double frameTime = 1.0 / m_Fps;

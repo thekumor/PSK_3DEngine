@@ -48,6 +48,41 @@ namespace eng::showcase
 					{
 						camera.Rotate(-defaultRotFactor);
 					} break;
+
+					case GLFW_KEY_R:
+					{
+						camera.Rotate4(glm::fvec4(defaultRotFactor, 0.0f, 0.0f, 0.0f));
+					} break;
+
+					case GLFW_KEY_T:
+					{
+						camera.Rotate4(glm::fvec4(-defaultRotFactor, 0.0f, 0.0f, 0.0f));
+					} break;
+
+					case GLFW_KEY_F:
+					{
+						camera.Rotate4(glm::fvec4(0.0f, defaultRotFactor, 0.0f, 0.0f));
+					} break;
+
+					case GLFW_KEY_G:
+					{
+						camera.Rotate4(glm::fvec4(0.0f, -defaultRotFactor, 0.0f, 0.0f));
+					} break;
+
+					case GLFW_KEY_V:
+					{
+						camera.Rotate4(glm::fvec4(0.0f, 0.0f, defaultRotFactor, 0.0f));
+					} break;
+
+					case GLFW_KEY_B:
+					{
+						camera.Rotate4(glm::fvec4(0.0f, 0.0f, -defaultRotFactor, 0.0f));
+					} break;
+
+					case GLFW_KEY_U:
+					{
+						camera.SetRotation4(glm::fvec4(0.0f, 0.0f, 0.0f, 0.0f));
+					} break;
 				}
 			}));
 

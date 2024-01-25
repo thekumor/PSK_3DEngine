@@ -23,6 +23,16 @@ namespace eng
 		m_Rotation = radians;
 	}
 
+	void Camera::SetRotation4(const glm::fvec4& radians)
+	{
+		m_Rotation4 = radians;
+	}
+
+	void Camera::Rotate4(const glm::fvec4& factor)
+	{
+		m_Rotation4 += factor;
+	}
+
 	void Camera::Rotate(float radians)
 	{
 		m_Rotation += radians;

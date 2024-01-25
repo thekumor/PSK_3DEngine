@@ -34,6 +34,12 @@ namespace eng
 		inline float GetRotation() const { return m_Rotation; }
 
 		/// <summary>
+		/// Zwraca radiany nachylenia kamery.
+		/// </summary>
+		/// <returns>Radiany nachylenia kamery</returns>
+		inline const glm::fvec4& GetRotation4() const { return m_Rotation4; }
+
+		/// <summary>
 		/// Rusza kamerą.
 		/// </summary>
 		/// <param name="factor">Kierunek ruchu</param>
@@ -52,6 +58,18 @@ namespace eng
 		void SetRotation(float radians);
 
 		/// <summary>
+		/// Resetuje kamerę na dane radiany.
+		/// </summary>
+		/// <param name="radians">Radiany nachylenia.</param>
+		void SetRotation4(const glm::fvec4& radians);
+
+		/// <summary>
+		/// Rotuje kamerę o dane radiany.
+		/// </summary>
+		/// <param name="factor">Dodatkowe radiany</param>
+		void Rotate4(const glm::fvec4& factor);
+
+		/// <summary>
 		/// Rotuje kamerę o dany kąt.
 		/// </summary>
 		/// <param name="radians">Kąt w radianach</param>
@@ -67,6 +85,11 @@ namespace eng
 		/// Pozycja kamery.
 		/// </summary>
 		glm::fvec3 m_Position = {};
+
+		/// <summary>
+		/// Rotacja kamery w radianach.
+		/// </summary>
+		glm::fvec4 m_Rotation4 = {};
 
 		/// <summary>
 		/// Rotacja kamery w radianach.
