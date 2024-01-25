@@ -10,6 +10,5 @@ uniform float uBrightness;
 
 void main()
 {
-	//outputColor = vec4(vertexColor.x * uBrightness, vertexColor.g * uBrightness, vertexColor.b * uBrightness, 1.0);
-	outputColor = texture(tex, vertexTexCoord);
+	outputColor = vec4(vertexColor.x * uBrightness, vertexColor.g * uBrightness, vertexColor.b * uBrightness, 1.0);
 }
