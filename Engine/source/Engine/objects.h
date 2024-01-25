@@ -163,10 +163,12 @@ namespace eng
 
 		void Rotate(float radians);
 		void Move(glm::fvec3 offset);
+		void CircleAround(glm::fvec2 center, float radius, float angle);
+		glm::fvec4 GetPosition();
 	private:
 		void CreateMesh();
 		glm::fvec4 GetPoint(float theta, float phi);
-		glm::vec4 m_Position = {};
+		glm::fvec4 m_Position = {};
 		float m_Radius = 0.0f;
 		glm::fvec4 m_Color = {};
 		std::vector<std::shared_ptr<Triangle>> m_Triangles = {};

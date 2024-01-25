@@ -275,10 +275,31 @@ namespace eng
 
 	void Sphere::Move(glm::fvec3 offset)
 	{
+		glm::fvec4 offset4 = { offset.x,offset.y,offset.z,0.0f };
+		m_Position = m_Position + offset4;
+		printf("Position: %f , %f, %f, %f", m_Position.x, m_Position.y, m_Position.z, m_Position.w);
+
 		for (auto& triangle : m_Triangles)
 		{
 			triangle->Move(offset);
 		}
+	}
+
+	void Sphere::CircleAround(glm::fvec2 center, float radius, float angle)
+	{
+		float x = center.x + radius * std::cos(glm::radians(angle));
+		float y = center.y + radius * std::sin(glm::radians(angle));
+
+		glm::fvec4 pos4 = { x,m_Position.y,y,1.0f };
+		glm::fvec4 offset = pos4 - m_Position;
+
+		Move(offset);
+
+	}
+
+	glm::fvec4 Sphere::GetPosition()
+	{
+		return m_Position;
 	}
 
 }
