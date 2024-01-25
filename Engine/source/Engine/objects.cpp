@@ -37,6 +37,28 @@ namespace eng
 		renderer->Draw(m_VertexArray.GetId());
 	}
 
+	void Triangle::Move(glm::fvec3 offset)
+	{
+
+		glm::fvec4 offset4 = { offset.x,offset.y,offset.z,1.0f };
+		glm::mat3x4 positions = m_VertexBuffer.GetPositions();
+
+		for (std::uint32_t i = 0; i < 3; i++)
+		{
+			glm::fvec4 position = positions[i];
+
+			float x = position.x + offset4.x;
+			float y = position.y + offset4.y;
+			float z = position.z + offset4.z;
+			float w = position.w;
+
+			glm::fvec4 newPosition(x, y, z, w);
+
+			positions[i] = newPosition;
+		}
+		m_VertexBuffer.SetData(positions, m_VertexBuffer.GetColor(), m_VertexBuffer.GetTexCoords());
+	}
+
 	void Triangle::Rotate(float radians)
 	{
 		float degrees = glm::degrees(radians);
@@ -249,6 +271,14 @@ namespace eng
 		float z = m_Position.z + m_Radius * cos(theta);
 
 		return glm::fvec4(x, y, z, 1.0f);
+	}
+
+	void Sphere::Move(glm::fvec3 offset)
+	{
+		for (auto& triangle : m_Triangles)
+		{
+			triangle->Move(offset);
+		}
 	}
 
 }

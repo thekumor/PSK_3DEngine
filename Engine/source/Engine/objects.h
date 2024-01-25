@@ -83,6 +83,8 @@ namespace eng
 		/// <param name="radians">Radiany</param>
 		void Rotate(float radians);
 
+		void Move(glm::fvec3 offset);
+
 	private:
 		/// <summary>
 		/// Tablica werteksów.
@@ -160,7 +162,7 @@ namespace eng
 		void Draw(Renderer* renderer);
 
 		void Rotate(float radians);
-
+		void Move(glm::fvec3 offset);
 	private:
 		void CreateMesh();
 		glm::fvec4 GetPoint(float theta, float phi);

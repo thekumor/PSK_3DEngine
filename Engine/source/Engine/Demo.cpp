@@ -125,13 +125,22 @@ namespace eng::showcase
 					} break;
 				}
 			}));
-		std::shared_ptr<Scene> scene = engine.CreateScene();
-		std::shared_ptr<Cube> cube = scene->CreateCube(Cube(glm::fvec4(0.25f, 0.25f, 1.0f, 1.0f), 0.7f));
-		std::shared_ptr<Cube> cube1 = scene->CreateCube(Cube(glm::fvec4(-0.25f, -0.25f, 1.0f, 1.0f), 0.3f));
-		std::shared_ptr<Cube> cube2 = scene->CreateCube(Cube(glm::fvec4(-0.9f, -0.4f, 1.0f, 0.0f), 0.1f));
 
-		Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 1.0f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
+		
+
+		std::shared_ptr<Scene> scene = engine.CreateScene();
+		//std::shared_ptr<Cube> cube = scene->CreateCube(Cube(glm::fvec4(0.25f, 0.25f, 1.0f, 1.0f), 0.7f));
+		//std::shared_ptr<Cube> cube1 = scene->CreateCube(Cube(glm::fvec4(-0.25f, -0.25f, 1.0f, 1.0f), 0.3f));
+		//std::shared_ptr<Cube> cube2 = scene->CreateCube(Cube(glm::fvec4(-0.9f, -0.4f, 1.0f, 0.0f), 0.1f));
+
+		Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.3f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
 		std::shared_ptr<Sphere> r3 = scene->CreateSphere(sphere);
+
+		glm::fvec3 offset = { 1.0f,0.0f,0.0f };
+		sphere.Move(offset);
+
+		
+
 	}
 
 }
