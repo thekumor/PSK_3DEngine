@@ -57,7 +57,14 @@ namespace eng
 	class Texture : public BaseObject
 	{
 	public:
+		/// <summary>
+		/// Konstruktor tekstury z podaną ścieżką pliku.
+		/// </summary>
+		/// <param name="filePath">Ścieżka do pliku tekstury</param>
 		Texture(const std::string& filePath);
+		/// <summary>
+		/// Domyślny konstruktor tekstury.
+		/// </summary>
 		Texture() = default;
 
 	private:
@@ -127,13 +134,34 @@ namespace eng
 		Rectangle(const Rectangle& other);
 		Rectangle() = default;
 
+		/// <summary>
+		/// Zwraca środek prostokąta.
+		/// </summary>
+		/// <returns>Środek prostokąta, punkt</returns>
 		glm::fvec4 GetCenter() const;
 
+		/// <summary>
+		/// Rysuje prostokąt za pomocą podanego renderera.
+		/// </summary>
+		/// <param name="renderer">Renderer, który ma narysować prostokąt</param>
 		void Draw(Renderer* renderer);
 
+		/// <summary>
+		/// Rotuje prostokąt o podany kąt (w radianach).
+		/// </summary>
+		/// <param name="radians">Kąt rotacji w radianach</param>
 		void Rotate(float radians);
 
+		/// <summary>
+		/// Zwraca lewy trójkąt prostokąta.
+		/// </summary>
+		/// <returns>Referencja do lewego trójkąta</returns>
 		inline Triangle& GetLeftTriangle() { return m_LeftTriangle; }
+
+		/// <summary>
+		/// Zwraca prawy trójkąt prostokąta.
+		/// </summary>
+		/// <returns>Referencja do prawego trójkąta</returns>
 		inline Triangle& GetRightTriangle() { return m_RightTriangle; }
 
 	private:
@@ -176,12 +204,38 @@ namespace eng
 
 		Sphere() = default;
 
+		/// <summary>
+		/// Rysuje kulę za pomocą podanego renderera.
+		/// </summary>
+		/// <param name="renderer">Renderer, który ma narysować kulę</param>
 		void Draw(Renderer* renderer);
 
+		/// <summary>
+		/// Rotuje kulę o podany kąt (w radianach).
+		/// </summary>
+		/// <param name="radians">Kąt rotacji w radianach</param>
 		void Rotate(float radians);
+
+		/// <summary>
+		/// Przesuwa kulę o podany wektor przesunięcia.
+		/// </summary>
+		/// <param name="offset">Wektor przesunięcia</param>
 		void Move(glm::fvec3 offset);
+
+		/// <summary>
+		/// Obraca kulę wokół podanej płaszczyzny okręgu.
+		/// </summary>
+		/// <param name="center">Środek okręgu</param>
+		/// <param name="radius">Promień okręgu</param>
+		/// <param name="angle">Kąt obrotu w radianach</param>
 		void CircleAround(glm::fvec2 center, float radius, float angle);
+
+		/// <summary>
+		/// Zwraca pozycję kuli.
+		/// </summary>
+		/// <returns>Pozycja kuli, punkt</returns>
 		glm::fvec4 GetPosition();
+
 	private:
 		void CreateMesh();
 		glm::fvec4 GetPoint(float theta, float phi);

@@ -27,7 +27,6 @@ namespace eng::showcase
 		/// </summary>
 		/// <param name="engine">Silnik dla dema</param>
 		void Run(Engine& engine);
-		void ToggleLighting() { m_LightingEnabled = !m_LightingEnabled; }
 	private:
 		bool m_LightingEnabled;
 	};

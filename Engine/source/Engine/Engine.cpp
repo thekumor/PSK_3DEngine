@@ -49,7 +49,7 @@ namespace eng
 		Program program("shaders/test");
 		Uniform brightness("uBrightness", program);
 		float brightnessValue = 1.0f;
-		//brightness.SetFloat(brightnessValue);
+		brightness.SetFloat(brightnessValue);
 		Uniform cameraPos("uCameraPos", program);
 		Uniform cameraRot("uCameraRotRadians", program);
 		Uniform cameraRot4("uCameraRotRadians4", program);
@@ -102,10 +102,6 @@ namespace eng
 
 			eng::EventData updateData(timeStamp);
 			g_EventSource.CallEvent(EventType::Update, updateData);
-
-
-				m_LightingEnabled = !m_LightingEnabled;
-
 
 			timeStamp++;
 

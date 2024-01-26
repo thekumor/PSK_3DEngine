@@ -129,18 +129,9 @@ namespace eng::showcase
 		std::shared_ptr<Scene> scene = engine.CreateScene();
 		//std::shared_ptr<Cube> cube = scene->CreateCube(Cube(glm::fvec4(0.25f, 0.25f, 1.0f, 1.0f), 0.7f));
 		//std::shared_ptr<Cube> cube1 = scene->CreateCube(Cube(glm::fvec4(-0.25f, -0.25f, 1.0f, 1.0f), 0.3f));
-		//std::shared_ptr<Cube> cube2 = scene->CreateCube(Cube(glm::fvec4(-0.9f, -0.4f, 1.0f, 0.0f), 0.1f));
-		Texture tex("textures/wall.jpg");
+		std::shared_ptr<Cube> cube2 = scene->CreateCube(Cube(glm::fvec4(-0.9f, -0.4f, 1.0f, 0.0f), 0.1f));
+		//Texture tex("textures/wall.jpg");
 		//cube2->SetHasTexture(true);
-
-		/*Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
-		std::shared_ptr<Sphere> r3 = scene->CreateSphere(sphere);
-
-		Sphere sphere1(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.3f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
-		std::shared_ptr<Sphere> r4 = scene->CreateSphere(sphere1);
-
-		glm::fvec2 cent = { sphere1.GetPosition().x,sphere1.GetPosition().z};
-		sphere.CircleAround(cent, 2.0f, 125.0f);*/
 
 		// ------ MODEL ATOMU ------
 		float kat = 0.0f;
@@ -150,12 +141,13 @@ namespace eng::showcase
 		float zmianaNaFps2 = 2.0f;
 		float zmianaNaFps3 = 3.5f;
 		float maxKat = 360.0f;
+		/*
 		Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
 		std::shared_ptr<Sphere> r3 = scene->CreateSphere(sphere);
-
+		
 		Sphere sphere2(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
 		std::shared_ptr<Sphere> r5 = scene->CreateSphere(sphere2);
-
+		sphere2.Rotate(0.5);
 		Sphere sphere3(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
 		std::shared_ptr<Sphere> r6 = scene->CreateSphere(sphere3);
 
@@ -164,7 +156,7 @@ namespace eng::showcase
 
 		glm::fvec2 cent = { sphere1.GetPosition().x,sphere1.GetPosition().z };
 		// ------ MODEL ATOMU ------ //
-
+		
 		ENG_ADD_HOOK_PTR(this, EventType::Update, Hook("ModelAtomu", [=](const EventData& data) mutable
 			{
 				// ------ MODEL ATOMU ------
@@ -181,9 +173,11 @@ namespace eng::showcase
 				sphere.CircleAround(cent, 2.0f, kat);
 				sphere2.CircleAround(cent, 1.5f, kat2);
 				sphere3.CircleAround(cent, 1.0f, kat3);
+				glm::fvec3 offset = { 1.0f,0.0f,0.0f };
+				sphere.Move(offset);
 				// ------ MODEL ATOMU ------ //
-			}));
-
+			}));*/
+			
 	}
 
 }

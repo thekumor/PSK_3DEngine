@@ -55,6 +55,11 @@ namespace eng
 		/// <returns>Wskaźnik na nowa kostkę</returns>
 		std::shared_ptr<Cube> CreateCube(Cube object);
 
+		/// <summary>
+		/// Tworzy nowy trójkąt na danej scenie.
+		/// </summary>
+		/// <param name="object">Obiekt trójkąta</param>
+		/// <returns>Wskaźnik na nowy trójkąt</returns>
 		std::shared_ptr<Sphere> CreateSphere(Sphere object);
 
 	private:
@@ -73,6 +78,9 @@ namespace eng
 		/// </summary>
 		std::vector<std::shared_ptr<Cube>> m_Cubes = { };
 
+		/// <summary>
+		/// Sphere dla danej sceny.
+		/// </summary>
 		std::vector<std::shared_ptr<Sphere>> m_Spheres = { };
 	};
 
@@ -116,8 +124,6 @@ namespace eng
 		/// <param name="fps">Limit klatek</param>
 		void SetFPS(std::uint32_t fps);
 
-		void ToggleLighting() { m_LightingEnabled = !m_LightingEnabled; }
-
 	private:
 		/// <summary>
 		/// Okno aplikacji.
@@ -144,7 +150,6 @@ namespace eng
 		/// </summary>
 		std::uint32_t m_Fps = 120;
 
-		bool m_LightingEnabled;
 	};
 
 }
