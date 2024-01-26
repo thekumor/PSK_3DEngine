@@ -35,4 +35,12 @@ namespace eng
 		glUniform4d(m_Location, value.x, value.y, value.z, value.w);
 	}
 
+	void Uniform::SetInt(int value)
+	{
+		m_Prog.Bind();
+
+		m_Value = value;
+		glUniform1i(m_Location, value);
+	}
+
 }

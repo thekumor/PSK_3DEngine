@@ -53,36 +53,13 @@ namespace eng
 		Uniform cameraPos("uCameraPos", program);
 		Uniform cameraRot("uCameraRotRadians", program);
 		Uniform cameraRot4("uCameraRotRadians4", program);
+		Uniform hasTexture("uHasTexture", program);
 		program.Bind();
 
 		double time = 0;
 		std::uint64_t timeStamp = 0;
 
 		std::shared_ptr<Scene> scene = CreateScene();
-
-
-		// ------ MODEL ATOMU ------
-		float kat = 0.0f;
-		float kat2 = 25.0f;
-		float kat3 = 50.0f;
-		float zmianaNaFps = 1.0f;
-		float zmianaNaFps2 = 2.0f;
-		float zmianaNaFps3 = 3.5f;
-		float maxKat = 360.0f;
-		Sphere sphere(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
-		std::shared_ptr<Sphere> r3 = scene->CreateSphere(sphere);
-
-		Sphere sphere2(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
-		std::shared_ptr<Sphere> r5 = scene->CreateSphere(sphere2);
-
-		Sphere sphere3(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.05f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
-		std::shared_ptr<Sphere> r6 = scene->CreateSphere(sphere3);
-
-		Sphere sphere1(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 0.3f, glm::fvec4(1.0f, 0.0f, 0.0f, 1.0f));
-		std::shared_ptr<Sphere> r4 = scene->CreateSphere(sphere1);
-
-		glm::fvec2 cent = { sphere1.GetPosition().x,sphere1.GetPosition().z };
-		// ------ MODEL ATOMU ------ //
 
 		// Pętla główna.
 		while (!m_Window.ShouldClose())
@@ -106,22 +83,6 @@ namespace eng
 				//		FPS
 				// ---------------------------------------------
 
-				// ------ MODEL ATOMU ------
-				kat += zmianaNaFps;
-				kat2 += zmianaNaFps2;
-				kat3 += zmianaNaFps3;
-				if (kat > maxKat)
-					kat = 0.0;
-				if (kat2 > maxKat)
-					kat2 = 0.0;
-				if (kat3 > maxKat)
-					kat3 = 0.0;
-
-				sphere.CircleAround(cent, 2.0f, kat);
-				sphere2.CircleAround(cent, 1.5f, kat2);
-				sphere3.CircleAround(cent, 1.0f, kat3);
-				// ------ MODEL ATOMU ------ //
-
 			}
 			else
 				continue;
@@ -139,16 +100,28 @@ namespace eng
 			for (auto& scene : m_Scenes)
 			{
 				for (auto& t : scene->m_Triangles)
+				{
+					hasTexture.SetInt(t->HasTexture());
 					t->Draw(renderer);
+				}
 
 				for (auto& r : scene->m_Rectangles)
+				{
+					hasTexture.SetInt(r->HasTexture());
 					r->Draw(renderer);
+				}
 
 				for (auto& c : scene->m_Cubes)
+				{
+					hasTexture.SetInt(c->HasTexture());
 					c->Draw(renderer);
+				}
 
 				for (auto& s : scene->m_Spheres)
+				{
+					hasTexture.SetInt(s->HasTexture());
 					s->Draw(renderer);
+				}
 			}
 
 			m_Window.SwapBuffers();

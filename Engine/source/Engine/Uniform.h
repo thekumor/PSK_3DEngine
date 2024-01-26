@@ -40,6 +40,12 @@ namespace eng
 		/// <param name="value">Wartość uniformu</param>
 		void SetVec4d(const glm::dvec4& value);
 
+		/// <summary>
+		/// Ustawia wartość uniformu w formacie int.
+		/// </summary>
+		/// <param name="value">Wartość uniformu</param>
+		void SetInt(int value);
+
 	private:
 		/// <summary>
 		/// Program do którego uniform jest przypięty.

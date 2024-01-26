@@ -109,7 +109,7 @@ namespace eng
 
 	Cube::Cube(const glm::vec4& position, float length)
 	{
-		glm::fvec4 color(1.0f, 0.0f, 0.0f, 1.0f);
+		glm::fvec4 color(0.0f, 0.0f, 1.0f, 1.0f);
 
 		// ---------------------------------------------
 		//		Przód
@@ -298,6 +298,11 @@ namespace eng
 	glm::fvec4 Sphere::GetPosition()
 	{
 		return m_Position;
+	}
+
+	void BaseObject::SetHasTexture(bool has)
+	{
+		m_HasTexture = has;
 	}
 
 }

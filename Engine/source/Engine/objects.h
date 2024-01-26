@@ -30,11 +30,28 @@ namespace eng
 		/// <returns>Odbiornik zdarzeń</returns>
 		EventReceiver& GetReceiver() { return m_Receiver; }
 
+		/// <summary>
+		/// Zwraca czy posiada teksture.
+		/// </summary>
+		/// <returns>Czy posiada teksture</returns>
+		inline bool HasTexture() const { return m_HasTexture; }
+
+		/// <summary>
+		/// Ustawia, czy posiada teksture.
+		/// </summary>
+		/// <param name="has">Czy używać tekstury</param>
+		void SetHasTexture(bool has);
+
 	private:
 		/// <summary>
 		/// Odbiornik zdarzeń.
 		/// </summary>
 		EventReceiver m_Receiver;
+
+		/// <summary>
+		/// Czy posiada teksture.
+		/// </summary>
+		bool m_HasTexture = false;
 	};
 
 	class Texture : public BaseObject
