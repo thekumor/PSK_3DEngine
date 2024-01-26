@@ -48,8 +48,8 @@ namespace eng
 		// ---------------------------------------------
 		Program program("shaders/test");
 		Uniform brightness("uBrightness", program);
-		const float brightnessValue = 1.0f;
-		brightness.SetFloat(brightnessValue);
+		float brightnessValue = 1.0f;
+		//brightness.SetFloat(brightnessValue);
 		Uniform cameraPos("uCameraPos", program);
 		Uniform cameraRot("uCameraRotRadians", program);
 		Uniform cameraRot4("uCameraRotRadians4", program);
@@ -73,6 +73,19 @@ namespace eng
 			cameraPos.SetVec4f(glm::fvec4(camPosVec.x, camPosVec.y, 0.0f, camPosVec.z));
 			cameraRot4.SetVec4f(m_Camera.GetRotation4());
 			cameraRot.SetFloat(camRot);
+			
+			if (glfwGetKey(m_Window.GetWindow(), GLFW_KEY_P) == GLFW_PRESS) {
+				brightnessValue = 1.0f;
+				brightness.SetFloat(brightnessValue);
+			}
+			else if (glfwGetKey(m_Window.GetWindow(), GLFW_KEY_O) == GLFW_PRESS) {
+				brightnessValue = 0.5f;
+				brightness.SetFloat(brightnessValue);
+			}
+			else if (glfwGetKey(m_Window.GetWindow(), GLFW_KEY_I) == GLFW_PRESS) {
+				brightnessValue = 0.0f;
+				brightness.SetFloat(brightnessValue);
+			}
 
 			double frameTime = 1.0 / m_Fps;
 
@@ -90,12 +103,16 @@ namespace eng
 			eng::EventData updateData(timeStamp);
 			g_EventSource.CallEvent(EventType::Update, updateData);
 
+
+				m_LightingEnabled = !m_LightingEnabled;
+
+
 			timeStamp++;
 
 			// ---------------------------------------------
 			//		Rysowanie
 			// ---------------------------------------------
-			renderer->Clear(ENG_CLEAR_COLOR * brightnessValue);
+			renderer->Clear(ENG_CLEAR_COLOR * 1.0f);
 
 			for (auto& scene : m_Scenes)
 			{

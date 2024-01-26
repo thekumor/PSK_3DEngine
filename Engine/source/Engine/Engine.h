@@ -116,6 +116,8 @@ namespace eng
 		/// <param name="fps">Limit klatek</param>
 		void SetFPS(std::uint32_t fps);
 
+		void ToggleLighting() { m_LightingEnabled = !m_LightingEnabled; }
+
 	private:
 		/// <summary>
 		/// Okno aplikacji.
@@ -141,6 +143,8 @@ namespace eng
 		/// Maksymalna ilość klatek.
 		/// </summary>
 		std::uint32_t m_Fps = 120;
+
+		bool m_LightingEnabled;
 	};
 
 }

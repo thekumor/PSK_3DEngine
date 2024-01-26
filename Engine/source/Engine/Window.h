@@ -80,6 +80,10 @@ namespace eng
 		/// </summary>
 		void SwapBuffers();
 
+		GLFWwindow* GetWindow() const {
+			return m_Window;
+		}
+
 	private:
 		/// <summary>
 		/// Szerokość i wysokość.
